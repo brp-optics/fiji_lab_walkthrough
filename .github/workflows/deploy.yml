@@ -1,8 +1,8 @@
 name: deploy-book
 on:
   push:
-    branches: [main]          # rebuild any time you push to main
-  workflow_dispatch:          # …or allow a manual trigger
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-deploy:
@@ -14,17 +14,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - run: uv pip install -U jupyter-book
-      - run: uv run jupyter-book build .             # rebuild HTML (PDF optional)
+      - name: Install Jupyter Book
+        run: pip install -U jupyter-book
 
-      # If you want the workflow to compile the PDF too, add:
-      # - run: jupyter-book build . --builder pdflatex
-      #   env:
-      #     TEXLIVE_INSTALL_ARGS: "-no-doc-install -no-src-install"
-      #   # after this, move _build/latex/book.pdf -> _build/html/book.pdf
+      - name: Build HTML
+        run: jupyter-book build .
 
-      - name: deploy to GitHub Pages
+      # uncomment next 3 lines to build the PDF automatically
+      # - name: Build PDF
+      #   run: jupyter-book build . --builder pdflatex
+      # - run: mv _build/latex/book.pdf _build/html/_static/book.pdf
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/html            # what goes live
+          publish_dir: _build/html
