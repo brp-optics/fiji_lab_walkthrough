@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: installation
+- file: keyboard-shortcuts
+- file: basics
+- file: basic-segmentation
+- file: basic-registration
+- file: basic-scripting
+- file: deconvolution
+- file: background-subtraction
+- file: trackmate
+# - file: stardist
+- file: labkit
+- file: extra-resources

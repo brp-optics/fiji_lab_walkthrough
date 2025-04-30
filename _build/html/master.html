@@ -1,0 +1,1431 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installing ImageJ/FIJI &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'master';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fiji Lab Walkthrough
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing ImageJ/FIJI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keyboard-shortcuts.html">Common Keyboard Shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Getting Started, Opening an Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-segmentation.html">Basic Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-registration.html">Basic Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-scripting.html">Scripting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deconvolution.html">Deconvolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background-subtraction.html">Background Subtraction – Gaussian Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trackmate.html">TrackMate – Example from documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labkit.html">Labkit Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-resources.html">Other Resources</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/master.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Installing ImageJ/FIJI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Installing ImageJ/FIJI</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-fiji-package">Download FIJI Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">macOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-instructions-for-macos">Backup Instructions for macOS</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-side-note-on-updating">A Side Note on Updating</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-plugins-with-update-sites">Install Plugins with Update Sites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-a-practice-dataset">Downloading a Practice Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#common-keyboard-shortcuts">Common Keyboard Shortcuts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#also-helpful">Also Helpful</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-with-a-basic-image">Starting with a basic image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-images">Inspecting Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverting-the-background">Inverting the Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-color-scheme-lut">Changing the Color Scheme (LUT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colorblindness-consideration">Colorblindness Consideration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-line-plot">Plot/Line Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-viewing-a-z-stack">Opening and viewing a Z-Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperstacks">Hyperstacks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicate-a-channel-or-image">Duplicate A Channel Or Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-channel-colors">Changing Channel Colors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-volume-and-projections">3D Volume and Projections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-image-types-cautiously">Changing Image Types, cautiously.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-depth">Bit Depth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-brightness-and-contrast">Adjusting Brightness and Contrast</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-scale-and-scale-bars">Set Scale and Scale Bars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-image-metadata">Accessing Image Metadata</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-segmentation">Basic Segmentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction">Background Subtraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-thresholding">Segmentation / Thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-filtering">Morphological filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-chunks-by-watershed">Splitting chunks by watershed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-selections-to-roi-manager">Adding Selections to ROI Manager</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-particles">Analyze Particles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-for-measurement">Masks for Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-measurements">Making Measurements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stitching-images">Stitching Images</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scripting">Scripting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macro-recorder">Macro Recorder</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-recorder-not-show-a-response-for-all-plugins">Why does the recorder not show a response for all plugins?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deconvolution">Deconvolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction-gaussian-filters">Background Subtraction – Gaussian Filters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trackmate-example-from-documentation">TrackMate – Example from documentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#labkit-segmentation">Labkit Segmentation</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="installing-imagej-fiji">
+<h1>Installing ImageJ/FIJI<a class="headerlink" href="#installing-imagej-fiji" title="Link to this heading">#</a></h1>
+<section id="download-fiji-package">
+<h2>Download FIJI Package<a class="headerlink" href="#download-fiji-package" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Download FIJI package from the software site
+FIJI has pre-installed plugins and is recommended for this lab.
+Download it at <a class="reference external" href="https://imagej.net/software/fiji/downloads">https://imagej.net/software/fiji/downloads</a>.
+Look for the zip folder and extract the contents to the desired location on your computer. Keeping it in “Program Files” is generally not recommended to avoid access/security issues.</p></li>
+</ol>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>We’re going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn’t show up within two minutes of running, then run the backup launcher.</p>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Right-click on <code class="docutils literal notranslate"><span class="pre">fiji-win64.zip</span></code> and choose <strong>Extract All…</strong> to <code class="docutils literal notranslate"><span class="pre">Downloads\</span></code> (avoid placing it in <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Files</span></code>).</p></li>
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">Fiji64.app</span></code> folder.</p></li>
+<li><p><strong>New launcher</strong>: Run <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"> <code class="docutils literal notranslate"><span class="pre">Fiji-windows-x64.exe</span></code> in that folder.</p></li>
+<li><p>Running for the first time may take about 60 seconds.</p></li>
+<li><p><strong>Backup launcher</strong>: Run <img src="_static/images/Imagej2-icon.png" style="height:1em; vertical-align:middle;"><code class="docutils literal notranslate"><span class="pre">ImageJ-win64.exe</span></code> in that folder.</p></li>
+</ul>
+</section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Unzip <code class="docutils literal notranslate"><span class="pre">fiji-linux64.zip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>fiji-linux64.zip
+<span class="nb">cd</span><span class="w"> </span>Fiji.app/
+</pre></div>
+</div>
+</li>
+<li><p><strong>New launcher</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./fiji-linux-x64
+</pre></div>
+</div>
+</li>
+<li><p><strong>Backup launcher</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./ImageJ-linux64
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="macos">
+<h3>macOS<a class="headerlink" href="#macos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Double-click <code class="docutils literal notranslate"><span class="pre">fiji-macos.zip</span></code> to extract.</p></li>
+<li><p>(Optional: copy <code class="docutils literal notranslate"><span class="pre">Fiji.app</span></code> to Desktop.)</p></li>
+<li><p>Right-click on <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"> <code class="docutils literal notranslate"><span class="pre">Fiji.app</span></code>, choose <strong>Show Package Contents</strong>.</p></li>
+<li><p>You will see a folder containing another <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"> <code class="docutils literal notranslate"><span class="pre">Fiji</span></code> icon inside it.<br />
+Double-click the <strong>second</strong> <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"><code class="docutils literal notranslate"><span class="pre">Fiji</span></code> icon to launch.</p></li>
+<li><p>If it doesn’t work, see backup instructions below.</p></li>
+</ul>
+<section id="backup-instructions-for-macos">
+<h4>Backup Instructions for macOS<a class="headerlink" href="#backup-instructions-for-macos" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Double-click <code class="docutils literal notranslate"><span class="pre">fiji-macos.zip</span></code> to extract.</p></li>
+<li><p>(Optional: copy <code class="docutils literal notranslate"><span class="pre">Fiji.app</span></code> to Desktop.)</p></li>
+<li><p>Try opening <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"> <code class="docutils literal notranslate"><span class="pre">Fiji.app</span></code>.
+This will likely be rejected by macOS for security reasons.</p></li>
+<li><p>Open <strong>Apple Menu &gt; System Settings</strong>.</p></li>
+<li><p>Search for <strong>Gatekeeper</strong>.</p></li>
+<li><p>You should see the text<br />
+“Fiji.app was blocked…”_ → click <strong>Open Anyway</strong>.</p></li>
+<li><p>Enter your password or use your fingerprint if prompted.</p></li>
+<li><p>Click <strong>Open</strong>.<br />
+After this, you should be able to open <code class="docutils literal notranslate"><span class="pre">Fiji.app</span></code> directly.</p></li>
+</ul>
+</section>
+</section>
+<section id="a-side-note-on-updating">
+<h3>A Side Note on Updating<a class="headerlink" href="#a-side-note-on-updating" title="Link to this heading">#</a></h3>
+<p>When using FIJI, it is recommended to use <strong>Help &gt; Update</strong> rather than <strong>Help &gt; Update ImageJ</strong>.<br />
+Update ImageJ will specifically update only the base ImageJ package within FIJI, not the associated plugins.<br />
+This makes it more likely that you will run into version issues and other update problems.<br />
+Generally, updating when prompted upon opening FIJI will also help prevent issues.</p>
+</section>
+</section>
+<section id="install-plugins-with-update-sites">
+<h2>Install Plugins with Update Sites<a class="headerlink" href="#install-plugins-with-update-sites" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>After running <strong>Help &gt; Update</strong>, there will be an option to <strong>Manage Update Sites</strong>.<br />
+This provides access to common plugins that are compatible with FIJI. Use the checkbox to add a plugin, then click <strong>Apply and Close</strong>.</p></li>
+</ol>
+<p><img alt="Screenshot of FIJI update screen" src="_images/update-fiji.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>Click <strong>Apply Changes</strong>, then restart FIJI.</p></li>
+<li><p>You should now be able to search for and run the plugin.</p></li>
+</ol>
+</section>
+<section id="downloading-a-practice-dataset">
+<h2>Downloading a Practice Dataset<a class="headerlink" href="#downloading-a-practice-dataset" title="Link to this heading">#</a></h2>
+<p>The complete list of files may be downloaded at the following links:</p>
+<p>Google Drive:
+<a class="reference external" href="https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link">https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link</a></p>
+<p>Github:
+<a class="reference external" href="https://github.com/brp-optics/FIJI_Lab_Tutorial">https://github.com/brp-optics/FIJI_Lab_Tutoriall</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="common-keyboard-shortcuts">
+<h1>Common Keyboard Shortcuts<a class="headerlink" href="#common-keyboard-shortcuts" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Shortcut</p></th>
+<th class="head text-left"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td class="text-left"><p>Zoom in</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td class="text-left"><p>Zoom out</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">L</span></code></p></td>
+<td class="text-left"><p>Focus search bar</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">S</span></code></p></td>
+<td class="text-left"><p>Save</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><em>(No shortcut)</em></p></td>
+<td class="text-left"><p>Save As</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">C</span></code></p></td>
+<td class="text-left"><p>Adjust Brightness and Contrast</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Z</span></code></p></td>
+<td class="text-left"><p>Color channel control</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Z</span></code></p></td>
+<td class="text-left"><p>Undo</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">H</span></code> (Windows) <br> <code class="docutils literal notranslate"><span class="pre">H</span></code> (Mac)</p></td>
+<td class="text-left"><p>Open Histogram</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">K</span></code></p></td>
+<td class="text-left"><p>Plot / Line Profile</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">M</span></code></p></td>
+<td class="text-left"><p>Measure</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">T</span></code></p></td>
+<td class="text-left"><p>Threshold</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Shift</span></code></p></td>
+<td class="text-left"><p>Draw straight lines</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">Arrow</span> <span class="pre">Keys</span></code></p></td>
+<td class="text-left"><p>Change current selection size</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+<td class="text-left"><p>Open ROI (Region of Interest) Manager and add current selection as ROI</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Ctrl/Command</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">W</span></code></p></td>
+<td class="text-left"><p>Close all windows</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="also-helpful">
+<h2>Also Helpful<a class="headerlink" href="#also-helpful" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Window &gt; Tile</strong><br />
+Montages all open images/windows.</p></li>
+<li><p><strong>Image &gt; Transform</strong><br />
+Flip or rotate images.</p></li>
+<li><p><strong>Help &gt; Update</strong><br />
+Update FIJI.</p></li>
+<li><p><strong>Enter</strong> (when focused on an image)<br />
+Surfaces the ImageJ main toolbar window.# Getting Started, Opening an Image</p></li>
+</ul>
+<p>The easiest way to open a data set is to click-and-drag from the folder. However, some file types
+need to be specifically imported. To import a sequence of images that are saved within a folder,
+you can use the <strong>File &gt; Import &gt; Image Sequence</strong> option to open them as a stack or as
+separate images.
+Additionally, using a <strong>Virtual Stack</strong> in the <strong>Bio-Formats Importer</strong> may be useful if trying to view
+large data files. This makes it easier to get a quick look at data when there is limited RAM.
+However, if you need to perform an image operation, such as background subtraction, then
+more memory will be required as the data needs to be loaded.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>💡 <strong>Pro tip</strong>: Press <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">L</span></code> (Windows) or <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">+</span> <span class="pre">L</span></code> (Mac) to jump straight to the search bar.<br />
+This can access nearly any menu command or plugin, usually faster than using the menus!</p>
+</div>
+</section>
+<section id="starting-with-a-basic-image">
+<h2>Starting with a basic image<a class="headerlink" href="#starting-with-a-basic-image" title="Link to this heading">#</a></h2>
+<p>Open “blobs.gif”, via <strong>File &gt; Open Samples &gt; Blobs</strong>, or <strong>Ctrl + Shift + B</strong></p>
+</section>
+<section id="inspecting-images">
+<h2>Inspecting Images<a class="headerlink" href="#inspecting-images" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Hover over an area in the image.<br />
+In the status bar of Fiji, you should see the pixel you are on, with XY coordinates, and its associated value.</p>
+<ul class="simple">
+<li><p>In an RGB type image, Fiji will also tell you the associated color values for the
+red, green, and blue channels.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Status bar showing pixel values for blobs." src="_images/status-bar.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>To see a larger area, use the <strong>Pixel Inspection Tool</strong>:</p>
+<ul class="simple">
+<li><p>In the Fiji window, click the Pixel Inspection icon.</p></li>
+<li><p><em>If the icon is not present, you can use the double red arrows to add the icon, by
+opening the list and selecting <strong>Pixel Inspector</strong>.</em></p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Pixel Inspector icon" src="_images/pixel-inspector.png" /></p>
+<ul class="simple">
+<li><p>This brings up a window of pixel values that can be moved around the image.<br />
+To adjust the parameters of this window, click <strong>Prefs</strong>.<br />
+This can be used to adjust the size of the window.</p></li>
+</ul>
+<p><img alt="Location of Prefs in the Pixel Values window" src="_images/pixel-values.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="inverting-the-background">
+<h2>Inverting the Background<a class="headerlink" href="#inverting-the-background" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Sometimes the background may be white instead of black, depending on what you are
+interested in within the image.</p></li>
+<li><p>The color scheme can be inverted by selecting <strong>LUT &gt; Invert LUT</strong>.</p>
+<blockquote>
+<div><p><em>Note</em>: if you use <strong>Edit &gt; Invert</strong>, this will invert the actual image and change
+the pixel values themselves, which may not represent the original data.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="changing-the-color-scheme-lut">
+<h2>Changing the Color Scheme (LUT)<a class="headerlink" href="#changing-the-color-scheme-lut" title="Link to this heading">#</a></h2>
+<p>A Lookup Table (LUT) controls the colormap of the images.
+This can easily be changed using the <strong>LUT</strong> button in the toolbar.
+Try a few LUTs and see how the information in the background and foreground changes.</p>
+<ol class="arabic simple">
+<li><p>Using <strong>Image &gt; Colors &gt; Display LUTs</strong> will display different types of LUTs.</p></li>
+<li><p>It is also helpful to include a scale/calibration bar when changing LUTs.<br />
+This can be added with <strong>Analyze &gt; Tools &gt; Calibration Bar</strong>.</p></li>
+</ol>
+<p><img alt="Four different LUTs applied to Blobs" src="_images/blobs-luts.png" /></p>
+<section id="colorblindness-consideration">
+<h3>Colorblindness Consideration<a class="headerlink" href="#colorblindness-consideration" title="Link to this heading">#</a></h3>
+<p>To test how different images may appear to those with colorblindness, you can use the <strong>Simulate Color Blindness</strong> plugin if you have an RGB image.<br />
+<code class="docutils literal notranslate"><span class="pre">mpl-viridis</span></code> can be a good option as it is designed to be <em>perceptually uniform</em> (see <a class="reference external" href="https://imagej.net/imaging/visualization">https://imagej.net/imaging/visualization</a>).</p>
+<p>As a separate note, it may also be helpful to test any publication figures (images or
+otherwise) in grayscale, to see what color information may be lost if the paper is printed in
+grayscale.<br />
+In many cases, it may be more practical to develop images/figures in grayscale,
+especially for presentations, and it is still a valid representation of the data.</p>
+</section>
+</section>
+<section id="plot-line-plot">
+<h2>Plot/Line Plot<a class="headerlink" href="#plot-line-plot" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>To see graphically how the pixel values vary across the image we can use the plot tool.</p>
+<ul class="simple">
+<li><p>This can be very useful for determining how much noise is in the background of an
+image, or for finding the width of an object, such as a point spread function.</p></li>
+</ul>
+</li>
+<li><p>Draw a line or rectangle across the image, using the tools from the toolbar:</p></li>
+</ol>
+<p><img alt="Line tool" src="_images/line-tool.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Press <strong>Ctrl + K</strong> to display the profile along the line.</p>
+<ul class="simple">
+<li><p>The <strong>Live</strong> button in the plot window can be used to create an active plot that
+changes when the selection in the image is changed.</p></li>
+</ul>
+</li>
+<li><p>Here we can clearly see the increase in signal intensity across the three selected
+blobs.<br />
+Since this is a rectangular selection, the values are averaged across the height of the rectangle.</p></li>
+</ol>
+<p><img alt="Profile from rectangular selection atop blobs" src="_images/plot-profile.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>In comparison, the plot of a single line shows similar intensity changes when
+carefully drawn through the three blobs, but the plot is noisier and more sensitive
+to where the line is placed.</p></li>
+</ol>
+<p><img alt="Profile from linear selection atop blobs" src="_images/plot-profile-line.png" /></p>
+</section>
+<section id="opening-and-viewing-a-z-stack">
+<h2>Opening and viewing a Z-Stack<a class="headerlink" href="#opening-and-viewing-a-z-stack" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open “t1-head.tif”, via <strong>File &gt; Open Samples &gt; T1 Head (16-bits)</strong>.</p></li>
+<li><p>Use the bar to scroll through the stack of images</p></li>
+<li><p>We can also display the orthogonal view by using <strong>Image &gt; Stacks &gt; Orthogonal Views</strong>
+or <strong>Ctrl/Command + Shift + H</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>The yellow crosshairs can be used to change the display for each orthogonal
+view, but one has to close the orthogonal view to select images.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>To select from an orthogonal view, try <strong>reslice</strong>, in <strong>Image &gt; Stacks &gt; Reslice</strong> or press <strong>\ (backslash)</strong> when the image is in focus.</p></li>
+</ol>
+<!-- __Todo: check formatting here. -->
+</section>
+<section id="hyperstacks">
+<h2>Hyperstacks<a class="headerlink" href="#hyperstacks" title="Link to this heading">#</a></h2>
+<p>Hyperstacks are multidimensional data, such as a multichannel timeseries or z-stacks.</p>
+<ol class="arabic simple">
+<li><p>Start by opening the “hela_infected_timeseries.tif” image. This is available for download
+at: <a class="reference external" href="https://media.imagej.net/workshops/data/3d/">https://media.imagej.net/workshops/data/3d/</a></p></li>
+</ol>
+<ul class="simple">
+<li><p>If internet access is unavailable, the <code class="docutils literal notranslate"><span class="pre">Mitosis</span> <span class="pre">(5D</span> <span class="pre">stack)</span></code> sample from <strong>File &gt; Open Samples</strong> works, too.</p></li>
+</ul>
+<section id="duplicate-a-channel-or-image">
+<h3>Duplicate A Channel Or Image<a class="headerlink" href="#duplicate-a-channel-or-image" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <strong>Image &gt; Duplicate</strong> to bring up the duplication options window. This can also be
+done with <strong>Ctrl + Shift + D</strong> or <strong>Right Click &gt; Duplicate</strong>. Here, we can specify which RGB
+channels and timepoints we want to separate. If we use 1-2 in the channels menu, it
+should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
+(If you are using the mitosis image, try choosing just one value for the color channel.)</p></li>
+</ul>
+<p><img alt="Duplicate tool" src="_images/duplicate.png" />
+<img alt="Hela duplicated" src="_images/hela-duplicate.png" /></p>
+</section>
+</section>
+<section id="changing-channel-colors">
+<h2>Changing Channel Colors<a class="headerlink" href="#changing-channel-colors" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>To change the display color of channels, use <strong>Image &gt; Color &gt; Channels Tool</strong> or <strong>Ctrl + Shift + Z</strong>.</p></li>
+</ol>
+<p><img alt="Channels" src="_images/channels.png" /></p>
+<p>Note: The “more” option can be used to apply colors to the selected channels.</p>
+</section>
+<section id="d-volume-and-projections">
+<h2>3D Volume and Projections<a class="headerlink" href="#d-volume-and-projections" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">t1-head.tif</span></code>, <strong>File &gt; Open Samples &gt; T1 Head (16 bits)</strong></p></li>
+<li><p>To display the 3D Volume, use <strong>Image &gt; Stack &gt; 3D Projection &gt; Click ok</strong>
+In the 3D projection dialogue box, there are various options for projection including
+axis of rotation and setting the slice spacing (step size) which may be useful for
+known parameters.</p></li>
+</ol>
+<p><img alt="t1 head max z projection" src="_images/t1-head-max-proj.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Additionally, the original image stack may be projected along one axis using <strong>Image &gt;
+Stacks &gt; Z Project</strong>. It is important to note that the information in the projection is highly
+dependent on the display parameter. A few examples are shown below (left to right:
+single slice of the stack, average projection, median projection, max projection).</p></li>
+</ol>
+<p><img alt="t1 head different z projections" src="_images/t-head-multiple-z-projections.png" /></p>
+</section>
+<section id="changing-image-types-cautiously">
+<h2>Changing Image Types, cautiously.<a class="headerlink" href="#changing-image-types-cautiously" title="Link to this heading">#</a></h2>
+<p>Some operations - especially image math operations - only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8-bit images, it would be prudent to first convert them to 16-bit images so the output is to a 16-bit image and does not overflow.</p>
+<p>However, changing the image type through <strong>Image &gt;
+Type</strong> can result in the loss of information as we will see in the next example. Not all image
+types can be converted back to the original. The following error is likely to display if you
+are not able to complete a type conversion.</p>
+<p><img alt="Converter error" src="_images/type-converter-error.png" /></p>
+</section>
+<section id="bit-depth">
+<h2>Bit Depth<a class="headerlink" href="#bit-depth" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">m51.tif</span></code> image, <strong>Open &gt; Open Samples &gt; M51 Galaxy (16 Bits)</strong>.</p></li>
+<li><p>Adjust the contrast so we can see the image a bit better. <strong>Image &gt; Adjust &gt; Brightness and Contrast</strong>.</p></li>
+<li><p>Make a histogram of the image, <strong>Ctrl + H</strong>, and notice the scale of the histogram and the
+mean value. Keep this window open.
+a. 16-bit images have a maximum value of 65,536.</p></li>
+<li><p>Convert the 16 bit image to an 8 bit image, <strong>Image &gt; Type &gt; 8 bit</strong>.
+a. 8-bit images have a maximum of 256 values. This means the data resolution and
+range is lower compared to a higher bit depth, so the data is compressed.</p></li>
+<li><p>Make another histogram and keep the window open. How did the values change?</p></li>
+</ol>
+<p><img alt="Galaxy max value changes from 10106 to 255" src="_images/m51-bit-depth.png" /></p>
+</section>
+<section id="adjusting-brightness-and-contrast">
+<h2>Adjusting Brightness and Contrast<a class="headerlink" href="#adjusting-brightness-and-contrast" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Changing the contrast in an image can be a good visualization tool. Using <strong>Ctrl + Shift +
+C</strong> or <strong>Image &gt; Adjust &gt; Brightness and Contrast</strong> will display the B&amp;C menu. Using
+Auto or the B&amp;C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but <strong>using the Apply button will
+change the pixel values, which generally should not be done.</strong></p></li>
+</ul>
+</section>
+<section id="set-scale-and-scale-bars">
+<h2>Set Scale and Scale Bars<a class="headerlink" href="#set-scale-and-scale-bars" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>If the size per pixel is known, such as from a microscope calibration, this can be
+used to change the image dimensions from pixels to the known field of view.</p></li>
+<li><p>Use <strong>Analyze &gt; Set Scale</strong> to enter the known distance.</p>
+<ul class="simple">
+<li><p>For example, an image with a pixel size of <code class="docutils literal notranslate"><span class="pre">0.73</span> <span class="pre">pixels/micron</span></code> would be entered as shown, using “um” or “micron”.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Setting the image scale, using Set Scale" src="_images/set-scale.png" /></p>
+<ul class="simple">
+<li><p>Further info for setting the scale based on a measurement in an image can be found here:<br />
+<a class="reference external" href="https://serc.carleton.edu/eyesinthesky2/week2/get_to_know_imagej.html">https://serc.carleton.edu/eyesinthesky2/week2/get_to_know_imagej.html</a></p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>To add a scale bar, use <strong>Analyze &gt; Tools &gt; Scale Bar</strong>.</p></li>
+</ol>
+<p><img alt="Adding a scale bar overlay" src="_images/scale-bar.png" /></p>
+</section>
+<section id="accessing-image-metadata">
+<h2>Accessing Image Metadata<a class="headerlink" href="#accessing-image-metadata" title="Link to this heading">#</a></h2>
+<!-- __Todo -->
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="basic-segmentation">
+<h1>Basic Segmentation<a class="headerlink" href="#basic-segmentation" title="Link to this heading">#</a></h1>
+<p>For this section, we demonstrate with the <strong>embryos</strong> sample.</p>
+<section id="background-subtraction">
+<h2>Background Subtraction<a class="headerlink" href="#background-subtraction" title="Link to this heading">#</a></h2>
+<p>Oftentimes the background illumination is not uniform, and this interferes with intensity-based thresholding. Fiji includes multiple methods to perform background subtraction in ImageJ, including <strong>Process &gt; Subtract Background</strong>, <strong>Mean/Median Background Subtraction</strong>, or <strong>Gaussian Blur Subtraction</strong>. If you are not planning a quantitative analysis, <strong>Enhance Local Contrast</strong> (<strong>CLAHE</strong>, Contrast Limited Adaptive Histogram Equalization) may also be worth a try.</p>
+<p><img alt="Embryos original, background subtracted, and with CLAHE" src="_images/embryos-bg.png" />
+<em>Left to right: original, background subtracted, with CLAHE.</em></p>
+<p>However, any background subtraction used to process images should be carefully considered in relation to the original source of noise, how the image information is used, and any further processing or quantification of the image.</p>
+<p>In some cases the Subtract Background plugin, or other methods, can also introduce artifacts that are not present in the original image.</p>
+<p>Some <a class="reference external" href="http://Image.sc">Image.sc</a> forum discussion here:<br />
+<a class="reference external" href="https://forum.image.sc/t/consensus-on-subtract-background-built-in-or-other/7061">https://forum.image.sc/t/consensus-on-subtract-background-built-in-or-other/7061</a></p>
+</section>
+<hr class="docutils" />
+<section id="segmentation-thresholding">
+<h2>Segmentation / Thresholding<a class="headerlink" href="#segmentation-thresholding" title="Link to this heading">#</a></h2>
+<p>For this section we will open up blobs again: <strong>Ctrl-Shift-B</strong></p>
+<ol class="arabic simple">
+<li><p>If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let’s look at the histogram of the intensity values using <strong>Ctrl + H</strong>.</p></li>
+</ol>
+<p><img alt="Histogram of blobs" src="_images/blobs-hist.png" /></p>
+<p>We can see that most of the background pixels have an intensity value around 50, whereas there is another grouping of pixel intensities around 210, which is likely the areas we are interested in because this image has a white background. Notice that the values are stretched outwards; this indicates that the original range was likely very small or somehow adjusted.</p>
+<ol class="arabic simple" start="2">
+<li><p>Use <strong>Image &gt; Adjust &gt; Threshold</strong> to see the automatic threshold applied based on the original histogram.<br />
+This seems to segment the blobs pretty well. You can change the slider bars to see how the segmentation changes as the threshold moves.<br />
+When ready, click <strong>Apply</strong> to create the binarized mask. Notice that the blobs now have a value of <code class="docutils literal notranslate"><span class="pre">255</span></code>, and the background has been set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.  This represents a <strong>permanent change</strong> in the image values, so going forward, most quantified analysis involving pixel values must be performed by applying the segmentation as a mask on the original image (see [Masks] section).</p></li>
+</ol>
+<p><img alt="Thresholding on blobs" src="_images/blobs-thresh.png" /></p>
+<!-- __Todo: add hyperlink -->
+<ul class="simple">
+<li><p>There is also an <strong>Auto Threshold</strong> option under <strong>Image &gt; Adjust &gt; Auto Threshold</strong>, that you can use to compare different methods of thresholding. It is easiest to see the comparisons using the <strong>Try All</strong> method.</p></li>
+</ul>
+<p><img alt="Seeing all the threshold options via Auto Threshold" src="_images/blobs-autothresh.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="morphological-filtering">
+<h2>Morphological filtering<a class="headerlink" href="#morphological-filtering" title="Link to this heading">#</a></h2>
+<p>Often the mask of the particles will pick up a lot of noise, and it is useful to filter them. The morphological operations <strong>Erode</strong> and <strong>Dilate</strong> from the menu <strong>Process &gt; Binary</strong> can be combined in sequence to remove noise. When Erode is run first, the sequence is called <strong>Open</strong>, and removes small objects and speckle noise. When Dilate is run first, the sequence is called <strong>Close</strong> and fills small holes or gaps between mask objects.</p>
+<p><img alt="Morphological operations on a blobs mask." src="_images/blobs-morpho.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="splitting-chunks-by-watershed">
+<h2>Splitting chunks by watershed<a class="headerlink" href="#splitting-chunks-by-watershed" title="Link to this heading">#</a></h2>
+<p>Often two smooth convex objects (cells!) will be touching and thereby detected as part of the same mask element. <strong>Watershed segmentation</strong> or <strong>Process &gt; Binary &gt; Watershed</strong> splits masks by drawing a narrow channel at narrow bottlenecks. This is useful for separating cells that were identified as part of the same mask.</p>
+<p><img alt="Watershed on blobs" src="_images/blobs-watershed.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="adding-selections-to-roi-manager">
+<h2>Adding Selections to ROI Manager<a class="headerlink" href="#adding-selections-to-roi-manager" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">T</span></code> to open the ROI manager.</p></li>
+<li><p>Use <strong>Edit &gt; Selection &gt; Create Selection</strong> to select all of the blobs based on the current threshold.</p></li>
+<li><p>In the ROI Manager window, use <strong>More &gt; Split</strong> to divide the selection into multiple ROIs.</p>
+<ul class="simple">
+<li><p>You can click on the regions to see the specific blob it corresponds to.</p></li>
+<li><p>If needed, the selected regions can be saved in a file and reopened later using <strong>More &gt; Save</strong>.</p></li>
+<li><p>One can also add selections to the ROI manager manually, if there are only a few objects to segment or if thresholding segmentation does not work for your sample.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="analyze-particles">
+<h2>Analyze Particles<a class="headerlink" href="#analyze-particles" title="Link to this heading">#</a></h2>
+<p>The <strong>Analyze Particles</strong> function can be useful for applying size exclusion or removing any blobs that are below our desired size threshold.<br />
+For example, we can see some smaller red circles in the image that may represent noise rather than a full blob we are interested in.<br />
+This can be especially useful if we have a biological problem, such as segmenting cells, where we know the cells must be above a certain size.</p>
+<ol class="arabic simple">
+<li><p>Open the ROI manager by pressing <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
+<ul class="simple">
+<li><p>If there are previous ROI selections that you would like to remove:</p>
+<ul>
+<li><p>Click on the first one, hold <code class="docutils literal notranslate"><span class="pre">Shift</span></code>, then click on the last one.</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Delete</span></code> to clear them.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Use <strong>Analyze &gt; Analyze Particles</strong> to open the function window.</p>
+<ul class="simple">
+<li><p><strong>Size</strong> can be used to determine what blobs are included. For example, specify <code class="docutils literal notranslate"><span class="pre">&quot;30-Infinity&quot;</span></code> to remove smaller blobs.</p>
+<ul>
+<li><p>For many biological applications, it’s best to know the size of the pixels to understand how much area is excluded, and whether it corresponds to the expected size based on the experiment.</p></li>
+</ul>
+</li>
+<li><p>Ensure the <strong>Add to Manager</strong> box is selected to add the ROIs to the ROI manager.</p></li>
+<li><p>For the <strong>Show</strong> dropdown, select <strong>Masks</strong> to display the following:</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Analyze particles on blobs" src="_images/analyze-particles.png" />
+<img alt="Blobs analyzed" src="_images/blobs-analyzed.png" /></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> &gt; Notice that some of the blobs that are present in the binarized image, like the one next to number 29, are not included in the mask.
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="masks-for-measurement">
+<h2>Masks for Measurement<a class="headerlink" href="#masks-for-measurement" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Once you have a mask or the desired image, use <strong>Edit &gt; Selection &gt; Create Selection</strong> to add the regions to the ROI manager.</p></li>
+<li><p>After selection, you can also use <strong>Edit &gt; Selection &gt; Create Mask</strong> to make a mask of the desired areas if the image is not already binarized.</p></li>
+<li><p>To copy the ROI selection onto the original image:</p>
+<ul class="simple">
+<li><p>Click on the mask while the selection is open.</p></li>
+<li><p>Then click on the original image and press <strong>Shift + E</strong> or use <strong>Edit &gt; Selection &gt; Restore Selection</strong>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id1">
+<h2><img alt="Blobs with masks" src="_images/blobs-masked.png" /><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="making-measurements">
+<h2>Making Measurements<a class="headerlink" href="#making-measurements" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>To set the desired measurements to be collected, use <strong>Analyze &gt; Set Measurements</strong>.<br />
+This window will determine what results are displayed or saved from the image.</p></li>
+</ol>
+<p><img alt="Set measurements window" src="_images/set-measurements.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>To create the measurements:</p>
+<ul class="simple">
+<li><p>Use <strong>Analyze &gt; Measure</strong> or <strong>Ctrl + M</strong>, while the desired image is active.</p></li>
+<li><p>This may produce one measurement for the whole image if an ROI is not active.</p></li>
+<li><p>To measure all ROIs at once, use <strong>Measure</strong> in the ROI Manager.</p>
+<ul>
+<li><p>The checkboxes for <strong>Show All</strong> and <strong>Labels</strong> can be useful to see what regions are being measured.</p></li>
+</ul>
+</li>
+<li><p>If you want, use <strong>Edit &gt; Selection &gt; Make Inverse</strong>.</p>
+<ul>
+<li><p>This will now select the entire background.</p></li>
+<li><p>You can measure again to get the value for the background.# Basic Registration</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="stitching-images">
+<h2>Stitching Images<a class="headerlink" href="#stitching-images" title="Link to this heading">#</a></h2>
+<p>There are multiple ways to stitch images using the <strong>Grid/Collection Stitching</strong> plugin, including with metadata or file position.</p>
+<!-- __Todo: Find leaf data -->
+<ol class="arabic simple">
+<li><p>Open the <strong>Grid/Collection Stitching</strong> plugin.<br />
+In this example, use <strong>Grid: snake by rows</strong> with the order of <strong>Right &amp; Down</strong>.</p></li>
+</ol>
+<p><img alt="Grid stitcher" src="_images/grid-stitcher.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>In the dialogue box, specify the following parameters:</p>
+<ul class="simple">
+<li><p>Grid size: <strong><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">3</span></code></strong></p></li>
+<li><p>Tile overlap [%]: <code class="docutils literal notranslate"><span class="pre">0</span></code><br />
+(This is a known value — the image we are stitching was part of a larger image. In an experimental context, this may be part of the image acquisition settings.)</p></li>
+<li><p>First file index: <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p>Directory: point to the <code class="docutils literal notranslate"><span class="pre">Leaf_stitch</span></code> folder</p></li>
+<li><p>File name: <code class="docutils literal notranslate"><span class="pre">leaf-{i}.tif</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">{i}</span></code> specifies where in the filename to iterate through values.</p></li>
+<li><p>If this is written as <code class="docutils literal notranslate"><span class="pre">{ii}</span></code>, there will be an error because the first file is <code class="docutils literal notranslate"><span class="pre">1</span></code>, not <code class="docutils literal notranslate"><span class="pre">01</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Uncheck the <strong>Compute overlap</strong> box, since the overlap value is known.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Fused leaf image" src="_images/fused-leaf.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Also try re-running the plugin with an overlap value of 10%.</p>
+<ul class="simple">
+<li><p>Notice how there are errors near the borders of the leaf and on the ruler (especially the faded “9” value), but errors at the center of the leaf may be harder to spot.</p></li>
+<li><p>This is why knowing the expected overlap value is important, as spotting errors in experimental data may be difficult.</p></li>
+<li><p>In many cases, using stitching information from the image metadata is more helpful, because the position information comes from the microscope.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="scripting">
+<h1>Scripting<a class="headerlink" href="#scripting" title="Link to this heading">#</a></h1>
+<p>Scripts can be generated in a variety of ways, including the <strong>Macro Recorder</strong>.<br />
+For functions included in the ImageJ Macro language, please see:<br />
+<a class="reference external" href="https://imagej.net/ij/developer/macro/functions.html">https://imagej.net/ij/developer/macro/functions.html</a></p>
+<p>More general scripting info:<br />
+<a class="reference external" href="https://imagej.net/scripting/">https://imagej.net/scripting/</a></p>
+<hr class="docutils" />
+<section id="macro-recorder">
+<h2>Macro Recorder<a class="headerlink" href="#macro-recorder" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://imagej.net/scripting/macro">https://imagej.net/scripting/macro</a></p>
+<ol class="arabic simple">
+<li><p>Use <strong>Plugins &gt; Macros &gt; Record</strong> to start recording simple steps and begin generating code.
+Note that when clicking around in FIJI, you may generate unnecessary or overly specific commands, which means macros generated through the recorder will typically require some editing before use on other images.</p></li>
+</ol>
+<p>For example:</p>
+<ul class="simple">
+<li><p>Open <strong>Blobs</strong> via <strong>File &gt; Open Samples &gt; Blobs</strong></p></li>
+<li><p>Draw a circle or rectangle using the tools</p></li>
+<li><p>Run <strong>Process &gt; Find Edges</strong></p></li>
+</ul>
+<p><img alt="Recording a macro" src="_images/blobs-macro.png" /></p>
+<p>More example scripts:<br />
+<a class="reference external" href="https://imagej.net/ij/macros/">https://imagej.net/ij/macros/</a></p>
+<section id="why-does-the-recorder-not-show-a-response-for-all-plugins">
+<h3>Why does the recorder not show a response for all plugins?<a class="headerlink" href="#why-does-the-recorder-not-show-a-response-for-all-plugins" title="Link to this heading">#</a></h3>
+<p>Not every developer has made the plugins compatible with the macro recorder, which
+may cause various bugs or a lack of response from the recorder. In some cases, a script may be
+used to generate similar functionality, but other times this may just be a limitation of the plugin.
+The <a class="reference external" href="https://forum.image.sc">Image.sc forum</a> would be a good resource for help if you are able to provide enough
+information about the error and the analysis goals.</p>
+</section>
+</section>
+<section id="id2">
+<h2><img alt="Example macro" src="_images/helen-blobs-circular.png" /><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+</section>
+<section id="batch-processing">
+<h2>Batch Processing<a class="headerlink" href="#batch-processing" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Batch processing can be done directly via the macro script editor using a provided template:
+<a class="reference external" href="https://imagej.net/scripting/batch#option-2---script-template">https://imagej.net/scripting/batch#option-2—script-template</a></p></li>
+<li><p>Open the script editor: <strong>Plugins &gt; New &gt; Macro</strong></p></li>
+<li><p>The template can be accessed in the script editor by using  <strong>Templates &gt; ImageJ 1.x &gt; Batch &gt; Process Folder (ImageJ Macro)</strong></p></li>
+</ol>
+<p>This template contains an existing loop to process each file in the folder
+using the “processFolder” and “processFile” functions. It requires the user
+to specify the input and output directory as well as the file information.</p>
+<ol class="arabic simple">
+<li><p>When you are inserting the macro recorder script into the bottom
+function, remember to open and save the file using the <strong><code class="docutils literal notranslate"><span class="pre">open()</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">saveAs()</span></code></strong> functions.</p></li>
+</ol>
+<ul class="simple">
+<li><p>The benefits of this is that the files can be more specifically iterated if
+needed with minor adjustments to the code. For example, try changing <code class="docutils literal notranslate"><span class="pre">i++</span></code> to <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">i</span> <span class="pre">+</span> <span class="pre">2</span></code> to process every other file.</p></li>
+</ul>
+<p><img alt="Example batch macro" src="_images/helen-macro.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="deconvolution">
+<h1>Deconvolution<a class="headerlink" href="#deconvolution" title="Link to this heading">#</a></h1>
+<p>Deconvolution is a method of denoising a microscopy image using information about the optical
+setup. In this case, we estimate a point spread function for the deconvolution using the user
+input parameters of numerical aperture, resolution, emission wavelength, and refractive index.</p>
+<p>A Fiji macro developed by <strong>Ed Evans</strong> is available here:<br />
+<a class="github reference external" href="https://github.com/elevans/fiji-scripts/blob/main/imagej2/deconvolution/decon.groovy">elevans/fiji-scripts</a></p>
+<p>More background on the algorithm (Richardson-Lucy + Total Variation Regularization):<br />
+<a class="reference external" href="https://doi.org/10.1002/jemt.20294">https://doi.org/10.1002/jemt.20294</a></p>
+<ol class="arabic simple">
+<li><p>Copy-paste the code into the script editor, or open the <code class="docutils literal notranslate"><span class="pre">.groovy</span></code> file. <strong>Change the script language to Groovy</strong>, then run the script on the selected image.</p></li>
+</ol>
+<p><img alt="Deconvolution macro editor" src="_images/ed-deconv-macro.png" /></p>
+<ul class="simple">
+<li><p>A dialog will prompt for the experimental parameters. Enter the known parameters from the experiment
+(or for the demo use the default values).</p></li>
+</ul>
+<p><img alt="Deconvolution prompt" src="_images/ed-deconv-prompt.png" /></p>
+<blockquote>
+<div><p>Example: Try with <strong>Cell Colony</strong> (FIJI Sample) and default parameters to see a demonstration.<br />
+You’ll notice sharper edges and reduced background noise — even though the parameters may not match the real imaging conditions.</p>
+</div></blockquote>
+<p><img alt="Deconvolution PSF" src="_images/ed-deconv-psf.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="background-subtraction-gaussian-filters">
+<h1>Background Subtraction – Gaussian Filters<a class="headerlink" href="#background-subtraction-gaussian-filters" title="Link to this heading">#</a></h1>
+<p>Performing background subtraction with a Gaussian filter can be an effective method of resolving
+objects from a noisy background. More info here:
+<a class="reference external" href="https://bioimagebook.github.io/chapters/2-processing/4-filters/filters.html#gaussian-filters">https://bioimagebook.github.io/chapters/2-processing/4-filters/filters.html#gaussian-filters</a></p>
+<p><img alt="Left to right: Image, Gaussian filter, Composite" src="_images/gaussian-filter-example.png" /></p>
+<p>Background Subtraction - Gaussian filters
+Performing background subtraction with a gaussian filter can be an effective method of resolving
+objects from a noisy background. More info here:
+<a class="reference external" href="https://bioimagebook.github.io/chapters/2-processing/4-filters/filters.html#gaussian-filters">https://bioimagebook.github.io/chapters/2-processing/4-filters/filters.html#gaussian-filters</a></p>
+<ol class="arabic simple">
+<li><p>Use <strong>File &gt; Open Samples &gt; Neuron (5 channel)</strong> to open the starting image. We only
+want one channel to work with, so right click and <strong>duplicate channel 4</strong>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Try a variety of thresholds on this image, including the triangle method. Here we
+will try to improve this threshold by separating out the smaller point-like
+structures.</p></li>
+</ul>
+<ol class="arabic" start="2">
+<li><p>Open the gaussian subtraction script found here, developed by Ed Evans:</p>
+<p><a class="github reference external" href="https://github.com/elevans/fiji-scripts/blob/main/imagej2/filters/ijo_gaussian_subtraction.py">elevans/fiji-scripts</a></p>
+</li>
+</ol>
+<p>(Download raw file in GitHub.)</p>
+<p>Open this in Fiji to open the Macro Editor, or open the Macro Editor via <strong>Plugins &gt; New &gt; Macro</strong></p>
+<p>This script is written in python, so be sure to change the macro language to
+python before running, otherwise an error will be produced:</p>
+<p><img alt="Changing macro language" src="_images/macro-language.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>With the single channel image highlighted, run the script. You should be prompted to
+input a sigma value for the gaussian filter. Larger values will blur out larger and larger
+objects. For this example, use 20 and then use 1. Feel free to try a variety of values to
+see how the results change.</p></li>
+</ol>
+<p><img alt="Gaussian subtraction script interface" src="_images/gaussian-sub-1.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>After running the script, we now see that some structures are highlighted a bit differently
+in result (V) (notice how the cell body is harder to see)</p>
+<ul class="simple">
+<li><p>Some structures are highlighted differently.</p></li>
+<li><p>The cell body may be less visible, while smaller axons or dots stand out more.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Gaussian subtraction script output" src="_images/gaussian-sub-2.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>After running the script, we now see that some structures are highlighted a bit differently
+in <code class="docutils literal notranslate"><span class="pre">result</span> <span class="pre">(V)</span></code> (notice how the cell body is harder to see):</p></li>
+</ol>
+<p><img alt="Gaussian subtraction thresholding params" src="_images/gaussian-sub-3.png" />
+<img alt="Gaussian subtraction after thresholding" src="_images/gaussian-sub-4.png" /></p>
+<ol class="arabic simple" start="6">
+<li><p>If we decide this mask is sufficient for our data, we can then apply the mask to the output
+image and merge the display.
+a. With the output image still selected, choose <strong>Apply</strong> on the threshold window,
+while making sure the dark background box is selected. It then will ask you to
+convert the output to an 8-bit mask.
+i. The areas of interest should now have values of 255 while the
+background has a value of <code class="docutils literal notranslate"><span class="pre">0</span></code>. If this is inverted, it is likely that the dark
+background box in the threshold window was not selected, you can simply
+use <strong>Edit &gt; Invert</strong> to switch the values.
+b. To overlay the mask on the original image, we can make a composite. This
+requires that the original image is also converted to 8-bit for display. Use <strong>Image &gt;
+Type &gt; 8-bit</strong></p></li>
+</ol>
+<p>c. To make the composite, use <strong>Image &gt; Color &gt; Merge Channels</strong>. Here, I will set
+the original channel duplicate to C4 (gray) and the mask to C2 (green). This
+should procedure the following composite image, that can be used for display:</p>
+<p><img alt="Gaussian subtraction composite, Sigma=20" src="_images/gaussian-sub-composite-20.png" /></p>
+<p>d. As an additional display, we could use <strong>Edit &gt; Selection &gt; Create Selection</strong> on the mask image,
+then <strong>Edit &gt; Selection &gt; Restore Selection</strong> on the original image to get outlines of the mask.</p>
+<p>If we use a sigma value of 1 and repeat the process, we can see there a further differences in
+the cell body and other structures, although this seems to also pick up more noise:</p>
+<p><img alt="Gaussian subtraction composite, Sigma=1" src="_images/gaussian-sub-composite-1.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="trackmate-example-from-documentation">
+<h1>TrackMate – Example from documentation<a class="headerlink" href="#trackmate-example-from-documentation" title="Link to this heading">#</a></h1>
+<p>Ershov, D., Phan, M.-S., Pylvänäinen, J. W., Rigaud, S. U., Le Blanc, L., Charles-Orszag, A., …<br />
+Tinevez, J.-Y. (2022). TrackMate 7: integrating state-of-the-art segmentation algorithms into tracking pipelines. <em>Nature Methods, 19</em>(7), 829–832. doi:<a class="reference external" href="https://doi.org/10.1038/s41592-022-01507-1">10.1038/s41592-022-01507-1</a></p>
+<p>TrackMate documentation and tutorials:<br />
+<a class="reference external" href="https://imagej.net/plugins/trackmate/">https://imagej.net/plugins/trackmate/</a><br />
+TrackMate manual:<br />
+<a class="reference external" href="https://imagej.net/media/plugins/trackmate/trackmate-manual.pdf">https://imagej.net/media/plugins/trackmate/trackmate-manual.pdf</a></p>
+<p><em>The following demo can be accessed here:</em>
+<a class="reference external" href="https://napari.imagej.net/en/latest/examples/trackmate.html">https://napari.imagej.net/en/latest/examples/trackmate.html</a></p>
+<ol class="arabic simple">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">trackmate_example_data.tif</span></code>.</p></li>
+<li><p>Run the TrackMate plugin (<strong>Plugins &gt; Tracking &gt; TrackMate</strong>). Select “Next” as we don’t need to make any changes. The settings in this window allow you to crop the original data as needed.</p></li>
+</ol>
+<p><img alt="First Trackmate window" src="_images/trackmate-window-1.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Use the Laplacian of Gaussian (LoG) detector. The plugin provides various algorithms to help process the image, also including the difference of gaussian and hessian detectors.</p></li>
+<li><p>Enter 17 as the estimated object diameter and 0 as a quality threshold, “Next.”</p></li>
+</ol>
+<p><img alt="Second Trackmate window" src="_images/trackmate-window-2.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>The next page provides a summary. Select “Next.”</p></li>
+<li><p>For Initial Thresholding, verify you see 1496 spots selected, and select “Next.”</p></li>
+</ol>
+<p><img alt="Third Trackmate window" src="_images/trackmate-window-3.png" /></p>
+<ol class="arabic simple" start="7">
+<li><p>Select “Next” as we do not need a filter. If a filter was required, we could use the “Plus” button to add a filter and adjust the selection metric.</p></li>
+</ol>
+<p><img alt="Fourth Trackmate window" src="_images/trackmate-window-4.png" /></p>
+<ol class="arabic simple" start="8">
+<li><p>Use the “Simple LAP tracker”, then select “Next.” TrackMate also provides a variety of other methods.</p></li>
+</ol>
+<p><img alt="Fifth Trackmate window" src="_images/trackmate-window-5.png" /></p>
+<ol class="arabic simple" start="9">
+<li><p>Then we set the parameters for the tracker. The linking max distance will be 8.3 microns, the gap-closing max distance is 5 microns, and the gap-closing max frame gap is 2 micron. Select “Next.”</p></li>
+</ol>
+<p><img alt="Sixth Trackmate window" src="_images/trackmate-window-6.png" /></p>
+<ol class="arabic simple" start="10">
+<li><p>A summary page is displayed. You can scroll through the image and see the proposed tracks for each cell. Select “Next.”</p></li>
+<li><p>Select “Next” three more times as we will not filter any of the tracks and do not need to edit the display options.</p></li>
+<li><p>Select “Execute” for the final image, which can be run over all of the frames.</p></li>
+</ol>
+<p><img alt="Final Trackmate settings window, with results" src="_images/trackmate-window-7.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="labkit-segmentation">
+<h1>Labkit Segmentation<a class="headerlink" href="#labkit-segmentation" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://imagej.net/plugins/labkit/">https://imagej.net/plugins/labkit/</a></p>
+<p>Arzt, M., Deschamps, J., Schmied, C., Pietzsch, T., Schmidt, D., Tomancak, P., … Jug, F.<br />
+(2022). LABKIT: Labeling and Segmentation Toolkit for Big Image Data. <em>Frontiers in Computer Science, 4</em>. doi:<a class="reference external" href="https://doi.org/10.3389/fcomp.2022.777728">10.3389/fcomp.2022.777728</a></p>
+<p>Labkit uses a pixel classifier to create image segmentation. This requires labeling the foreground and background of an image.</p>
+<ol class="arabic simple">
+<li><p>Open Blobs with <strong>File &gt; Open Samples &gt; Blobs</strong>. Then open Labkit using <strong>Plugins &gt; Labkit &gt; Open Current Image with Labkit</strong>.</p></li>
+</ol>
+<p><img alt="Labkit image opened" src="_images/labkit-1.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>The Labkit window will automatically load the selected image. Next, use the pencil tool to draw a line on a few pixels that are background (blue) and foreground (red).</p></li>
+</ol>
+<p><img alt="Labkit select foreground" src="_images/labkit-2.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Now, we can run the pixel classifier to segment the image. Use the “play” button for the specific classifier within the segmentation part of the window.</p></li>
+</ol>
+<p><img alt="Labkit train pixel classifier 1" src="_images/labkit-3.png" />
+<img alt="Labkit train pixel classifier 1" src="_images/labkit-4.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>This should produce a classified image similar to the one shown below with blue as the background and red as the object of interest.</p></li>
+</ol>
+<p><img alt="Labkit results" src="_images/labkit-5.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>The classifier can be saved and applied to multiple images. Click on the settings button on the classifier to save either the classifier or the image results.</p></li>
+</ol>
+<p><img alt="Labkit saving" src="_images/labkit-6.png" /># Other Resources</p>
+<ul class="simple">
+<li><p><strong>Introduction to Bioimage Analysis (Pete Bankhead)</strong>:<br />
+<a class="reference external" href="https://bioimagebook.github.io/README.html">https://bioimagebook.github.io/README.html</a></p></li>
+<li><p><strong>ImageJ User Guide (Ferreira and Rasband)</strong>:<br />
+<a class="reference external" href="https://imagej.net/ij/docs/guide/146.html">https://imagej.net/ij/docs/guide/146.html</a></p></li>
+<li><p><strong>Introduction and Segmentation in FIJI (YouTube)</strong>:<br />
+<a class="reference external" href="https://www.youtube.com/watch?app=desktop&amp;amp;v=CZExS_mkGsQ">https://www.youtube.com/watch?app=desktop&amp;v=CZExS_mkGsQ</a></p></li>
+<li><p><strong>ImageJ Tutorials</strong>:<br />
+<a class="reference external" href="https://imagej.net/imaging/">https://imagej.net/imaging/</a></p></li>
+<li><p><strong>COBA: Center for Open Bioimage Analysis (YouTube)</strong>:<br />
+<a class="reference external" href="https://www.youtube.com/&#64;cobacenterforopenbioimagea1864/featured">https://www.youtube.com/&#64;cobacenterforopenbioimagea1864/featured</a></p></li>
+<li><p><strong>Scientific Figure Making with Fiji and Inkscape (Jan Brocher)</strong>:<br />
+<a class="reference external" href="https://www.youtube.com/watch?v=F6ll37NOgXc">https://www.youtube.com/watch?v=F6ll37NOgXc</a></p></li>
+<li><p><strong>ImageJ Documentation: Built-in Macro Functions</strong>:<br />
+<a class="reference external" href="https://wsr.imagej.net/developer/macro/functions.html">https://wsr.imagej.net/developer/macro/functions.html</a></p></li>
+<li><p><strong>ImageJ Macro Cheatsheet (Robert Haase)</strong>:<br />
+<a class="github reference external" href="https://github.com/BiAPoL/imagej-macro-cheat-sheet/blob/master/ImageJ_macro_cheatsheet.pdf">BiAPoL/imagej-macro-cheat-sheet</a></p></li>
+<li><p><strong>ImageJ Documentation: ImageJ Ops</strong> – allows one to use other libraries (ex. OpenCV) natively in ImageJ:
+<a class="reference external" href="https://imagej.net/libs/imagej-ops/">https://imagej.net/libs/imagej-ops/</a></p></li>
+<li><p><strong>TrackMate Information</strong>:<br />
+<a class="reference external" href="https://imagej.net/plugins/trackmate/">https://imagej.net/plugins/trackmate/</a></p></li>
+<li><p><strong>StarDist Information</strong>:<br />
+<a class="github reference external" href="https://github.com/stardist/stardist">stardist/stardist</a></p></li>
+<li><p><strong>Labkit Information</strong>:<br />
+<a class="github reference external" href="https://github.com/juglab/labkit-ui">juglab/labkit-ui</a></p></li>
+<li><p><strong>I2K Conference (YouTube)</strong>:<br />
+<a class="reference external" href="https://www.youtube.com/&#64;I2KConference">https://www.youtube.com/&#64;I2KConference</a></p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Installing ImageJ/FIJI</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-fiji-package">Download FIJI Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">macOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-instructions-for-macos">Backup Instructions for macOS</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-side-note-on-updating">A Side Note on Updating</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-plugins-with-update-sites">Install Plugins with Update Sites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-a-practice-dataset">Downloading a Practice Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#common-keyboard-shortcuts">Common Keyboard Shortcuts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#also-helpful">Also Helpful</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-with-a-basic-image">Starting with a basic image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-images">Inspecting Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverting-the-background">Inverting the Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-color-scheme-lut">Changing the Color Scheme (LUT)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colorblindness-consideration">Colorblindness Consideration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-line-plot">Plot/Line Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-viewing-a-z-stack">Opening and viewing a Z-Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperstacks">Hyperstacks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicate-a-channel-or-image">Duplicate A Channel Or Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-channel-colors">Changing Channel Colors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-volume-and-projections">3D Volume and Projections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-image-types-cautiously">Changing Image Types, cautiously.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-depth">Bit Depth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-brightness-and-contrast">Adjusting Brightness and Contrast</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-scale-and-scale-bars">Set Scale and Scale Bars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-image-metadata">Accessing Image Metadata</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-segmentation">Basic Segmentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction">Background Subtraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-thresholding">Segmentation / Thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-filtering">Morphological filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-chunks-by-watershed">Splitting chunks by watershed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-selections-to-roi-manager">Adding Selections to ROI Manager</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-particles">Analyze Particles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-for-measurement">Masks for Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-measurements">Making Measurements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stitching-images">Stitching Images</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scripting">Scripting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macro-recorder">Macro Recorder</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-recorder-not-show-a-response-for-all-plugins">Why does the recorder not show a response for all plugins?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deconvolution">Deconvolution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction-gaussian-filters">Background Subtraction – Gaussian Filters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trackmate-example-from-documentation">TrackMate – Example from documentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#labkit-segmentation">Labkit Segmentation</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

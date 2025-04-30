@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic Segmentation &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basic-segmentation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic Registration" href="basic-registration.html" />
+    <link rel="prev" title="Getting Started, Opening an Image" href="basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fiji Lab Walkthrough
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing ImageJ/FIJI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keyboard-shortcuts.html">Common Keyboard Shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Getting Started, Opening an Image</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-registration.html">Basic Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-scripting.html">Scripting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deconvolution.html">Deconvolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background-subtraction.html">Background Subtraction – Gaussian Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trackmate.html">TrackMate – Example from documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labkit.html">Labkit Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-resources.html">Other Resources</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/basic-segmentation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic Segmentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction">Background Subtraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-thresholding">Segmentation / Thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-filtering">Morphological filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-chunks-by-watershed">Splitting chunks by watershed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-selections-to-roi-manager">Adding Selections to ROI Manager</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-particles">Analyze Particles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-for-measurement">Masks for Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-measurements">Making Measurements</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-segmentation">
+<h1>Basic Segmentation<a class="headerlink" href="#basic-segmentation" title="Link to this heading">#</a></h1>
+<p>For this section, we demonstrate with the <strong>embryos</strong> sample.</p>
+<section id="background-subtraction">
+<h2>Background Subtraction<a class="headerlink" href="#background-subtraction" title="Link to this heading">#</a></h2>
+<p>Oftentimes the background illumination is not uniform, and this interferes with intensity-based thresholding. Fiji includes multiple methods to perform background subtraction in ImageJ, including <strong>Process &gt; Subtract Background</strong>, <strong>Mean/Median Background Subtraction</strong>, or <strong>Gaussian Blur Subtraction</strong>. If you are not planning a quantitative analysis, <strong>Enhance Local Contrast</strong> (<strong>CLAHE</strong>, Contrast Limited Adaptive Histogram Equalization) may also be worth a try.</p>
+<p><img alt="Embryos original, background subtracted, and with CLAHE" src="_images/embryos-bg.png" />
+<em>Left to right: original, background subtracted, with CLAHE.</em></p>
+<p>However, any background subtraction used to process images should be carefully considered in relation to the original source of noise, how the image information is used, and any further processing or quantification of the image.</p>
+<p>In some cases the Subtract Background plugin, or other methods, can also introduce artifacts that are not present in the original image.</p>
+<p>Some <a class="reference external" href="http://Image.sc">Image.sc</a> forum discussion here:<br />
+<a class="reference external" href="https://forum.image.sc/t/consensus-on-subtract-background-built-in-or-other/7061">https://forum.image.sc/t/consensus-on-subtract-background-built-in-or-other/7061</a></p>
+</section>
+<hr class="docutils" />
+<section id="segmentation-thresholding">
+<h2>Segmentation / Thresholding<a class="headerlink" href="#segmentation-thresholding" title="Link to this heading">#</a></h2>
+<p>For this section we will open up blobs again: <strong>Ctrl-Shift-B</strong></p>
+<ol class="arabic simple">
+<li><p>If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let’s look at the histogram of the intensity values using <strong>Ctrl + H</strong>.</p></li>
+</ol>
+<p><img alt="Histogram of blobs" src="_images/blobs-hist.png" /></p>
+<p>We can see that most of the background pixels have an intensity value around 50, whereas there is another grouping of pixel intensities around 210, which is likely the areas we are interested in because this image has a white background. Notice that the values are stretched outwards; this indicates that the original range was likely very small or somehow adjusted.</p>
+<ol class="arabic simple" start="2">
+<li><p>Use <strong>Image &gt; Adjust &gt; Threshold</strong> to see the automatic threshold applied based on the original histogram.<br />
+This seems to segment the blobs pretty well. You can change the slider bars to see how the segmentation changes as the threshold moves.<br />
+When ready, click <strong>Apply</strong> to create the binarized mask. Notice that the blobs now have a value of <code class="docutils literal notranslate"><span class="pre">255</span></code>, and the background has been set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.  This represents a <strong>permanent change</strong> in the image values, so going forward, most quantified analysis involving pixel values must be performed by applying the segmentation as a mask on the original image (see [Masks] section).</p></li>
+</ol>
+<p><img alt="Thresholding on blobs" src="_images/blobs-thresh.png" /></p>
+<!-- __Todo: add hyperlink -->
+<ul class="simple">
+<li><p>There is also an <strong>Auto Threshold</strong> option under <strong>Image &gt; Adjust &gt; Auto Threshold</strong>, that you can use to compare different methods of thresholding. It is easiest to see the comparisons using the <strong>Try All</strong> method.</p></li>
+</ul>
+<p><img alt="Seeing all the threshold options via Auto Threshold" src="_images/blobs-autothresh.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="morphological-filtering">
+<h2>Morphological filtering<a class="headerlink" href="#morphological-filtering" title="Link to this heading">#</a></h2>
+<p>Often the mask of the particles will pick up a lot of noise, and it is useful to filter them. The morphological operations <strong>Erode</strong> and <strong>Dilate</strong> from the menu <strong>Process &gt; Binary</strong> can be combined in sequence to remove noise. When Erode is run first, the sequence is called <strong>Open</strong>, and removes small objects and speckle noise. When Dilate is run first, the sequence is called <strong>Close</strong> and fills small holes or gaps between mask objects.</p>
+<p><img alt="Morphological operations on a blobs mask." src="_images/blobs-morpho.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="splitting-chunks-by-watershed">
+<h2>Splitting chunks by watershed<a class="headerlink" href="#splitting-chunks-by-watershed" title="Link to this heading">#</a></h2>
+<p>Often two smooth convex objects (cells!) will be touching and thereby detected as part of the same mask element. <strong>Watershed segmentation</strong> or <strong>Process &gt; Binary &gt; Watershed</strong> splits masks by drawing a narrow channel at narrow bottlenecks. This is useful for separating cells that were identified as part of the same mask.</p>
+<p><img alt="Watershed on blobs" src="_images/blobs-watershed.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="adding-selections-to-roi-manager">
+<h2>Adding Selections to ROI Manager<a class="headerlink" href="#adding-selections-to-roi-manager" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">T</span></code> to open the ROI manager.</p></li>
+<li><p>Use <strong>Edit &gt; Selection &gt; Create Selection</strong> to select all of the blobs based on the current threshold.</p></li>
+<li><p>In the ROI Manager window, use <strong>More &gt; Split</strong> to divide the selection into multiple ROIs.</p>
+<ul class="simple">
+<li><p>You can click on the regions to see the specific blob it corresponds to.</p></li>
+<li><p>If needed, the selected regions can be saved in a file and reopened later using <strong>More &gt; Save</strong>.</p></li>
+<li><p>One can also add selections to the ROI manager manually, if there are only a few objects to segment or if thresholding segmentation does not work for your sample.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="analyze-particles">
+<h2>Analyze Particles<a class="headerlink" href="#analyze-particles" title="Link to this heading">#</a></h2>
+<p>The <strong>Analyze Particles</strong> function can be useful for applying size exclusion or removing any blobs that are below our desired size threshold.<br />
+For example, we can see some smaller red circles in the image that may represent noise rather than a full blob we are interested in.<br />
+This can be especially useful if we have a biological problem, such as segmenting cells, where we know the cells must be above a certain size.</p>
+<ol class="arabic simple">
+<li><p>Open the ROI manager by pressing <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
+<ul class="simple">
+<li><p>If there are previous ROI selections that you would like to remove:</p>
+<ul>
+<li><p>Click on the first one, hold <code class="docutils literal notranslate"><span class="pre">Shift</span></code>, then click on the last one.</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Delete</span></code> to clear them.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Use <strong>Analyze &gt; Analyze Particles</strong> to open the function window.</p>
+<ul class="simple">
+<li><p><strong>Size</strong> can be used to determine what blobs are included. For example, specify <code class="docutils literal notranslate"><span class="pre">&quot;30-Infinity&quot;</span></code> to remove smaller blobs.</p>
+<ul>
+<li><p>For many biological applications, it’s best to know the size of the pixels to understand how much area is excluded, and whether it corresponds to the expected size based on the experiment.</p></li>
+</ul>
+</li>
+<li><p>Ensure the <strong>Add to Manager</strong> box is selected to add the ROIs to the ROI manager.</p></li>
+<li><p>For the <strong>Show</strong> dropdown, select <strong>Masks</strong> to display the following:</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="Analyze particles on blobs" src="_images/analyze-particles.png" />
+<img alt="Blobs analyzed" src="_images/blobs-analyzed.png" /></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> &gt; Notice that some of the blobs that are present in the binarized image, like the one next to number 29, are not included in the mask.
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="masks-for-measurement">
+<h2>Masks for Measurement<a class="headerlink" href="#masks-for-measurement" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Once you have a mask or the desired image, use <strong>Edit &gt; Selection &gt; Create Selection</strong> to add the regions to the ROI manager.</p></li>
+<li><p>After selection, you can also use <strong>Edit &gt; Selection &gt; Create Mask</strong> to make a mask of the desired areas if the image is not already binarized.</p></li>
+<li><p>To copy the ROI selection onto the original image:</p>
+<ul class="simple">
+<li><p>Click on the mask while the selection is open.</p></li>
+<li><p>Then click on the original image and press <strong>Shift + E</strong> or use <strong>Edit &gt; Selection &gt; Restore Selection</strong>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id1">
+<h2><img alt="Blobs with masks" src="_images/blobs-masked.png" /><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="making-measurements">
+<h2>Making Measurements<a class="headerlink" href="#making-measurements" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>To set the desired measurements to be collected, use <strong>Analyze &gt; Set Measurements</strong>.<br />
+This window will determine what results are displayed or saved from the image.</p></li>
+</ol>
+<p><img alt="Set measurements window" src="_images/set-measurements.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>To create the measurements:</p>
+<ul class="simple">
+<li><p>Use <strong>Analyze &gt; Measure</strong> or <strong>Ctrl + M</strong>, while the desired image is active.</p></li>
+<li><p>This may produce one measurement for the whole image if an ROI is not active.</p></li>
+<li><p>To measure all ROIs at once, use <strong>Measure</strong> in the ROI Manager.</p>
+<ul>
+<li><p>The checkboxes for <strong>Show All</strong> and <strong>Labels</strong> can be useful to see what regions are being measured.</p></li>
+</ul>
+</li>
+<li><p>If you want, use <strong>Edit &gt; Selection &gt; Make Inverse</strong>.</p>
+<ul>
+<li><p>This will now select the entire background.</p></li>
+<li><p>You can measure again to get the value for the background.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting Started, Opening an Image</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="basic-registration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Basic Registration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction">Background Subtraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-thresholding">Segmentation / Thresholding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-filtering">Morphological filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-chunks-by-watershed">Splitting chunks by watershed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-selections-to-roi-manager">Adding Selections to ROI Manager</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-particles">Analyze Particles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-for-measurement">Masks for Measurement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-measurements">Making Measurements</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
