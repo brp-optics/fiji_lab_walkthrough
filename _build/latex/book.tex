@@ -345,6 +345,9 @@ Google Drive:
 \sphinxAtStartPar
 This manual: \sphinxurl{https://brp-optics.github.io/fiji\_lab\_walkthrough/installation.html}
 
+\sphinxAtStartPar
+I also have a USB drive with all the resources on it, should anyone not have internet access.
+
 
 \section{Some usability options}
 \label{\detokenize{installation:some-usability-options}}
@@ -1303,13 +1306,12 @@ You can measure again to get the value for the background.
 \label{\detokenize{basic-registration:stitching-images}}
 \sphinxAtStartPar
 There are multiple ways to stitch images using the \sphinxstylestrong{Grid/Collection Stitching} plugin, including with metadata or file position.
-
-
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Open the \sphinxstylestrong{Grid/Collection Stitching} plugin.\\
+Open the \sphinxstylestrong{Grid/Collection Stitching} plugin. I find the easiest way to find it is to search for it: \sphinxstylestrong{Ctrl\sphinxhyphen{}L > Grid/Collection}.
+It is also at \sphinxstylestrong{Plugins › Stitching › Grid/Collection stitching}.
 In this example, use \sphinxstylestrong{Grid: snake by rows} with the order of \sphinxstylestrong{Right \& Down}.
 
 \end{enumerate}
@@ -1357,6 +1359,10 @@ If this is written as \sphinxcode{\sphinxupquote{\{ii\}}}, there will be an erro
 \item {} 
 \sphinxAtStartPar
 Uncheck the \sphinxstylestrong{Compute overlap} box, since the overlap value is known.
+
+\item {} 
+\sphinxAtStartPar
+You may get a warning about no overlap being found. Press ‘ok’ to bypass it.
 
 \end{itemize}
 
@@ -1414,7 +1420,7 @@ More general scripting info:\\
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Use \sphinxstylestrong{Plugins > Macros > Record} to start recording simple steps and begin generating code.
+Use \sphinxstylestrong{Plugins > Macros > Record} (\sphinxstylestrong{Ctrl\sphinxhyphen{}U}) to start recording simple steps and begin generating code.
 Note that when clicking around in FIJI, you may generate unnecessary or overly specific commands, which means macros generated through the recorder will typically require some editing before use on other images.
 
 \end{enumerate}
@@ -1438,6 +1444,16 @@ Run \sphinxstylestrong{Process > Find Edges}
 
 \sphinxAtStartPar
 \sphinxincludegraphics{{blobs-macro}.png}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Press \sphinxstylestrong{Create} in the Macro Recorder to save the macro to disk and open it in the Editor.
+
+\item {} 
+\sphinxAtStartPar
+Close the blobs image and press “run” in the Editor to run the macro, which repeats the analysis verbatim.
+
+\end{itemize}
 
 \sphinxAtStartPar
 More example scripts:\\
@@ -1479,24 +1495,85 @@ The template can be accessed in the script editor by using  \sphinxstylestrong{T
 This template contains an existing loop to process each file in the folder
 using the “processFolder” and “processFile” functions. It requires the user
 to specify the input and output directory as well as the file information.
-\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{helen-macro}.png}
+
+\sphinxAtStartPar
+Here is a sample “processFile()” function to apply the above oval selection and edge finding macro to every file in the directory:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{function} \PYG{n}{processFile}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{,} \PYG{n}{output}\PYG{p}{,} \PYG{n}{file}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{o}{/}\PYG{o}{/} \PYG{n}{Do} \PYG{n}{the} \PYG{n}{processing} \PYG{n}{here} \PYG{n}{by} \PYG{n}{adding} \PYG{n}{your} \PYG{n}{own} \PYG{n}{code}\PYG{o}{.}
+	\PYG{o}{/}\PYG{o}{/} \PYG{n}{Leave} \PYG{n}{the} \PYG{n+nb}{print} \PYG{n}{statements} \PYG{n}{until} \PYG{n}{things} \PYG{n}{work}\PYG{p}{,} \PYG{n}{then} \PYG{n}{remove} \PYG{n}{them}\PYG{o}{.}
+	\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Processing: }\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{+} \PYG{n+nb}{input} \PYG{o}{+} \PYG{n}{File}\PYG{o}{.}\PYG{n}{separator} \PYG{o}{+} \PYG{n}{file}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n+nb}{open}\PYG{p}{(}\PYG{n+nb}{input} \PYG{o}{+} \PYG{n}{File}\PYG{o}{.}\PYG{n}{separator} \PYG{o}{+} \PYG{n}{file}\PYG{p}{)}\PYG{p}{;}
+
+	\PYG{n}{makeOval}\PYG{p}{(}\PYG{l+m+mi}{47}\PYG{p}{,} \PYG{l+m+mi}{55}\PYG{p}{,} \PYG{l+m+mi}{64}\PYG{p}{,} \PYG{l+m+mi}{59}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n}{run}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Find Edges}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+
+	\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Saving to: }\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{+} \PYG{n}{output}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n}{saveAs}\PYG{p}{(}\PYG{n}{output} \PYG{o}{+} \PYG{n}{File}\PYG{o}{.}\PYG{n}{separator} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{edges\PYGZus{}}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{+} \PYG{n}{file}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Tiff}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+	\PYG{n}{close}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;} \PYG{o}{/}\PYG{o}{/}\PYG{n}{Close} \PYG{n}{the} \PYG{n}{file} \PYG{n}{after} \PYG{n}{processing} \PYG{n}{it}\PYG{o}{.}
+\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 When you are inserting the macro recorder script into the bottom
 function, remember to open and save the file using the \sphinxstylestrong{\sphinxcode{\sphinxupquote{open()}}} and \sphinxstylestrong{\sphinxcode{\sphinxupquote{saveAs()}}} functions.
 
-\end{enumerate}
-\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 The benefits of this is that the files can be more specifically iterated if
 needed with minor adjustments to the code. For example, try changing \sphinxcode{\sphinxupquote{i++}} to \sphinxcode{\sphinxupquote{i = i + 2}} to process every other file.
 
+\item {} 
+\sphinxAtStartPar
+It is good practice to use different “input” and “output” directories, to keep from overwriting original data.
+
 \end{itemize}
 
 \sphinxAtStartPar
-\sphinxincludegraphics{{helen-macro}.png}
+\sphinxincludegraphics{{bjorn-macro}.png}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+When the macro runs properly, you can comment out the print statements with \sphinxcode{\sphinxupquote{//}}.
+
+\item {} 
+\sphinxAtStartPar
+Batch scripts run much faster when the image is not displayed on screen.
+
+\item {} 
+\sphinxAtStartPar
+To prevent newly opened images from being displayed during a batch script, one can start the script with the command:
+
+\end{itemize}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{setBatchMode}\PYG{p}{(}\PYG{n}{true}\PYG{p}{)}\PYG{p}{;}   \PYG{o}{/}\PYG{o}{/} \PYG{n}{Don}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t show newly opened images}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Ending the batch script with the following command will close all the images that were opened in the background except the active image:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{setBatchMode}\PYG{p}{(}\PYG{n}{false}\PYG{p}{)}\PYG{p}{;} \PYG{o}{/}\PYG{o}{/} \PYG{n}{Return} \PYG{n}{to} \PYG{n}{regular} \PYG{n}{image} \PYG{n}{opening} \PYG{n}{behavior}\PYG{o}{.}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+One can also use
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{setBatchMode}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{show}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;} \PYG{o}{/}\PYG{o}{/} \PYG{n}{Show} \PYG{n}{a} \PYG{n}{single} \PYG{n}{image}
+\PYG{n}{setBatchMode}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{exit and display}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+
+\begin{sphinxadmonition}{note}{Note:}
+\sphinxAtStartPar
+Note: the most common causes of scripting errors are failure to end a line with a semicolon and failure to include \sphinxcode{\sphinxupquote{open()}} or \sphinxcode{\sphinxupquote{save()}} functions for the images.
+\end{sphinxadmonition}
 
 \sphinxstepscope
 

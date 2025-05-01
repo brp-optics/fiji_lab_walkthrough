@@ -48,8 +48,8 @@
 \contentsline {subsection}{\numberline {6.1.1}Why does the recorder not show a response for all plugins?}{46}{subsection.6.1.1}%
 \contentsline {section}{\numberline {6.2}}{47}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Batch Processing}{47}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Deconvolution}{49}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Background Subtraction – Gaussian Filters}{53}{chapter.8}%
-\contentsline {chapter}{\numberline {9}TrackMate – Example from documentation}{61}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Labkit Segmentation}{75}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Other Resources}{79}{chapter.11}%
+\contentsline {chapter}{\numberline {7}Deconvolution}{51}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Background Subtraction – Gaussian Filters}{55}{chapter.8}%
+\contentsline {chapter}{\numberline {9}TrackMate – Example from documentation}{63}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Labkit Segmentation}{77}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Other Resources}{81}{chapter.11}%

@@ -84,6 +84,8 @@ Google Drive:
 
 This manual: [https://brp-optics.github.io/fiji_lab_walkthrough/installation.html](https://brp-optics.github.io/fiji_lab_walkthrough/installation.html)
 
+I also have a USB drive with all the resources on it, should anyone not have internet access.
+
 ## Some usability options
 I like to go into the menus and set the main FIJI window to be always on top, and the search tool to be Ctrl-L rather than **L**:
 - Main window always on top: **Edit > Options > Appearance > IJ window always on top**

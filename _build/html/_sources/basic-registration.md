@@ -4,9 +4,8 @@
 
 There are multiple ways to stitch images using the **Grid/Collection Stitching** plugin, including with metadata or file position.
 
-<!-- __Todo: Find leaf data -->
-
-1. Open the **Grid/Collection Stitching** plugin.  
+1. Open the **Grid/Collection Stitching** plugin. I find the easiest way to find it is to search for it: **Ctrl-L > Grid/Collection**.
+   It is also at **Plugins › Stitching › Grid/Collection stitching**.
    In this example, use **Grid: snake by rows** with the order of **Right & Down**.
 
 ![Grid stitcher](images/grid-stitcher.png)
@@ -22,6 +21,7 @@ There are multiple ways to stitch images using the **Grid/Collection Stitching**
      - `{i}` specifies where in the filename to iterate through values.
      - If this is written as `{ii}`, there will be an error because the first file is `1`, not `01`.
    - Uncheck the **Compute overlap** box, since the overlap value is known.
+   - You may get a warning about no overlap being found. Press 'ok' to bypass it.
 
 ![Fused leaf image](images/fused-leaf.png)
 
