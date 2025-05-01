@@ -90,7 +90,7 @@
         
 
 \title{Fiji Lab Walkthrough}
-\date{Apr 30, 2025}
+\date{May 02, 2025}
 \release{}
 \author{The Fiji Community}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -289,7 +289,7 @@ Search for \sphinxstylestrong{Gatekeeper}.
 \item {} 
 \sphinxAtStartPar
 You should see the text\\
-“Fiji.app was blocked…”\_ → click \sphinxstylestrong{Open Anyway}.
+“Fiji.app was blocked…” \sphinxhyphen{} click \sphinxstylestrong{Open Anyway}.
 
 \item {} 
 \sphinxAtStartPar
@@ -349,7 +349,32 @@ Google Drive:
 
 \sphinxAtStartPar
 Github:
-\sphinxhref{https://github.com/brp-optics/FIJI\_Lab\_Tutorial}{https://github.com/brp\sphinxhyphen{}optics/FIJI\_Lab\_Tutoriall}
+\sphinxurl{https://github.com/brp-optics/FIJI\_Lab\_Tutorial}
+
+\sphinxAtStartPar
+This manual: \sphinxurl{https://brp-optics.github.io/fiji\_lab\_walkthrough/installation.html}
+
+
+\section{Some usability options}
+\label{\detokenize{installation:some-usability-options}}
+\sphinxAtStartPar
+I like to go into the menus and set the main FIJI window to be always on top, and the search tool to be Ctrl\sphinxhyphen{}L rather than \sphinxstylestrong{L}:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Main window always on top: \sphinxstylestrong{Edit > Options > Appearance > IJ window always on top}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Note that one can “surface” the main FIJI window from any Fiji window by pressing \sphinxstylestrong{Enter}
+
+\end{itemize}
+
+\item {} 
+\sphinxAtStartPar
+Change search tool: \sphinxstylestrong{Edit > Options > Search bar … > Pressing L focuses the search bar}
+
+\end{itemize}
 
 \sphinxstepscope
 
@@ -518,10 +543,12 @@ Surfaces the ImageJ main toolbar window.
 \chapter{Getting Started, Opening an Image}
 \label{\detokenize{basics:getting-started-opening-an-image}}\label{\detokenize{basics::doc}}
 \sphinxAtStartPar
-The easiest way to open a data set is to click\sphinxhyphen{}and\sphinxhyphen{}drag from the folder. However, some file types
+The easiest way to open a data set is to \sphinxstylestrong{drag and drop} it from its folder onto the Fiji main window. However, some file types
 need to be specifically imported. To import a sequence of images that are saved within a folder,
 you can use the \sphinxstylestrong{File > Import > Image Sequence} option to open them as a stack or as
 separate images.
+
+\sphinxAtStartPar
 Additionally, using a \sphinxstylestrong{Virtual Stack} in the \sphinxstylestrong{Bio\sphinxhyphen{}Formats Importer} may be useful if trying to view
 large data files. This makes it easier to get a quick look at data when there is limited RAM.
 However, if you need to perform an image operation, such as background subtraction, then
@@ -621,7 +648,7 @@ the pixel values themselves, which may not represent the original data.
 \section{Changing the Color Scheme (LUT)}
 \label{\detokenize{basics:changing-the-color-scheme-lut}}
 \sphinxAtStartPar
-A Lookup Table (LUT) controls the colormap of the images.
+A LookUp Table (LUT) controls the colormap of the images.
 This can easily be changed using the \sphinxstylestrong{LUT} button in the toolbar.
 Try a few LUTs and see how the information in the background and foreground changes.
 \begin{enumerate}
@@ -650,8 +677,7 @@ To test how different images may appear to those with colorblindness, you can us
 \sphinxAtStartPar
 As a separate note, it may also be helpful to test any publication figures (images or
 otherwise) in grayscale, to see what color information may be lost if the paper is printed in
-grayscale.\\
-In many cases, it may be more practical to develop images/figures in grayscale,
+grayscale.  In many cases, it may be more practical to develop images/figures in grayscale,
 especially for presentations, and it is still a valid representation of the data.
 
 
@@ -716,8 +742,23 @@ to where the line is placed.
 \sphinxincludegraphics{{plot-profile-line}.png}
 
 
+\section{Histograms}
+\label{\detokenize{basics:histograms}}
+\sphinxAtStartPar
+What is the distribution of pixel values in \sphinxstyleemphasis{blobs}? This is often one of the first things we want to know about an image (for example, to see if image intensities use the full range of the detector, or if they oversaturate the detector). Press \sphinxstylestrong{Ctrl + H} to open a histogram on \sphinxstyleemphasis{blobs} or on the sample image \sphinxstylestrong{boats}. Why might the histogram not be continuous on \sphinxstyleemphasis{blobs}? Is boats properly exposed?
+
+
+\subsection{Live views}
+\label{\detokenize{basics:live-views}}
+\sphinxAtStartPar
+Just like on the plot profile window, we can press the “live” button to get a continuously\sphinxhyphen{}updating histogram window. The histogram will update based on the selected region of interest.
+
+
 \section{Opening and viewing a Z\sphinxhyphen{}Stack}
-\label{\detokenize{basics:opening-and-viewing-a-z-stack}}\begin{enumerate}
+\label{\detokenize{basics:opening-and-viewing-a-z-stack}}
+\sphinxAtStartPar
+A stack is a 3D image. Usually the third dimension is \sphinxstyleemphasis{z}, the third spatial dimension.
+\begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
@@ -745,64 +786,14 @@ view, but one has to close the orthogonal view to select images.
 \setcounter{enumi}{3}
 \item {} 
 \sphinxAtStartPar
-To select from an orthogonal view, try \sphinxstylestrong{reslice}, in \sphinxstylestrong{Image > Stacks > Reslice} or press \sphinxstylestrong{\textbackslash{} (backslash)} when the image is in focus.
+To select from an orthogonal view, try \sphinxstylestrong{reslice}, in \sphinxstylestrong{Image > Stacks > Reslice} or press \sphinxstylestrong{/ (slash)} when the image is in focus.
+Suggested reslice parameters: 1.5 mm, start at top, avoid interpolation.
+
+\item {} 
+\sphinxAtStartPar
+One can also run \sphinxstylestrong{3D Viewer} in \sphinxstylestrong{Plugins > 3D Viewer} to see an interactive rendering of the data.
 
 \end{enumerate}
-
-
-
-
-\section{Hyperstacks}
-\label{\detokenize{basics:hyperstacks}}
-\sphinxAtStartPar
-Hyperstacks are multidimensional data, such as a multichannel timeseries or z\sphinxhyphen{}stacks.
-\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-\sphinxAtStartPar
-Start by opening the “hela\_infected\_timeseries.tif” image. This is available for download
-at: \sphinxurl{https://media.imagej.net/workshops/data/3d/}
-
-\end{enumerate}
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-If internet access is unavailable, the \sphinxcode{\sphinxupquote{Mitosis (5D stack)}} sample from \sphinxstylestrong{File > Open Samples} works, too.
-
-\end{itemize}
-
-
-\subsection{Duplicate A Channel Or Image}
-\label{\detokenize{basics:duplicate-a-channel-or-image}}\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-Use \sphinxstylestrong{Image > Duplicate} to bring up the duplication options window. This can also be
-done with \sphinxstylestrong{Ctrl + Shift + D} or \sphinxstylestrong{Right Click > Duplicate}. Here, we can specify which RGB
-channels and timepoints we want to separate. If we use 1\sphinxhyphen{}2 in the channels menu, it
-should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
-(If you are using the mitosis image, try choosing just one value for the color channel.)
-
-\end{itemize}
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{duplicate}.png}
-\sphinxincludegraphics{{hela-duplicate}.png}
-
-
-\section{Changing Channel Colors}
-\label{\detokenize{basics:changing-channel-colors}}\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-\sphinxAtStartPar
-To change the display color of channels, use \sphinxstylestrong{Image > Color > Channels Tool} or \sphinxstylestrong{Ctrl + Shift + Z}.
-
-\end{enumerate}
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{channels}.png}
-
-\sphinxAtStartPar
-Note: The “more” option can be used to apply colors to the selected channels.
 
 
 \section{3D Volume and Projections}
@@ -839,64 +830,61 @@ single slice of the stack, average projection, median projection, max projection
 \sphinxincludegraphics{{t-head-multiple-z-projections}.png}
 
 
-\section{Changing Image Types, cautiously.}
-\label{\detokenize{basics:changing-image-types-cautiously}}
+\section{Hyperstacks}
+\label{\detokenize{basics:hyperstacks}}
 \sphinxAtStartPar
-Some operations \sphinxhyphen{} especially image math operations \sphinxhyphen{} only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8\sphinxhyphen{}bit images, it would be prudent to first convert them to 16\sphinxhyphen{}bit images so the output is to a 16\sphinxhyphen{}bit image and does not overflow.
-
-\sphinxAtStartPar
-However, changing the image type through \sphinxstylestrong{Image >
-Type} can result in the loss of information as we will see in the next example. Not all image
-types can be converted back to the original. The following error is likely to display if you
-are not able to complete a type conversion.
-
-\sphinxAtStartPar
-\sphinxincludegraphics{{type-converter-error}.png}
-
-
-\section{Bit Depth}
-\label{\detokenize{basics:bit-depth}}\begin{enumerate}
+Hyperstacks are multidimensional data, such as a multichannel timeseries or z\sphinxhyphen{}stacks.
+\begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Open the \sphinxcode{\sphinxupquote{m51.tif}} image, \sphinxstylestrong{Open > Open Samples > M51 Galaxy (16 Bits)}.
+Start by opening the “hela\_infected\_timeseries.tif” image. This is available for download
+at: \sphinxurl{https://media.imagej.net/workshops/data/3d/}
 
+\end{enumerate}
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Adjust the contrast so we can see the image a bit better. \sphinxstylestrong{Image > Adjust > Brightness and Contrast}.
+If internet access is unavailable, the \sphinxcode{\sphinxupquote{Mitosis (5D stack)}} sample from \sphinxstylestrong{File > Open Samples} works, too.
 
+\end{itemize}
+
+
+\subsection{Duplicate A Channel Or Image}
+\label{\detokenize{basics:duplicate-a-channel-or-image}}
+\sphinxAtStartPar
+The “duplicate” tool allows us to work on a copy of the data (so we don’t accidentally overwrite our original data),
+and it also allows us to work with a subset of large datasets.
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-Make a histogram of the image, \sphinxstylestrong{Ctrl + H}, and notice the scale of the histogram and the
-mean value. Keep this window open.
-a. 16\sphinxhyphen{}bit images have a maximum value of 65,536.
+Use \sphinxstylestrong{Image > Duplicate} to bring up the duplication options window. This can also be
+done with \sphinxstylestrong{Ctrl + Shift + D} or \sphinxstylestrong{Right Click > Duplicate}. Here, we can specify which RGB
+channels and timepoints we want to separate. If we use 1\sphinxhyphen{}2 in the channels menu, it
+should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
+(If you are using the mitosis image, try choosing just one value for the color channel.)
 
+\end{itemize}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{duplicate}.png}
+\sphinxincludegraphics{{hela-duplicate}.png}
+
+
+\section{Changing Channel Colors}
+\label{\detokenize{basics:changing-channel-colors}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-Convert the 16 bit image to an 8 bit image, \sphinxstylestrong{Image > Type > 8 bit}.
-a. 8\sphinxhyphen{}bit images have a maximum of 256 values. This means the data resolution and
-range is lower compared to a higher bit depth, so the data is compressed.
-
-\item {} 
-\sphinxAtStartPar
-Make another histogram and keep the window open. How did the values change?
+To change the display color of channels, use \sphinxstylestrong{Image > Color > Channels Tool} or \sphinxstylestrong{Ctrl + Shift + Z}.
 
 \end{enumerate}
 
 \sphinxAtStartPar
-\sphinxincludegraphics{{m51-bit-depth}.png}
+\sphinxincludegraphics{{channels}.png}
 
-
-\section{Adjusting Brightness and Contrast}
-\label{\detokenize{basics:adjusting-brightness-and-contrast}}\begin{itemize}
-\item {} 
 \sphinxAtStartPar
-Changing the contrast in an image can be a good visualization tool. Using \sphinxstylestrong{Ctrl + Shift +
-C} or \sphinxstylestrong{Image > Adjust > Brightness and Contrast} will display the B\&C menu. Using
-Auto or the B\&C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but \sphinxstylestrong{using the Apply button will
-change the pixel values, which generally should not be done.}
-
-\end{itemize}
+Note: The “more” option can be used to apply colors to the selected channels.
 
 
 \section{Set Scale and Scale Bars}
@@ -941,21 +929,95 @@ To add a scale bar, use \sphinxstylestrong{Analyze > Tools > Scale Bar}.
 \sphinxincludegraphics{{scale-bar}.png}
 
 
-\section{Accessing Image Metadata}
-\label{\detokenize{basics:accessing-image-metadata}}
+\section{Bit Depth and Image Type}
+\label{\detokenize{basics:bit-depth-and-image-type}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Open the \sphinxcode{\sphinxupquote{m51.tif}} image, \sphinxstylestrong{Open > Open Samples > M51 Galaxy (16 Bits)}.
 
+\item {} 
+\sphinxAtStartPar
+Adjust the contrast so we can see the image a bit better. \sphinxstylestrong{Image > Adjust > Brightness and Contrast}.
+
+\item {} 
+\sphinxAtStartPar
+Make a histogram of the image, \sphinxstylestrong{Ctrl + H}, and notice the scale of the histogram and the
+mean value. Keep this window open. 16\sphinxhyphen{}bit images have a maximum value of 65,536.
+
+\item {} 
+\sphinxAtStartPar
+Convert the 16 bit image to an 8 bit image, \sphinxstylestrong{Image > Type > 8 bit}.
+a. 8\sphinxhyphen{}bit images have a maximum of 256 values. This means the data resolution and
+range is lower compared to a higher bit depth, so the data is compressed.
+
+\item {} 
+\sphinxAtStartPar
+Make another histogram and keep the window open. How did the values change?
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{m51-bit-depth}.png}
+
+
+\section{Changing Image Types, cautiously.}
+\label{\detokenize{basics:changing-image-types-cautiously}}
+\sphinxAtStartPar
+Some operations \sphinxhyphen{} especially image math operations \sphinxhyphen{} only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8\sphinxhyphen{}bit images, it would be prudent to first convert them to 16\sphinxhyphen{}bit images so the output is to a 16\sphinxhyphen{}bit image and does not overflow.
+
+\sphinxAtStartPar
+However, changing the image type through \sphinxstylestrong{Image >
+Type} can result in the loss of information as we have seen. Not all image
+types can be converted back to the original. Be careful.
+
+\sphinxAtStartPar
+On an unrelated note, the following error is likely to display if you
+are not able to complete a type conversion.
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{type-converter-error}.png}
+
+
+\section{Adjusting Brightness and Contrast}
+\label{\detokenize{basics:adjusting-brightness-and-contrast}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Changing the contrast in an image can be a good visualization tool. Using \sphinxstylestrong{Ctrl + Shift +
+C} or \sphinxstylestrong{Image > Adjust > Brightness and Contrast} will display the B\&C menu. Using
+Auto or the B\&C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but \sphinxstylestrong{using the Apply button will
+change the pixel values, which generally should not be done.}
+
+\end{itemize}
+
+
+\section{(Optional) Accessing Image Metadata}
+\label{\detokenize{basics:optional-accessing-image-metadata}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Open our favorite image, “blobs”: \sphinxstylestrong{Ctrl + Shift + B}
+
+\item {} 
+\sphinxAtStartPar
+Press \sphinxstylestrong{Ctrl + i} (\sphinxstylestrong{Image > Info}) to see the image metadata.
+
+\item {} 
+\sphinxAtStartPar
+Press \sphinxstylestrong{Shift + p} (\sphinxstylestrong{Image > Properties}) for an older tool which allows one to see and set some image (and stack) properties.
+
+\end{itemize}
 
 \sphinxstepscope
 
 
 \chapter{Basic Segmentation}
 \label{\detokenize{basic-segmentation:basic-segmentation}}\label{\detokenize{basic-segmentation::doc}}
+
+\section{(Optional) Background Subtraction}
+\label{\detokenize{basic-segmentation:optional-background-subtraction}}
 \sphinxAtStartPar
-For this section, we demonstrate with the \sphinxstylestrong{embryos} sample.
+For this section, we demonstrate with the \sphinxstylestrong{embryos} sample, from \sphinxstylestrong{File > Open Sample > Embryos}.
 
-
-\section{Background Subtraction}
-\label{\detokenize{basic-segmentation:background-subtraction}}
 \sphinxAtStartPar
 Oftentimes the background illumination is not uniform, and this interferes with intensity\sphinxhyphen{}based thresholding. Fiji includes multiple methods to perform background subtraction in ImageJ, including \sphinxstylestrong{Process > Subtract Background}, \sphinxstylestrong{Mean/Median Background Subtraction}, or \sphinxstylestrong{Gaussian Blur Subtraction}. If you are not planning a quantitative analysis, \sphinxstylestrong{Enhance Local Contrast} (\sphinxstylestrong{CLAHE}, Contrast Limited Adaptive Histogram Equalization) may also be worth a try.
 
@@ -986,7 +1048,7 @@ For this section we will open up blobs again: \sphinxstylestrong{Ctrl\sphinxhyph
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let’s look at the histogram of the intensity values using \sphinxstylestrong{Ctrl + H}.
+If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let’s look at the histogram of the intensity values using \sphinxstylestrong{Ctrl\sphinxhyphen{}H}.
 
 \end{enumerate}
 

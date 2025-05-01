@@ -1,8 +1,10 @@
 # Basic Segmentation
 
-For this section, we demonstrate with the **embryos** sample.
 
-## Background Subtraction
+
+## (Optional) Background Subtraction
+For this section, we demonstrate with the **embryos** sample, from **File > Open Sample > Embryos**.
+
 Oftentimes the background illumination is not uniform, and this interferes with intensity-based thresholding. Fiji includes multiple methods to perform background subtraction in ImageJ, including **Process > Subtract Background**, **Mean/Median Background Subtraction**, or **Gaussian Blur Subtraction**. If you are not planning a quantitative analysis, **Enhance Local Contrast** (**CLAHE**, Contrast Limited Adaptive Histogram Equalization) may also be worth a try.
 
 ![Embryos original, background subtracted, and with CLAHE](images/embryos-bg.png)
@@ -21,7 +23,7 @@ Some Image.sc forum discussion here:
 
 For this section we will open up blobs again: **Ctrl-Shift-B**
 
-1. If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let's look at the histogram of the intensity values using **Ctrl + H**.
+1. If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let's look at the histogram of the intensity values using **Ctrl-H**.
 
 ![Histogram of blobs](images/blobs-hist.png)
 

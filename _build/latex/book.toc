@@ -9,6 +9,7 @@
 \contentsline {subsection}{\numberline {1.2.4}A Side Note on Updating}{4}{subsection.1.2.4}%
 \contentsline {section}{\numberline {1.3}Install Plugins with Update Sites}{4}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Downloading a Practice Dataset}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Some usability options}{6}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Common Keyboard Shortcuts}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Also Helpful}{7}{section.2.1}%
 \contentsline {chapter}{\numberline {3}Getting Started, Opening an Image}{9}{chapter.3}%
@@ -18,35 +19,37 @@
 \contentsline {section}{\numberline {3.4}Changing the Color Scheme (LUT)}{11}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Colorblindness Consideration}{12}{subsection.3.4.1}%
 \contentsline {section}{\numberline {3.5}Plot/Line Plot}{12}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Opening and viewing a Z\sphinxhyphen {}Stack}{13}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Hyperstacks}{14}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Duplicate A Channel Or Image}{14}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Changing Channel Colors}{15}{section.3.8}%
-\contentsline {section}{\numberline {3.9}3D Volume and Projections}{16}{section.3.9}%
-\contentsline {section}{\numberline {3.10}Changing Image Types, cautiously.}{18}{section.3.10}%
-\contentsline {section}{\numberline {3.11}Bit Depth}{20}{section.3.11}%
-\contentsline {section}{\numberline {3.12}Adjusting Brightness and Contrast}{21}{section.3.12}%
-\contentsline {section}{\numberline {3.13}Set Scale and Scale Bars}{21}{section.3.13}%
-\contentsline {section}{\numberline {3.14}Accessing Image Metadata}{24}{section.3.14}%
-\contentsline {chapter}{\numberline {4}Basic Segmentation}{25}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Background Subtraction}{25}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Segmentation / Thresholding}{26}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Morphological filtering}{29}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Splitting chunks by watershed}{30}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Adding Selections to ROI Manager}{30}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Analyze Particles}{31}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Masks for Measurement}{33}{section.4.7}%
-\contentsline {section}{\numberline {4.8}}{34}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Making Measurements}{34}{section.4.9}%
-\contentsline {chapter}{\numberline {5}Basic Registration}{37}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Stitching Images}{37}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Scripting}{43}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Macro Recorder}{43}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Why does the recorder not show a response for all plugins?}{44}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}}{45}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Batch Processing}{45}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Deconvolution}{47}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Background Subtraction – Gaussian Filters}{51}{chapter.8}%
-\contentsline {chapter}{\numberline {9}TrackMate – Example from documentation}{59}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Labkit Segmentation}{73}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Other Resources}{77}{chapter.11}%
+\contentsline {section}{\numberline {3.6}Histograms}{13}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Live views}{14}{subsection.3.6.1}%
+\contentsline {section}{\numberline {3.7}Opening and viewing a Z\sphinxhyphen {}Stack}{14}{section.3.7}%
+\contentsline {section}{\numberline {3.8}3D Volume and Projections}{14}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Hyperstacks}{16}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Duplicate A Channel Or Image}{16}{subsection.3.9.1}%
+\contentsline {section}{\numberline {3.10}Changing Channel Colors}{18}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Set Scale and Scale Bars}{19}{section.3.11}%
+\contentsline {section}{\numberline {3.12}Bit Depth and Image Type}{22}{section.3.12}%
+\contentsline {section}{\numberline {3.13}Changing Image Types, cautiously.}{23}{section.3.13}%
+\contentsline {section}{\numberline {3.14}Adjusting Brightness and Contrast}{25}{section.3.14}%
+\contentsline {section}{\numberline {3.15}(Optional) Accessing Image Metadata}{25}{section.3.15}%
+\contentsline {chapter}{\numberline {4}Basic Segmentation}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}(Optional) Background Subtraction}{27}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Segmentation / Thresholding}{28}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Morphological filtering}{31}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Splitting chunks by watershed}{32}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Adding Selections to ROI Manager}{32}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Analyze Particles}{33}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Masks for Measurement}{35}{section.4.7}%
+\contentsline {section}{\numberline {4.8}}{36}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Making Measurements}{36}{section.4.9}%
+\contentsline {chapter}{\numberline {5}Basic Registration}{39}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Stitching Images}{39}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Scripting}{45}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Macro Recorder}{45}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Why does the recorder not show a response for all plugins?}{46}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}}{47}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Batch Processing}{47}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Deconvolution}{49}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Background Subtraction – Gaussian Filters}{53}{chapter.8}%
+\contentsline {chapter}{\numberline {9}TrackMate – Example from documentation}{61}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Labkit Segmentation}{75}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Other Resources}{79}{chapter.11}%

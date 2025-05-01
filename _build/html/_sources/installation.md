@@ -8,7 +8,7 @@ Download it at [https://imagej.net/software/fiji/downloads](https://imagej.net/s
 Look for the zip folder and extract the contents to the desired location on your computer. Keeping it in "Program Files" is generally not recommended to avoid access/security issues.
 
 ## Installation
-We’re going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn't show up within two minutes of running, then run the backup launcher.
+We�셱e going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn't show up within two minutes of running, then run the backup launcher.
 
 ### Windows
 
@@ -41,7 +41,7 @@ We’re going to run the new Jaunch launcher, because it runs faster and allows 
 - Right-click on <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"> `Fiji.app`, choose **Show Package Contents**.
 - You will see a folder containing another <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;"> `Fiji` icon inside it.  
   Double-click the **second** <img src="_static/images/icon.png" style="height:1em; vertical-align:middle;">`Fiji` icon to launch.
-- If it doesn’t work, see backup instructions below.
+- If it doesn't work, see backup instructions below.
 
 #### Backup Instructions for macOS
 
@@ -52,7 +52,7 @@ We’re going to run the new Jaunch launcher, because it runs faster and allows 
 - Open **Apple Menu > System Settings**.
 - Search for **Gatekeeper**.
 - You should see the text  
-  "Fiji.app was blocked..."_ → click **Open Anyway**.
+  "Fiji.app was blocked..."_ �넂 click **Open Anyway**.
 - Enter your password or use your fingerprint if prompted.
 - Click **Open**.  
   After this, you should be able to open `Fiji.app` directly.
@@ -84,4 +84,8 @@ Google Drive:
 [https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link](https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link)
 
 Github:
-[https://github.com/brp-optics/FIJI_Lab_Tutoriall](https://github.com/brp-optics/FIJI_Lab_Tutorial)
+[https://github.com/brp-optics/FIJI_Lab_Tutorial](https://github.com/brp-optics/FIJI_Lab_Tutorial)
+
+This manual:
+
+[https://brp-optics.github.io/fiji_lab_walkthrough/installation.html](https://brp-optics.github.io/fiji_lab_walkthrough/installation.html)
