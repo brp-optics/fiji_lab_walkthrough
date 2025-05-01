@@ -1,8 +1,7 @@
 # Installing ImageJ/FIJI
 
-## Download FIJI Package
+## Download FIJI
 
-1. Download FIJI package from the software site
 FIJI has pre-installed plugins and is recommended for this lab.
 Download it at [https://imagej.net/software/fiji/downloads](https://imagej.net/software/fiji/downloads).
 Look for the zip folder and extract the contents to the desired location on your computer. Keeping it in "Program Files" is generally not recommended to avoid access/security issues.
@@ -83,10 +82,9 @@ The complete list of files may be downloaded at the following links:
 Google Drive:
 [https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link](https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link)
 
-Github:
-[https://github.com/brp-optics/FIJI_Lab_Tutorial](https://github.com/brp-optics/FIJI_Lab_Tutorial)
-
 This manual: [https://brp-optics.github.io/fiji_lab_walkthrough/installation.html](https://brp-optics.github.io/fiji_lab_walkthrough/installation.html)
+
+I also have a USB drive with all the resources on it, should anyone not have internet access.
 
 ## Some usability options
 I like to go into the menus and set the main FIJI window to be always on top, and the search tool to be Ctrl-L rather than **L**:
