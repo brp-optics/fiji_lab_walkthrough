@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -386,7 +386,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction">Background Subtraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-background-subtraction">(Optional) Background Subtraction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-thresholding">Segmentation / Thresholding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-filtering">Morphological filtering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-chunks-by-watershed">Splitting chunks by watershed</a></li>
@@ -408,9 +408,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="basic-segmentation">
 <h1>Basic Segmentation<a class="headerlink" href="#basic-segmentation" title="Link to this heading">#</a></h1>
-<p>For this section, we demonstrate with the <strong>embryos</strong> sample.</p>
-<section id="background-subtraction">
-<h2>Background Subtraction<a class="headerlink" href="#background-subtraction" title="Link to this heading">#</a></h2>
+<section id="optional-background-subtraction">
+<h2>(Optional) Background Subtraction<a class="headerlink" href="#optional-background-subtraction" title="Link to this heading">#</a></h2>
+<p>For this section, we demonstrate with the <strong>embryos</strong> sample, from <strong>File &gt; Open Sample &gt; Embryos</strong>.</p>
 <p>Oftentimes the background illumination is not uniform, and this interferes with intensity-based thresholding. Fiji includes multiple methods to perform background subtraction in ImageJ, including <strong>Process &gt; Subtract Background</strong>, <strong>Mean/Median Background Subtraction</strong>, or <strong>Gaussian Blur Subtraction</strong>. If you are not planning a quantitative analysis, <strong>Enhance Local Contrast</strong> (<strong>CLAHE</strong>, Contrast Limited Adaptive Histogram Equalization) may also be worth a try.</p>
 <p><img alt="Embryos original, background subtracted, and with CLAHE" src="_images/embryos-bg.png" />
 <em>Left to right: original, background subtracted, with CLAHE.</em></p>
@@ -424,7 +424,7 @@ document.write(`
 <h2>Segmentation / Thresholding<a class="headerlink" href="#segmentation-thresholding" title="Link to this heading">#</a></h2>
 <p>For this section we will open up blobs again: <strong>Ctrl-Shift-B</strong></p>
 <ol class="arabic simple">
-<li><p>If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let’s look at the histogram of the intensity values using <strong>Ctrl + H</strong>.</p></li>
+<li><p>If we want to segment out the blobs we are interested in, one possible method is to use an intensity threshold. First, let’s look at the histogram of the intensity values using <strong>Ctrl-H</strong>.</p></li>
 </ol>
 <p><img alt="Histogram of blobs" src="_images/blobs-hist.png" /></p>
 <p>We can see that most of the background pixels have an intensity value around 50, whereas there is another grouping of pixel intensities around 210, which is likely the areas we are interested in because this image has a white background. Notice that the values are stretched outwards; this indicates that the original range was likely very small or somehow adjusted.</p>
@@ -612,7 +612,7 @@ This window will determine what results are displayed or saved from the image.</
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-subtraction">Background Subtraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-background-subtraction">(Optional) Background Subtraction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-thresholding">Segmentation / Thresholding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphological-filtering">Morphological filtering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-chunks-by-watershed">Splitting chunks by watershed</a></li>

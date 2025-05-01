@@ -1,14 +1,13 @@
 # Installing ImageJ/FIJI
 
-## Download FIJI Package
+## Download FIJI
 
-1. Download FIJI package from the software site
 FIJI has pre-installed plugins and is recommended for this lab.
 Download it at [https://imagej.net/software/fiji/downloads](https://imagej.net/software/fiji/downloads).
 Look for the zip folder and extract the contents to the desired location on your computer. Keeping it in "Program Files" is generally not recommended to avoid access/security issues.
 
 ## Installation
-Weâ€ì…±e going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn't show up within two minutes of running, then run the backup launcher.
+We're going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn't show up within two minutes of running, then run the backup launcher.
 
 ### Windows
 
@@ -52,7 +51,7 @@ Weâ€ì…±e going to run the new Jaunch launcher, because it runs faster and allows
 - Open **Apple Menu > System Settings**.
 - Search for **Gatekeeper**.
 - You should see the text  
-  "Fiji.app was blocked..."_ âë„‚ click **Open Anyway**.
+  "Fiji.app was blocked..." - click **Open Anyway**.
 - Enter your password or use your fingerprint if prompted.
 - Click **Open**.  
   After this, you should be able to open `Fiji.app` directly.
@@ -83,9 +82,10 @@ The complete list of files may be downloaded at the following links:
 Google Drive:
 [https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link](https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link)
 
-Github:
-[https://github.com/brp-optics/FIJI_Lab_Tutorial](https://github.com/brp-optics/FIJI_Lab_Tutorial)
+This manual: [https://brp-optics.github.io/fiji_lab_walkthrough/installation.html](https://brp-optics.github.io/fiji_lab_walkthrough/installation.html)
 
-This manual:
-
-[https://brp-optics.github.io/fiji_lab_walkthrough/installation.html](https://brp-optics.github.io/fiji_lab_walkthrough/installation.html)
+## Some usability options
+I like to go into the menus and set the main FIJI window to be always on top, and the search tool to be Ctrl-L rather than **L**:
+- Main window always on top: **Edit > Options > Appearance > IJ window always on top**
+  - Note that one can "surface" the main FIJI window from any Fiji window by pressing **Enter**
+- Change search tool: **Edit > Options > Search bar ... > Pressing L focuses the search bar**

@@ -1,6 +1,6 @@
 \xpg@aux {}{english}
 \contentsline {chapter}{\numberline {1}Installing ImageJ/FIJI}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Download FIJI Package}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.1}Download FIJI}{3}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Installation}{3}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Windows}{3}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}Linux}{3}{subsection.1.2.2}%

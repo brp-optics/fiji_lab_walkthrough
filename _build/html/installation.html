@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -386,7 +386,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-fiji-package">Download FIJI Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-fiji">Download FIJI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
@@ -399,6 +399,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-plugins-with-update-sites">Install Plugins with Update Sites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-a-practice-dataset">Downloading a Practice Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-usability-options">Some usability options</a></li>
 </ul>
             </nav>
         </div>
@@ -412,18 +413,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="installing-imagej-fiji">
 <h1>Installing ImageJ/FIJI<a class="headerlink" href="#installing-imagej-fiji" title="Link to this heading">#</a></h1>
-<section id="download-fiji-package">
-<h2>Download FIJI Package<a class="headerlink" href="#download-fiji-package" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Download FIJI package from the software site
-FIJI has pre-installed plugins and is recommended for this lab.
+<section id="download-fiji">
+<h2>Download FIJI<a class="headerlink" href="#download-fiji" title="Link to this heading">#</a></h2>
+<p>FIJI has pre-installed plugins and is recommended for this lab.
 Download it at <a class="reference external" href="https://imagej.net/software/fiji/downloads">https://imagej.net/software/fiji/downloads</a>.
-Look for the zip folder and extract the contents to the desired location on your computer. Keeping it in “Program Files” is generally not recommended to avoid access/security issues.</p></li>
-</ol>
+Look for the zip folder and extract the contents to the desired location on your computer. Keeping it in “Program Files” is generally not recommended to avoid access/security issues.</p>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
-<p>We?셱e going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn’t show up within two minutes of running, then run the backup launcher.</p>
+<p>We’re going to run the new Jaunch launcher, because it runs faster and allows running without security popups. If it doesn’t show up within two minutes of running, then run the backup launcher.</p>
 <section id="windows">
 <h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -475,7 +473,7 @@ This will likely be rejected by macOS for security reasons.</p></li>
 <li><p>Open <strong>Apple Menu &gt; System Settings</strong>.</p></li>
 <li><p>Search for <strong>Gatekeeper</strong>.</p></li>
 <li><p>You should see the text<br />
-“Fiji.app was blocked…”_ ?넂 click <strong>Open Anyway</strong>.</p></li>
+“Fiji.app was blocked…” - click <strong>Open Anyway</strong>.</p></li>
 <li><p>Enter your password or use your fingerprint if prompted.</p></li>
 <li><p>Click <strong>Open</strong>.<br />
 After this, you should be able to open <code class="docutils literal notranslate"><span class="pre">Fiji.app</span></code> directly.</p></li>
@@ -507,10 +505,19 @@ This provides access to common plugins that are compatible with FIJI. Use the ch
 <p>The complete list of files may be downloaded at the following links:</p>
 <p>Google Drive:
 <a class="reference external" href="https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link">https://drive.google.com/drive/folders/1lgn-S5fZZZX0mwou23S_f6d3dG2Di64g?usp=drive_link</a></p>
-<p>Github:
-<a class="github reference external" href="https://github.com/brp-optics/FIJI_Lab_Tutorial">brp-optics/FIJI_Lab_Tutorial</a></p>
-<p>This manual:</p>
-<p><a class="reference external" href="https://brp-optics.github.io/fiji_lab_walkthrough/installation.html">https://brp-optics.github.io/fiji_lab_walkthrough/installation.html</a></p>
+<p>This manual: <a class="reference external" href="https://brp-optics.github.io/fiji_lab_walkthrough/installation.html">https://brp-optics.github.io/fiji_lab_walkthrough/installation.html</a></p>
+</section>
+<section id="some-usability-options">
+<h2>Some usability options<a class="headerlink" href="#some-usability-options" title="Link to this heading">#</a></h2>
+<p>I like to go into the menus and set the main FIJI window to be always on top, and the search tool to be Ctrl-L rather than <strong>L</strong>:</p>
+<ul class="simple">
+<li><p>Main window always on top: <strong>Edit &gt; Options &gt; Appearance &gt; IJ window always on top</strong></p>
+<ul>
+<li><p>Note that one can “surface” the main FIJI window from any Fiji window by pressing <strong>Enter</strong></p></li>
+</ul>
+</li>
+<li><p>Change search tool: <strong>Edit &gt; Options &gt; Search bar … &gt; Pressing L focuses the search bar</strong></p></li>
+</ul>
 </section>
 </section>
 
@@ -578,7 +585,7 @@ This provides access to common plugins that are compatible with FIJI. Use the ch
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-fiji-package">Download FIJI Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-fiji">Download FIJI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
@@ -591,6 +598,7 @@ This provides access to common plugins that are compatible with FIJI. Use the ch
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-plugins-with-update-sites">Install Plugins with Update Sites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-a-practice-dataset">Downloading a Practice Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-usability-options">Some usability options</a></li>
 </ul>
   </nav></div>
 

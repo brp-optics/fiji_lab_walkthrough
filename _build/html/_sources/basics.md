@@ -1,9 +1,10 @@
 # Getting Started, Opening an Image
 
-The easiest way to open a data set is to click-and-drag from the folder. However, some file types
+The easiest way to open a data set is to **drag and drop** it from its folder onto the Fiji main window. However, some file types
 need to be specifically imported. To import a sequence of images that are saved within a folder,
 you can use the **File > Import > Image Sequence** option to open them as a stack or as
 separate images.
+
 Additionally, using a **Virtual Stack** in the **Bio-Formats Importer** may be useful if trying to view
 large data files. This makes it easier to get a quick look at data when there is limited RAM.
 However, if you need to perform an image operation, such as background subtraction, then
@@ -52,7 +53,7 @@ Open “blobs.gif”, via **File > Open Samples > Blobs**, or **Ctrl + Shift + B
 
 ## Changing the Color Scheme (LUT)
 
-A Lookup Table (LUT) controls the colormap of the images.
+A LookUp Table (LUT) controls the colormap of the images.
 This can easily be changed using the **LUT** button in the toolbar.
 Try a few LUTs and see how the information in the background and foreground changes.
   1. Using **Image > Colors > Display LUTs** will display different types of LUTs.
@@ -68,8 +69,7 @@ To test how different images may appear to those with colorblindness, you can us
 
 As a separate note, it may also be helpful to test any publication figures (images or
 otherwise) in grayscale, to see what color information may be lost if the paper is printed in
-grayscale.  
-In many cases, it may be more practical to develop images/figures in grayscale,
+grayscale.  In many cases, it may be more practical to develop images/figures in grayscale,
 especially for presentations, and it is still a valid representation of the data.
 
 ## Plot/Line Plot
@@ -96,8 +96,15 @@ especially for presentations, and it is still a valid representation of the data
 
 ![Profile from linear selection atop blobs](images/plot-profile-line.png)
 
+## Histograms
+What is the distribution of pixel values in *blobs*? This is often one of the first things we want to know about an image (for example, to see if image intensities use the full range of the detector, or if they oversaturate the detector). Press **Ctrl + H** to open a histogram on *blobs* or on the sample image **boats**. Why might the histogram not be continuous on *blobs*? Is boats properly exposed?
+
+### Live views
+Just like on the plot profile window, we can press the "live" button to get a continuously-updating histogram window. The histogram will update based on the selected region of interest.
 
 ## Opening and viewing a Z-Stack
+
+A stack is a 3D image. Usually the third dimension is *z*, the third spatial dimension.
 
 1. Open “t1-head.tif”, via **File > Open Samples > T1 Head (16-bits)**. 
 2. Use the bar to scroll through the stack of images
@@ -105,38 +112,9 @@ especially for presentations, and it is still a valid representation of the data
 or **Ctrl/Command + Shift + H**
   - The yellow crosshairs can be used to change the display for each orthogonal
 view, but one has to close the orthogonal view to select images.
-4. To select from an orthogonal view, try **reslice**, in **Image > Stacks > Reslice** or press **\ (backslash)** when the image is in focus.
-
-<!-- __Todo: check formatting here. -->
-
-## Hyperstacks
-Hyperstacks are multidimensional data, such as a multichannel timeseries or z-stacks.
-
-1. Start by opening the “hela_infected_timeseries.tif” image. This is available for download
-at: [https://media.imagej.net/workshops/data/3d/](https://media.imagej.net/workshops/data/3d/)
-
-- If internet access is unavailable, the `Mitosis (5D stack)` sample from **File > Open Samples** works, too.
-
-### Duplicate A Channel Or Image
-- Use **Image > Duplicate** to bring up the duplication options window. This can also be
-done with **Ctrl + Shift + D** or **Right Click > Duplicate**. Here, we can specify which RGB
-channels and timepoints we want to separate. If we use 1-2 in the channels menu, it
-should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
-(If you are using the mitosis image, try choosing just one value for the color channel.)
-
-![Duplicate tool](images/duplicate.png)
-![Hela duplicated](images/hela-duplicate.png)
-
-## Changing Channel Colors
-1. To change the display color of channels, use **Image > Color > Channels Tool** or **Ctrl + Shift + Z**.
-
-![Channels](images/channels.png)
-
-Note: The “more” option can be used to apply colors to the selected channels.
-
-
-
-
+4. To select from an orthogonal view, try **reslice**, in **Image > Stacks > Reslice** or press **/ (slash)** when the image is in focus.
+Suggested reslice parameters: 1.5 mm, start at top, avoid interpolation.
+5. One can also run **3D Viewer** in **Plugins > 3D Viewer** to see an interactive rendering of the data.
 
 ## 3D Volume and Projections
 1. Open `t1-head.tif`, **File > Open Samples > T1 Head (16 bits)**
@@ -154,37 +132,33 @@ single slice of the stack, average projection, median projection, max projection
 
 ![t1 head different z projections](images/t-head-multiple-z-projections.png)
 
+## Hyperstacks
+Hyperstacks are multidimensional data, such as a multichannel timeseries or z-stacks.
 
-## Changing Image Types, cautiously. 
+1. Start by opening the “hela_infected_timeseries.tif” image. This is available for download
+at: [https://media.imagej.net/workshops/data/3d/](https://media.imagej.net/workshops/data/3d/)
 
-Some operations - especially image math operations - only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8-bit images, it would be prudent to first convert them to 16-bit images so the output is to a 16-bit image and does not overflow. 
+- If internet access is unavailable, the `Mitosis (5D stack)` sample from **File > Open Samples** works, too.
 
-However, changing the image type through **Image >
-Type** can result in the loss of information as we will see in the next example. Not all image
-types can be converted back to the original. The following error is likely to display if you
-are not able to complete a type conversion.
+### Duplicate A Channel Or Image
+The "duplicate" tool allows us to work on a copy of the data (so we don't accidentally overwrite our original data), 
+and it also allows us to work with a subset of large datasets.
 
-![Converter error](images/type-converter-error.png)
+- Use **Image > Duplicate** to bring up the duplication options window. This can also be
+done with **Ctrl + Shift + D** or **Right Click > Duplicate**. Here, we can specify which RGB
+channels and timepoints we want to separate. If we use 1-2 in the channels menu, it
+should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
+(If you are using the mitosis image, try choosing just one value for the color channel.)
 
-## Bit Depth
-1. Open the `m51.tif` image, **Open > Open Samples > M51 Galaxy (16 Bits)**.
-2. Adjust the contrast so we can see the image a bit better. **Image > Adjust > Brightness and Contrast**.
-3. Make a histogram of the image, **Ctrl + H**, and notice the scale of the histogram and the
-mean value. Keep this window open.
-a. 16-bit images have a maximum value of 65,536.
-4. Convert the 16 bit image to an 8 bit image, **Image > Type > 8 bit**.
-a. 8-bit images have a maximum of 256 values. This means the data resolution and
-range is lower compared to a higher bit depth, so the data is compressed.
-5. Make another histogram and keep the window open. How did the values change?
+![Duplicate tool](images/duplicate.png)
+![Hela duplicated](images/hela-duplicate.png)
 
-![Galaxy max value changes from 10106 to 255](images/m51-bit-depth.png)
+## Changing Channel Colors
+1. To change the display color of channels, use **Image > Color > Channels Tool** or **Ctrl + Shift + Z**.
 
+![Channels](images/channels.png)
 
-## Adjusting Brightness and Contrast
--  Changing the contrast in an image can be a good visualization tool. Using **Ctrl + Shift +
-C** or **Image > Adjust > Brightness and Contrast** will display the B&C menu. Using
-Auto or the B&C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but **using the Apply button will
-change the pixel values, which generally should not be done.**
+Note: The “more” option can be used to apply colors to the selected channels.
 
 ## Set Scale and Scale Bars
 
@@ -201,6 +175,42 @@ change the pixel values, which generally should not be done.**
 
 ![Adding a scale bar overlay](images/scale-bar.png)
 
-## Accessing Image Metadata
-<!-- __Todo -->
+
+## Bit Depth and Image Type
+1. Open the `m51.tif` image, **Open > Open Samples > M51 Galaxy (16 Bits)**.
+2. Adjust the contrast so we can see the image a bit better. **Image > Adjust > Brightness and Contrast**.
+3. Make a histogram of the image, **Ctrl + H**, and notice the scale of the histogram and the
+mean value. Keep this window open. 16-bit images have a maximum value of 65,536.
+4. Convert the 16 bit image to an 8 bit image, **Image > Type > 8 bit**.
+a. 8-bit images have a maximum of 256 values. This means the data resolution and
+range is lower compared to a higher bit depth, so the data is compressed.
+5. Make another histogram and keep the window open. How did the values change?
+
+![Galaxy max value changes from 10106 to 255](images/m51-bit-depth.png)
+
+## Changing Image Types, cautiously. 
+
+Some operations - especially image math operations - only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8-bit images, it would be prudent to first convert them to 16-bit images so the output is to a 16-bit image and does not overflow. 
+
+However, changing the image type through **Image >
+Type** can result in the loss of information as we have seen. Not all image
+types can be converted back to the original. Be careful.
+
+On an unrelated note, the following error is likely to display if you
+are not able to complete a type conversion.
+
+![Converter error](images/type-converter-error.png)
+
+## Adjusting Brightness and Contrast
+-  Changing the contrast in an image can be a good visualization tool. Using **Ctrl + Shift +
+C** or **Image > Adjust > Brightness and Contrast** will display the B&C menu. Using
+Auto or the B&C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but **using the Apply button will
+change the pixel values, which generally should not be done.**
+
+## (Optional) Accessing Image Metadata
+- Open our favorite image, "blobs": **Ctrl + Shift + B**
+- Press **Ctrl + i** (**Image > Info**) to see the image metadata.
+- Press **Shift + p** (**Image > Properties**) for an older tool which allows one to see and set some image (and stack) properties.
+
+
 
