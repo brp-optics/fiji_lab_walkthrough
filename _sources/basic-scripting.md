@@ -66,7 +66,7 @@ function processFile(input, output, file) {
 	run("Find Edges");
 
 	print("Saving to: " + output);
-	saveAs(output + File.separator + "edges_" + file, "Tiff");
+	saveAs("Tiff", output + File.separator + "edges_" + file);
 	close(); //Close the file after processing it.
 }
 ```
