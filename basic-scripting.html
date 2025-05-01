@@ -415,7 +415,7 @@ For functions included in the ImageJ Macro language, please see:<br />
 <h2>Macro Recorder<a class="headerlink" href="#macro-recorder" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://imagej.net/scripting/macro">https://imagej.net/scripting/macro</a></p>
 <ol class="arabic simple">
-<li><p>Use <strong>Plugins &gt; Macros &gt; Record</strong> to start recording simple steps and begin generating code.
+<li><p>Use <strong>Plugins &gt; Macros &gt; Record</strong> (<strong>Ctrl-U</strong>) to start recording simple steps and begin generating code.
 Note that when clicking around in FIJI, you may generate unnecessary or overly specific commands, which means macros generated through the recorder will typically require some editing before use on other images.</p></li>
 </ol>
 <p>For example:</p>
@@ -425,6 +425,10 @@ Note that when clicking around in FIJI, you may generate unnecessary or overly s
 <li><p>Run <strong>Process &gt; Find Edges</strong></p></li>
 </ul>
 <p><img alt="Recording a macro" src="_images/blobs-macro.png" /></p>
+<ul class="simple">
+<li><p>Press <strong>Create</strong> in the Macro Recorder to save the macro to disk and open it in the Editor.</p></li>
+<li><p>Close the blobs image and press “run” in the Editor to run the macro, which repeats the analysis verbatim.</p></li>
+</ul>
 <p>More example scripts:<br />
 <a class="reference external" href="https://imagej.net/ij/macros/">https://imagej.net/ij/macros/</a></p>
 <section id="why-does-the-recorder-not-show-a-response-for-all-plugins">
@@ -450,15 +454,52 @@ information about the error and the analysis goals.</p>
 <p>This template contains an existing loop to process each file in the folder
 using the “processFolder” and “processFile” functions. It requires the user
 to specify the input and output directory as well as the file information.</p>
-<ol class="arabic simple">
+<p><img alt="Example batch macro" src="_images/helen-macro.png" /></p>
+<p>Here is a sample “processFile()” function to apply the above oval selection and edge finding macro to every file in the directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">processFile</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+	<span class="o">//</span> <span class="n">Do</span> <span class="n">the</span> <span class="n">processing</span> <span class="n">here</span> <span class="n">by</span> <span class="n">adding</span> <span class="n">your</span> <span class="n">own</span> <span class="n">code</span><span class="o">.</span>
+	<span class="o">//</span> <span class="n">Leave</span> <span class="n">the</span> <span class="nb">print</span> <span class="n">statements</span> <span class="n">until</span> <span class="n">things</span> <span class="n">work</span><span class="p">,</span> <span class="n">then</span> <span class="n">remove</span> <span class="n">them</span><span class="o">.</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing: &quot;</span> <span class="o">+</span> <span class="nb">input</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="n">separator</span> <span class="o">+</span> <span class="n">file</span><span class="p">);</span>
+	<span class="nb">open</span><span class="p">(</span><span class="nb">input</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="n">separator</span> <span class="o">+</span> <span class="n">file</span><span class="p">);</span>
+
+	<span class="n">makeOval</span><span class="p">(</span><span class="mi">47</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">59</span><span class="p">);</span>
+	<span class="n">run</span><span class="p">(</span><span class="s2">&quot;Find Edges&quot;</span><span class="p">);</span>
+
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving to: &quot;</span> <span class="o">+</span> <span class="n">output</span><span class="p">);</span>
+	<span class="n">saveAs</span><span class="p">(</span><span class="n">output</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="n">separator</span> <span class="o">+</span> <span class="s2">&quot;edges_&quot;</span> <span class="o">+</span> <span class="n">file</span><span class="p">,</span> <span class="s2">&quot;Tiff&quot;</span><span class="p">);</span>
+	<span class="n">close</span><span class="p">();</span> <span class="o">//</span><span class="n">Close</span> <span class="n">the</span> <span class="n">file</span> <span class="n">after</span> <span class="n">processing</span> <span class="n">it</span><span class="o">.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>When you are inserting the macro recorder script into the bottom
 function, remember to open and save the file using the <strong><code class="docutils literal notranslate"><span class="pre">open()</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">saveAs()</span></code></strong> functions.</p></li>
-</ol>
-<ul class="simple">
 <li><p>The benefits of this is that the files can be more specifically iterated if
 needed with minor adjustments to the code. For example, try changing <code class="docutils literal notranslate"><span class="pre">i++</span></code> to <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">i</span> <span class="pre">+</span> <span class="pre">2</span></code> to process every other file.</p></li>
+<li><p>It is good practice to use different “input” and “output” directories, to keep from overwriting original data.</p></li>
 </ul>
-<p><img alt="Example batch macro" src="_images/helen-macro.png" /></p>
+<p><img alt="Finished batch macro" src="_images/bjorn-macro.png" /></p>
+<ul class="simple">
+<li><p>When the macro runs properly, you can comment out the print statements with <code class="docutils literal notranslate"><span class="pre">//</span></code>.</p></li>
+<li><p>Batch scripts run much faster when the image is not displayed on screen.</p></li>
+<li><p>To prevent newly opened images from being displayed during a batch script, one can start the script with the command:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setBatchMode</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>   <span class="o">//</span> <span class="n">Don</span><span class="s1">&#39;t show newly opened images</span>
+</pre></div>
+</div>
+<p>Ending the batch script with the following command will close all the images that were opened in the background except the active image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setBatchMode</span><span class="p">(</span><span class="n">false</span><span class="p">);</span> <span class="o">//</span> <span class="n">Return</span> <span class="n">to</span> <span class="n">regular</span> <span class="n">image</span> <span class="n">opening</span> <span class="n">behavior</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>One can also use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setBatchMode</span><span class="p">(</span><span class="s2">&quot;show&quot;</span><span class="p">);</span> <span class="o">//</span> <span class="n">Show</span> <span class="n">a</span> <span class="n">single</span> <span class="n">image</span>
+<span class="n">setBatchMode</span><span class="p">(</span><span class="s2">&quot;exit and display&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: the most common causes of scripting errors are failure to end a line with a semicolon and failure to include <code class="docutils literal notranslate"><span class="pre">open()</span></code> or <code class="docutils literal notranslate"><span class="pre">save()</span></code> functions for the images.</p>
+</div>
 </section>
 </section>
 
