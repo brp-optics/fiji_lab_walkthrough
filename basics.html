@@ -394,18 +394,22 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-line-plot">Plot/Line Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">Histograms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#live-views">Live views</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-viewing-a-z-stack">Opening and viewing a Z-Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-volume-and-projections">3D Volume and Projections</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperstacks">Hyperstacks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicate-a-channel-or-image">Duplicate A Channel Or Image</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-channel-colors">Changing Channel Colors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-volume-and-projections">3D Volume and Projections</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-image-types-cautiously">Changing Image Types, cautiously.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-depth">Bit Depth</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-brightness-and-contrast">Adjusting Brightness and Contrast</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-scale-and-scale-bars">Set Scale and Scale Bars</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-image-metadata">Accessing Image Metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-depth-and-image-type">Bit Depth and Image Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-image-types-cautiously">Changing Image Types, cautiously.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-brightness-and-contrast">Adjusting Brightness and Contrast</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-accessing-image-metadata">(Optional) Accessing Image Metadata</a></li>
 </ul>
             </nav>
         </div>
@@ -419,11 +423,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="getting-started-opening-an-image">
 <h1>Getting Started, Opening an Image<a class="headerlink" href="#getting-started-opening-an-image" title="Link to this heading">#</a></h1>
-<p>The easiest way to open a data set is to click-and-drag from the folder. However, some file types
+<p>The easiest way to open a data set is to <strong>drag and drop</strong> it from its folder onto the Fiji main window. However, some file types
 need to be specifically imported. To import a sequence of images that are saved within a folder,
 you can use the <strong>File &gt; Import &gt; Image Sequence</strong> option to open them as a stack or as
-separate images.
-Additionally, using a <strong>Virtual Stack</strong> in the <strong>Bio-Formats Importer</strong> may be useful if trying to view
+separate images.</p>
+<p>Additionally, using a <strong>Virtual Stack</strong> in the <strong>Bio-Formats Importer</strong> may be useful if trying to view
 large data files. This makes it easier to get a quick look at data when there is limited RAM.
 However, if you need to perform an image operation, such as background subtraction, then
 more memory will be required as the data needs to be loaded.</p>
@@ -481,7 +485,7 @@ the pixel values themselves, which may not represent the original data.</p>
 </section>
 <section id="changing-the-color-scheme-lut">
 <h2>Changing the Color Scheme (LUT)<a class="headerlink" href="#changing-the-color-scheme-lut" title="Link to this heading">#</a></h2>
-<p>A Lookup Table (LUT) controls the colormap of the images.
+<p>A LookUp Table (LUT) controls the colormap of the images.
 This can easily be changed using the <strong>LUT</strong> button in the toolbar.
 Try a few LUTs and see how the information in the background and foreground changes.</p>
 <ol class="arabic simple">
@@ -496,8 +500,7 @@ This can be added with <strong>Analyze &gt; Tools &gt; Calibration Bar</strong>.
 <code class="docutils literal notranslate"><span class="pre">mpl-viridis</span></code> can be a good option as it is designed to be <em>perceptually uniform</em> (see <a class="reference external" href="https://imagej.net/imaging/visualization">https://imagej.net/imaging/visualization</a>).</p>
 <p>As a separate note, it may also be helpful to test any publication figures (images or
 otherwise) in grayscale, to see what color information may be lost if the paper is printed in
-grayscale.<br />
-In many cases, it may be more practical to develop images/figures in grayscale,
+grayscale.  In many cases, it may be more practical to develop images/figures in grayscale,
 especially for presentations, and it is still a valid representation of the data.</p>
 </section>
 </section>
@@ -532,8 +535,17 @@ to where the line is placed.</p></li>
 </ol>
 <p><img alt="Profile from linear selection atop blobs" src="_images/plot-profile-line.png" /></p>
 </section>
+<section id="histograms">
+<h2>Histograms<a class="headerlink" href="#histograms" title="Link to this heading">#</a></h2>
+<p>What is the distribution of pixel values in <em>blobs</em>? This is often one of the first things we want to know about an image (for example, to see if image intensities use the full range of the detector, or if they oversaturate the detector). Press <strong>Ctrl + H</strong> to open a histogram on <em>blobs</em> or on the sample image <strong>boats</strong>. Why might the histogram not be continuous on <em>blobs</em>? Is boats properly exposed?</p>
+<section id="live-views">
+<h3>Live views<a class="headerlink" href="#live-views" title="Link to this heading">#</a></h3>
+<p>Just like on the plot profile window, we can press the “live” button to get a continuously-updating histogram window. The histogram will update based on the selected region of interest.</p>
+</section>
+</section>
 <section id="opening-and-viewing-a-z-stack">
 <h2>Opening and viewing a Z-Stack<a class="headerlink" href="#opening-and-viewing-a-z-stack" title="Link to this heading">#</a></h2>
+<p>A stack is a 3D image. Usually the third dimension is <em>z</em>, the third spatial dimension.</p>
 <ol class="arabic simple">
 <li><p>Open “t1-head.tif”, via <strong>File &gt; Open Samples &gt; T1 Head (16-bits)</strong>.</p></li>
 <li><p>Use the bar to scroll through the stack of images</p></li>
@@ -545,40 +557,10 @@ or <strong>Ctrl/Command + Shift + H</strong></p></li>
 view, but one has to close the orthogonal view to select images.</p></li>
 </ul>
 <ol class="arabic simple" start="4">
-<li><p>To select from an orthogonal view, try <strong>reslice</strong>, in <strong>Image &gt; Stacks &gt; Reslice</strong> or press <strong>\ (backslash)</strong> when the image is in focus.</p></li>
+<li><p>To select from an orthogonal view, try <strong>reslice</strong>, in <strong>Image &gt; Stacks &gt; Reslice</strong> or press <strong>/ (slash)</strong> when the image is in focus.
+Suggested reslice parameters: 1.5 mm, start at top, avoid interpolation.</p></li>
+<li><p>One can also run <strong>3D Viewer</strong> in <strong>Plugins &gt; 3D Viewer</strong> to see an interactive rendering of the data.</p></li>
 </ol>
-<!-- __Todo: check formatting here. -->
-</section>
-<section id="hyperstacks">
-<h2>Hyperstacks<a class="headerlink" href="#hyperstacks" title="Link to this heading">#</a></h2>
-<p>Hyperstacks are multidimensional data, such as a multichannel timeseries or z-stacks.</p>
-<ol class="arabic simple">
-<li><p>Start by opening the “hela_infected_timeseries.tif” image. This is available for download
-at: <a class="reference external" href="https://media.imagej.net/workshops/data/3d/">https://media.imagej.net/workshops/data/3d/</a></p></li>
-</ol>
-<ul class="simple">
-<li><p>If internet access is unavailable, the <code class="docutils literal notranslate"><span class="pre">Mitosis</span> <span class="pre">(5D</span> <span class="pre">stack)</span></code> sample from <strong>File &gt; Open Samples</strong> works, too.</p></li>
-</ul>
-<section id="duplicate-a-channel-or-image">
-<h3>Duplicate A Channel Or Image<a class="headerlink" href="#duplicate-a-channel-or-image" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Use <strong>Image &gt; Duplicate</strong> to bring up the duplication options window. This can also be
-done with <strong>Ctrl + Shift + D</strong> or <strong>Right Click &gt; Duplicate</strong>. Here, we can specify which RGB
-channels and timepoints we want to separate. If we use 1-2 in the channels menu, it
-should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
-(If you are using the mitosis image, try choosing just one value for the color channel.)</p></li>
-</ul>
-<p><img alt="Duplicate tool" src="_images/duplicate.png" />
-<img alt="Hela duplicated" src="_images/hela-duplicate.png" /></p>
-</section>
-</section>
-<section id="changing-channel-colors">
-<h2>Changing Channel Colors<a class="headerlink" href="#changing-channel-colors" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>To change the display color of channels, use <strong>Image &gt; Color &gt; Channels Tool</strong> or <strong>Ctrl + Shift + Z</strong>.</p></li>
-</ol>
-<p><img alt="Channels" src="_images/channels.png" /></p>
-<p>Note: The “more” option can be used to apply colors to the selected channels.</p>
 </section>
 <section id="d-volume-and-projections">
 <h2>3D Volume and Projections<a class="headerlink" href="#d-volume-and-projections" title="Link to this heading">#</a></h2>
@@ -598,38 +580,38 @@ single slice of the stack, average projection, median projection, max projection
 </ol>
 <p><img alt="t1 head different z projections" src="_images/t-head-multiple-z-projections.png" /></p>
 </section>
-<section id="changing-image-types-cautiously">
-<h2>Changing Image Types, cautiously.<a class="headerlink" href="#changing-image-types-cautiously" title="Link to this heading">#</a></h2>
-<p>Some operations - especially image math operations - only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8-bit images, it would be prudent to first convert them to 16-bit images so the output is to a 16-bit image and does not overflow.</p>
-<p>However, changing the image type through <strong>Image &gt;
-Type</strong> can result in the loss of information as we will see in the next example. Not all image
-types can be converted back to the original. The following error is likely to display if you
-are not able to complete a type conversion.</p>
-<p><img alt="Converter error" src="_images/type-converter-error.png" /></p>
-</section>
-<section id="bit-depth">
-<h2>Bit Depth<a class="headerlink" href="#bit-depth" title="Link to this heading">#</a></h2>
+<section id="hyperstacks">
+<h2>Hyperstacks<a class="headerlink" href="#hyperstacks" title="Link to this heading">#</a></h2>
+<p>Hyperstacks are multidimensional data, such as a multichannel timeseries or z-stacks.</p>
 <ol class="arabic simple">
-<li><p>Open the <code class="docutils literal notranslate"><span class="pre">m51.tif</span></code> image, <strong>Open &gt; Open Samples &gt; M51 Galaxy (16 Bits)</strong>.</p></li>
-<li><p>Adjust the contrast so we can see the image a bit better. <strong>Image &gt; Adjust &gt; Brightness and Contrast</strong>.</p></li>
-<li><p>Make a histogram of the image, <strong>Ctrl + H</strong>, and notice the scale of the histogram and the
-mean value. Keep this window open.
-a. 16-bit images have a maximum value of 65,536.</p></li>
-<li><p>Convert the 16 bit image to an 8 bit image, <strong>Image &gt; Type &gt; 8 bit</strong>.
-a. 8-bit images have a maximum of 256 values. This means the data resolution and
-range is lower compared to a higher bit depth, so the data is compressed.</p></li>
-<li><p>Make another histogram and keep the window open. How did the values change?</p></li>
+<li><p>Start by opening the “hela_infected_timeseries.tif” image. This is available for download
+at: <a class="reference external" href="https://media.imagej.net/workshops/data/3d/">https://media.imagej.net/workshops/data/3d/</a></p></li>
 </ol>
-<p><img alt="Galaxy max value changes from 10106 to 255" src="_images/m51-bit-depth.png" /></p>
-</section>
-<section id="adjusting-brightness-and-contrast">
-<h2>Adjusting Brightness and Contrast<a class="headerlink" href="#adjusting-brightness-and-contrast" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Changing the contrast in an image can be a good visualization tool. Using <strong>Ctrl + Shift +
-C</strong> or <strong>Image &gt; Adjust &gt; Brightness and Contrast</strong> will display the B&amp;C menu. Using
-Auto or the B&amp;C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but <strong>using the Apply button will
-change the pixel values, which generally should not be done.</strong></p></li>
+<li><p>If internet access is unavailable, the <code class="docutils literal notranslate"><span class="pre">Mitosis</span> <span class="pre">(5D</span> <span class="pre">stack)</span></code> sample from <strong>File &gt; Open Samples</strong> works, too.</p></li>
 </ul>
+<section id="duplicate-a-channel-or-image">
+<h3>Duplicate A Channel Or Image<a class="headerlink" href="#duplicate-a-channel-or-image" title="Link to this heading">#</a></h3>
+<p>The “duplicate” tool allows us to work on a copy of the data (so we don’t accidentally overwrite our original data),
+and it also allows us to work with a subset of large datasets.</p>
+<ul class="simple">
+<li><p>Use <strong>Image &gt; Duplicate</strong> to bring up the duplication options window. This can also be
+done with <strong>Ctrl + Shift + D</strong> or <strong>Right Click &gt; Duplicate</strong>. Here, we can specify which RGB
+channels and timepoints we want to separate. If we use 1-2 in the channels menu, it
+should produce an image of just the red and green channels. The duplicate hyperstack box should be checked.
+(If you are using the mitosis image, try choosing just one value for the color channel.)</p></li>
+</ul>
+<p><img alt="Duplicate tool" src="_images/duplicate.png" />
+<img alt="Hela duplicated" src="_images/hela-duplicate.png" /></p>
+</section>
+</section>
+<section id="changing-channel-colors">
+<h2>Changing Channel Colors<a class="headerlink" href="#changing-channel-colors" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>To change the display color of channels, use <strong>Image &gt; Color &gt; Channels Tool</strong> or <strong>Ctrl + Shift + Z</strong>.</p></li>
+</ol>
+<p><img alt="Channels" src="_images/channels.png" /></p>
+<p>Note: The “more” option can be used to apply colors to the selected channels.</p>
 </section>
 <section id="set-scale-and-scale-bars">
 <h2>Set Scale and Scale Bars<a class="headerlink" href="#set-scale-and-scale-bars" title="Link to this heading">#</a></h2>
@@ -652,9 +634,46 @@ used to change the image dimensions from pixels to the known field of view.</p><
 </ol>
 <p><img alt="Adding a scale bar overlay" src="_images/scale-bar.png" /></p>
 </section>
-<section id="accessing-image-metadata">
-<h2>Accessing Image Metadata<a class="headerlink" href="#accessing-image-metadata" title="Link to this heading">#</a></h2>
-<!-- __Todo -->
+<section id="bit-depth-and-image-type">
+<h2>Bit Depth and Image Type<a class="headerlink" href="#bit-depth-and-image-type" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">m51.tif</span></code> image, <strong>Open &gt; Open Samples &gt; M51 Galaxy (16 Bits)</strong>.</p></li>
+<li><p>Adjust the contrast so we can see the image a bit better. <strong>Image &gt; Adjust &gt; Brightness and Contrast</strong>.</p></li>
+<li><p>Make a histogram of the image, <strong>Ctrl + H</strong>, and notice the scale of the histogram and the
+mean value. Keep this window open. 16-bit images have a maximum value of 65,536.</p></li>
+<li><p>Convert the 16 bit image to an 8 bit image, <strong>Image &gt; Type &gt; 8 bit</strong>.
+a. 8-bit images have a maximum of 256 values. This means the data resolution and
+range is lower compared to a higher bit depth, so the data is compressed.</p></li>
+<li><p>Make another histogram and keep the window open. How did the values change?</p></li>
+</ol>
+<p><img alt="Galaxy max value changes from 10106 to 255" src="_images/m51-bit-depth.png" /></p>
+</section>
+<section id="changing-image-types-cautiously">
+<h2>Changing Image Types, cautiously.<a class="headerlink" href="#changing-image-types-cautiously" title="Link to this heading">#</a></h2>
+<p>Some operations - especially image math operations - only work on images of a certain type, and sometimes we desire images of a certain type. For example, if we want to multiply two 8-bit images, it would be prudent to first convert them to 16-bit images so the output is to a 16-bit image and does not overflow.</p>
+<p>However, changing the image type through <strong>Image &gt;
+Type</strong> can result in the loss of information as we have seen. Not all image
+types can be converted back to the original. Be careful.</p>
+<p>On an unrelated note, the following error is likely to display if you
+are not able to complete a type conversion.</p>
+<p><img alt="Converter error" src="_images/type-converter-error.png" /></p>
+</section>
+<section id="adjusting-brightness-and-contrast">
+<h2>Adjusting Brightness and Contrast<a class="headerlink" href="#adjusting-brightness-and-contrast" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Changing the contrast in an image can be a good visualization tool. Using <strong>Ctrl + Shift +
+C</strong> or <strong>Image &gt; Adjust &gt; Brightness and Contrast</strong> will display the B&amp;C menu. Using
+Auto or the B&amp;C sliders changes the look up table (LUT), which does not change the pixel values. This is good for visualization, but <strong>using the Apply button will
+change the pixel values, which generally should not be done.</strong></p></li>
+</ul>
+</section>
+<section id="optional-accessing-image-metadata">
+<h2>(Optional) Accessing Image Metadata<a class="headerlink" href="#optional-accessing-image-metadata" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Open our favorite image, “blobs”: <strong>Ctrl + Shift + B</strong></p></li>
+<li><p>Press <strong>Ctrl + i</strong> (<strong>Image &gt; Info</strong>) to see the image metadata.</p></li>
+<li><p>Press <strong>Shift + p</strong> (<strong>Image &gt; Properties</strong>) for an older tool which allows one to see and set some image (and stack) properties.</p></li>
+</ul>
 </section>
 </section>
 
@@ -730,18 +749,22 @@ used to change the image dimensions from pixels to the known field of view.</p><
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-line-plot">Plot/Line Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">Histograms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#live-views">Live views</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-viewing-a-z-stack">Opening and viewing a Z-Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-volume-and-projections">3D Volume and Projections</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperstacks">Hyperstacks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicate-a-channel-or-image">Duplicate A Channel Or Image</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-channel-colors">Changing Channel Colors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-volume-and-projections">3D Volume and Projections</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-image-types-cautiously">Changing Image Types, cautiously.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-depth">Bit Depth</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-brightness-and-contrast">Adjusting Brightness and Contrast</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-scale-and-scale-bars">Set Scale and Scale Bars</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-image-metadata">Accessing Image Metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-depth-and-image-type">Bit Depth and Image Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-image-types-cautiously">Changing Image Types, cautiously.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-brightness-and-contrast">Adjusting Brightness and Contrast</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-accessing-image-metadata">(Optional) Accessing Image Metadata</a></li>
 </ul>
   </nav></div>
 
