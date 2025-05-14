@@ -51,5 +51,6 @@
 \contentsline {chapter}{\numberline {7}Deconvolution}{51}{chapter.7}%
 \contentsline {chapter}{\numberline {8}Background Subtraction – Gaussian Filters}{55}{chapter.8}%
 \contentsline {chapter}{\numberline {9}TrackMate – Example from documentation}{63}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Labkit Segmentation}{77}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Other Resources}{81}{chapter.11}%
+\contentsline {chapter}{\numberline {10}StarDist – Basic Example}{77}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Labkit Segmentation}{83}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Other Resources}{87}{chapter.12}%

@@ -13,6 +13,6 @@ chapters:
 - file: deconvolution
 - file: background-subtraction
 - file: trackmate
-# - file: stardist
+- file: stardist
 - file: labkit
 - file: extra-resources

@@ -90,7 +90,7 @@
         
 
 \title{Fiji Lab Walkthrough}
-\date{May 03, 2025}
+\date{May 15, 2025}
 \release{}
 \author{The Fiji Community}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -146,6 +146,10 @@ educational materials, walkthroughs, and demonstrations.
 \item {} 
 \sphinxAtStartPar
 {\hyperref[\detokenize{trackmate::doc}]{\sphinxcrossref{TrackMate – Example from documentation}}}
+
+\item {} 
+\sphinxAtStartPar
+{\hyperref[\detokenize{stardist::doc}]{\sphinxcrossref{StarDist – Basic Example}}}
 
 \item {} 
 \sphinxAtStartPar
@@ -1881,6 +1885,94 @@ Select “Execute” for the final image, which can be run over all of the frame
 
 \sphinxAtStartPar
 \sphinxincludegraphics{{trackmate-window-7}.png}
+
+\sphinxstepscope
+
+
+\chapter{StarDist – Basic Example}
+\label{\detokenize{stardist:stardist-basic-example}}\label{\detokenize{stardist::doc}}
+\sphinxAtStartPar
+Source: \sphinxurl{https://github.com/stardist/stardist}\\
+Additional info (FAQs): \sphinxurl{https://stardist.net/index.html}\\
+ImageJ documentation: \sphinxurl{https://imagej.net/plugins/stardist}
+
+\sphinxAtStartPar
+Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers.\\
+\sphinxstyleemphasis{Cell Detection with Star\sphinxhyphen{}convex Polygons}.\\
+International Conference on Medical Image Computing and Computer\sphinxhyphen{}Assisted Intervention (MICCAI), Granada, Spain, September 2018.
+
+\sphinxAtStartPar
+Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers.\\
+\sphinxstyleemphasis{Star\sphinxhyphen{}convex Polyhedra for 3D Object Detection and Segmentation in Microscopy}.\\
+The IEEE Winter Conference on Applications of Computer Vision (WACV), Snowmass Village, Colorado, March 2020.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+StarDist is a deep learning tool to segment \sphinxhref{https://en.wikipedia.org/wiki/Star\_domain}{star\sphinxhyphen{}convex} shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through \sphinxstylestrong{Update > Manage Update Sites}. Also add the \sphinxstylestrong{CSB Deep} plugin\\
+(\sphinxurl{https://imagej.net/plugins/csbdeep}), or you will receive the error message below.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{Stardist-1}.png}
+\sphinxincludegraphics{{Stardist-2}.png}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{1}
+\item {} 
+\sphinxAtStartPar
+As of May 2025, the CSB Deep plugin has a conflict with the built\sphinxhyphen{}in version of \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java}}. To avoid this we also add the \sphinxstylestrong{TensorFlow} plugin, which includes \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java}} version 3.28, and remove (delete) \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java\sphinxhyphen{}4.xx.yy.jar}} from the \sphinxcode{\sphinxupquote{Fiji.app/jars}} directory before restarting Fiji.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+You can also download the latest version of protobuf\sphinxhyphen{}java\sphinxhyphen{}3 from Mvn Central and place it in \sphinxcode{\sphinxupquote{Fiji.app/jars}}. At the time of writing, the latest version is 3.25.7: \sphinxhref{https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.25.7}{download page}
+
+\sphinxAtStartPar
+\sphinxhref{https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.25.7/protobuf-java-3.25.7.jar}{direct download link}.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{2}
+\item {} 
+\sphinxAtStartPar
+Open the blobs image as a simple test case: \sphinxstylestrong{File > Open Samples > Blobs}.
+
+\item {} 
+\sphinxAtStartPar
+Run \sphinxstylestrong{Plugins > BIOP > StarDist > StarDist2D}. If we run with the default parameters, shown below, with the “Versatile (fluorescent nuclei)” model we get the following result.
+
+\sphinxAtStartPar
+a. The other options for the Neural Network Prediction allow us to adjust the percentile for image normalization.\\
+b. NMS (non\sphinxhyphen{}maximum suppression) Postprocessing parameters operate as follows%
+\begin{footnote}[1]\sphinxAtStartFootnote
+From: \sphinxurl{https://imagej.net/plugins/stardist}
+%
+\end{footnote}:\\
+\sphinxhyphen{} \sphinxstylestrong{Probability/Score Threshold} – higher values lead to fewer segmented objects, but will likely avoid false positives.\\
+\sphinxhyphen{} \sphinxstylestrong{Overlap Threshold} – higher values allow segmented objects to overlap substantially.
+
+\sphinxAtStartPar
+c. Advanced options can be used to apply a user\sphinxhyphen{}trained model.
+
+\end{enumerate}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{Stardist-3}.png}
+
+
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{4}
+\item {} 
+\sphinxAtStartPar
+We can also test this using the \sphinxcode{\sphinxupquote{trackmate\_example\_data.tif}} for a timeseries example. Again run with default settings.
+
+\end{enumerate}
+
+
+\bigskip\hrule\bigskip
+
 
 \sphinxstepscope
 

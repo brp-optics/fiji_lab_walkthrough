@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'stardist';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Labkit Segmentation" href="labkit.html" />
+    <link rel="prev" title="TrackMate – Example from documentation" href="trackmate.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing ImageJ/FIJI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="keyboard-shortcuts.html">Common Keyboard Shortcuts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basics.html">Getting Started, Opening an Image</a></li>
@@ -189,6 +189,7 @@
 <li class="toctree-l1"><a class="reference internal" href="deconvolution.html">Deconvolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background-subtraction.html">Background Subtraction – Gaussian Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trackmate.html">TrackMate – Example from documentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">StarDist – Basic Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="labkit.html">Labkit Segmentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extra-resources.html">Other Resources</a></li>
 </ul>
@@ -400,12 +401,17 @@ International Conference on Medical Image Computing and Computer-Assisted Interv
 <em>Star-convex Polyhedra for 3D Object Detection and Segmentation in Microscopy</em>.<br />
 The IEEE Winter Conference on Applications of Computer Vision (WACV), Snowmass Village, Colorado, March 2020.</p>
 <ol class="arabic simple">
-<li><p>StarDist is a deep learning tool to segment star-convex shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through <strong>Update &gt; Manage Update Sites</strong>. Also add the <strong>CSB Deep</strong> plugin<br />
+<li><p>StarDist is a deep learning tool to segment <a class="reference external" href="https://en.wikipedia.org/wiki/Star_domain">star-convex</a> shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through <strong>Update &gt; Manage Update Sites</strong>. Also add the <strong>CSB Deep</strong> plugin<br />
 (<a class="reference external" href="https://imagej.net/plugins/csbdeep">https://imagej.net/plugins/csbdeep</a>), or you will receive the error message below.</p></li>
 </ol>
 <p><img alt="Stardist adding update site" src="_images/Stardist-1.png" />
 <img alt="Stardist CSBDeep plugin missing" src="_images/Stardist-2.png" /></p>
-<ol class="arabic" start="2">
+<ol class="arabic simple" start="2">
+<li><p>As of May 2025, the CSB Deep plugin has a conflict with the built-in version of <code class="docutils literal notranslate"><span class="pre">protobuf-java</span></code>. To avoid this we also add the <strong>TensorFlow</strong> plugin, which includes <code class="docutils literal notranslate"><span class="pre">protobuf-java</span></code> version 3.28, and remove (delete) <code class="docutils literal notranslate"><span class="pre">protobuf-java-4.xx.yy.jar</span></code> from the <code class="docutils literal notranslate"><span class="pre">Fiji.app/jars</span></code> directory before restarting Fiji.</p></li>
+</ol>
+<p>You can also download the latest version of protobuf-java-3 from Mvn Central and place it in <code class="docutils literal notranslate"><span class="pre">Fiji.app/jars</span></code>. At the time of writing, the latest version is 3.25.7: <a class="reference external" href="https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.25.7">download page</a></p>
+<p><a class="reference external" href="https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.25.7/protobuf-java-3.25.7.jar">direct download link</a>.</p>
+<ol class="arabic" start="3">
 <li><p>Open the blobs image as a simple test case: <strong>File &gt; Open Samples &gt; Blobs</strong>.</p></li>
 <li><p>Run <strong>Plugins &gt; BIOP &gt; StarDist &gt; StarDist2D</strong>. If we run with the default parameters, shown below, with the “Versatile (fluorescent nuclei)” model we get the following result.</p>
 <p>a. The other options for the Neural Network Prediction allow us to adjust the percentile for image normalization.<br />
@@ -417,7 +423,7 @@ b. NMS (non-maximum suppression) Postprocessing parameters operate as follows<a 
 </ol>
 <p><img alt="Stardist config for blobs" src="_images/Stardist-3.png" /></p>
 <!-- __Stardist_broken: ![Stardist results on blobs](images/Stardist-4.png) -->
-<ol class="arabic simple" start="4">
+<ol class="arabic simple" start="5">
 <li><p>We can also test this using the <code class="docutils literal notranslate"><span class="pre">trackmate_example_data.tif</span></code> for a timeseries example. Again run with default settings.</p></li>
 </ol>
 <hr class="footnotes docutils" />
@@ -459,6 +465,24 @@ b. NMS (non-maximum suppression) Postprocessing parameters operate as follows<a 
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="trackmate.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">TrackMate – Example from documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="labkit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Labkit Segmentation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
