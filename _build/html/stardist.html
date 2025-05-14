@@ -401,16 +401,16 @@ International Conference on Medical Image Computing and Computer-Assisted Interv
 <em>Star-convex Polyhedra for 3D Object Detection and Segmentation in Microscopy</em>.<br />
 The IEEE Winter Conference on Applications of Computer Vision (WACV), Snowmass Village, Colorado, March 2020.</p>
 <ol class="arabic simple">
-<li><p>StarDist is a deep learning tool to segment <a class="reference external" href="https://en.wikipedia.org/wiki/Star_domain">star-convex</a> shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through <strong>Update &gt; Manage Update Sites</strong>. Also add the <strong>CSB Deep</strong> plugin<br />
-(<a class="reference external" href="https://imagej.net/plugins/csbdeep">https://imagej.net/plugins/csbdeep</a>), or you will receive the error message below.</p></li>
+<li><p>StarDist is a deep learning tool to segment <a class="reference external" href="https://en.wikipedia.org/wiki/Star_domain">star-convex</a> shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through <strong>Update &gt; Manage Update Sites</strong>. Also add the <strong>CSB Deep</strong> plugin (<a class="reference external" href="https://imagej.net/plugins/csbdeep">https://imagej.net/plugins/csbdeep</a>):</p></li>
 </ol>
 <p><img alt="Stardist adding update site" src="_images/Stardist-1.png" />
 <img alt="Stardist CSBDeep plugin missing" src="_images/Stardist-2.png" /></p>
 <ol class="arabic simple" start="2">
-<li><p>As of May 2025, the CSB Deep plugin has a conflict with the built-in version of <code class="docutils literal notranslate"><span class="pre">protobuf-java</span></code>. To avoid this we also add the <strong>TensorFlow</strong> plugin, which includes <code class="docutils literal notranslate"><span class="pre">protobuf-java</span></code> version 3.28, and remove (delete) <code class="docutils literal notranslate"><span class="pre">protobuf-java-4.xx.yy.jar</span></code> from the <code class="docutils literal notranslate"><span class="pre">Fiji.app/jars</span></code> directory before restarting Fiji.</p></li>
+<li><p>As of May 2025, libraries which use TensorFlow 1.15 have a conflict with the built-in version of <code class="docutils literal notranslate"><span class="pre">protobuf-java</span></code> version 4. To avoid this we also add the <strong>TensorFlow</strong> plugin, which includes <code class="docutils literal notranslate"><span class="pre">protobuf-java</span></code> version 3.28, and remove (delete) <code class="docutils literal notranslate"><span class="pre">protobuf-java-4.xx.yy.jar</span></code> from the <code class="docutils literal notranslate"><span class="pre">Fiji.app/jars</span></code> directory before restarting Fiji.</p></li>
 </ol>
-<p>You can also download the latest version of protobuf-java-3 from Mvn Central and place it in <code class="docutils literal notranslate"><span class="pre">Fiji.app/jars</span></code>. At the time of writing, the latest version is 3.25.7: <a class="reference external" href="https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.25.7">download page</a></p>
-<p><a class="reference external" href="https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.25.7/protobuf-java-3.25.7.jar">direct download link</a>.</p>
+<ul class="simple">
+<li><p>You can also download the latest version of protobuf-java-3 from Mvn Central and place it in <code class="docutils literal notranslate"><span class="pre">Fiji.app/jars</span></code>. At the time of writing, the latest version is 3.25.7: <a class="reference external" href="https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.25.7">download page</a>, <a class="reference external" href="https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.25.7/protobuf-java-3.25.7.jar">direct download link</a>.</p></li>
+</ul>
 <ol class="arabic" start="3">
 <li><p>Open the blobs image as a simple test case: <strong>File &gt; Open Samples &gt; Blobs</strong>.</p></li>
 <li><p>Run <strong>Plugins &gt; BIOP &gt; StarDist &gt; StarDist2D</strong>. If we run with the default parameters, shown below, with the “Versatile (fluorescent nuclei)” model we get the following result.</p>
@@ -422,9 +422,9 @@ b. NMS (non-maximum suppression) Postprocessing parameters operate as follows<a 
 </li>
 </ol>
 <p><img alt="Stardist config for blobs" src="_images/Stardist-3.png" /></p>
-<!-- __Stardist_broken: ![Stardist results on blobs](images/Stardist-4.png) -->
+<p><img alt="Stardist results on blobs" src="_images/Stardist-4.png" /></p>
 <ol class="arabic simple" start="5">
-<li><p>We can also test this using the <code class="docutils literal notranslate"><span class="pre">trackmate_example_data.tif</span></code> for a timeseries example. Again run with default settings.</p></li>
+<li><p>We can also test this using the image <code class="docutils literal notranslate"><span class="pre">trackmate_example_data.tif</span></code> for a timeseries example. Again run with default settings.</p></li>
 </ol>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">

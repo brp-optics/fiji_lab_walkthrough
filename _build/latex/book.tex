@@ -1909,8 +1909,7 @@ The IEEE Winter Conference on Applications of Computer Vision (WACV), Snowmass V
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 \sphinxAtStartPar
-StarDist is a deep learning tool to segment \sphinxhref{https://en.wikipedia.org/wiki/Star\_domain}{star\sphinxhyphen{}convex} shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through \sphinxstylestrong{Update > Manage Update Sites}. Also add the \sphinxstylestrong{CSB Deep} plugin\\
-(\sphinxurl{https://imagej.net/plugins/csbdeep}), or you will receive the error message below.
+StarDist is a deep learning tool to segment \sphinxhref{https://en.wikipedia.org/wiki/Star\_domain}{star\sphinxhyphen{}convex} shapes (usually blobs, such as cells or nuclei). It can be installed as a FIJI plugin. Add StarDist through \sphinxstylestrong{Update > Manage Update Sites}. Also add the \sphinxstylestrong{CSB Deep} plugin (\sphinxurl{https://imagej.net/plugins/csbdeep}):
 
 \end{enumerate}
 
@@ -1922,15 +1921,15 @@ StarDist is a deep learning tool to segment \sphinxhref{https://en.wikipedia.org
 \setcounter{enumi}{1}
 \item {} 
 \sphinxAtStartPar
-As of May 2025, the CSB Deep plugin has a conflict with the built\sphinxhyphen{}in version of \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java}}. To avoid this we also add the \sphinxstylestrong{TensorFlow} plugin, which includes \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java}} version 3.28, and remove (delete) \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java\sphinxhyphen{}4.xx.yy.jar}} from the \sphinxcode{\sphinxupquote{Fiji.app/jars}} directory before restarting Fiji.
+As of May 2025, libraries which use TensorFlow 1.15 have a conflict with the built\sphinxhyphen{}in version of \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java}} version 4. To avoid this we also add the \sphinxstylestrong{TensorFlow} plugin, which includes \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java}} version 3.28, and remove (delete) \sphinxcode{\sphinxupquote{protobuf\sphinxhyphen{}java\sphinxhyphen{}4.xx.yy.jar}} from the \sphinxcode{\sphinxupquote{Fiji.app/jars}} directory before restarting Fiji.
 
 \end{enumerate}
-
+\begin{itemize}
+\item {} 
 \sphinxAtStartPar
-You can also download the latest version of protobuf\sphinxhyphen{}java\sphinxhyphen{}3 from Mvn Central and place it in \sphinxcode{\sphinxupquote{Fiji.app/jars}}. At the time of writing, the latest version is 3.25.7: \sphinxhref{https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.25.7}{download page}
+You can also download the latest version of protobuf\sphinxhyphen{}java\sphinxhyphen{}3 from Mvn Central and place it in \sphinxcode{\sphinxupquote{Fiji.app/jars}}. At the time of writing, the latest version is 3.25.7: \sphinxhref{https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.25.7}{download page}, \sphinxhref{https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.25.7/protobuf-java-3.25.7.jar}{direct download link}.
 
-\sphinxAtStartPar
-\sphinxhref{https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.25.7/protobuf-java-3.25.7.jar}{direct download link}.
+\end{itemize}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{2}
@@ -1960,13 +1959,14 @@ c. Advanced options can be used to apply a user\sphinxhyphen{}trained model.
 \sphinxAtStartPar
 \sphinxincludegraphics{{Stardist-3}.png}
 
-
+\sphinxAtStartPar
+\sphinxincludegraphics{{Stardist-4}.png}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{4}
 \item {} 
 \sphinxAtStartPar
-We can also test this using the \sphinxcode{\sphinxupquote{trackmate\_example\_data.tif}} for a timeseries example. Again run with default settings.
+We can also test this using the image \sphinxcode{\sphinxupquote{trackmate\_example\_data.tif}} for a timeseries example. Again run with default settings.
 
 \end{enumerate}
 
