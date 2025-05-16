@@ -7,9 +7,7 @@ uv run jupyter-book clean ./
 
 # Copy over image files. I'm shocked that this isn't happening automatically...
 
-cp images/*.png _build/html/_images
-cp _static/*.png _build/html/_static
-cp _static/*.png _build/html/_images
+cp -R _static/* _build/html/_static/
 uv run jupyter-book build ./
 
 
@@ -28,6 +26,8 @@ cd _build/latex
 xelatex book.tex
 xelatex book.tex
 cd ../../
+
+cp -R _static/* _build/html/_static/
 
 # Copy pdf to permanent location
 cp _build/latex/book.pdf _static/
