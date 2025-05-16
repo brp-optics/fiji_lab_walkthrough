@@ -15,4 +15,5 @@ chapters:
 - file: trackmate
 - file: stardist
 - file: labkit
+- file: cellpose
 - file: extra-resources

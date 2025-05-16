@@ -53,4 +53,22 @@
 \contentsline {chapter}{\numberline {9}TrackMate – Example from documentation}{63}{chapter.9}%
 \contentsline {chapter}{\numberline {10}StarDist – Basic Example}{77}{chapter.10}%
 \contentsline {chapter}{\numberline {11}Labkit Segmentation}{83}{chapter.11}%
-\contentsline {chapter}{\numberline {12}Other Resources}{87}{chapter.12}%
+\contentsline {chapter}{\numberline {12}Deep Learning Classification with Cellpose}{87}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Installation}{87}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}1. Install conda}{87}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}2. Install via conda and environment.yml.}{88}{subsection.12.1.2}%
+\contentsline {subsection}{\numberline {12.1.3}3. Install Fiji Plugin}{88}{subsection.12.1.3}%
+\contentsline {subsection}{\numberline {12.1.4}4. Test standalone cellpose}{89}{subsection.12.1.4}%
+\contentsline {subsection}{\numberline {12.1.5}5. Save the conda location}{90}{subsection.12.1.5}%
+\contentsline {subsection}{\numberline {12.1.6}6. Just in case, save the python location.}{90}{subsection.12.1.6}%
+\contentsline {section}{\numberline {12.2}Run cellpose from Fiji}{90}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Choosing your model}{92}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Alternative run script}{93}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Other samples}{93}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Alternative install instructions}{94}{section.12.6}%
+\contentsline {subsection}{\numberline {12.6.1}1. Downloading and installing \sphinxstyleliteralintitle {\sphinxupquote {python}}:}{94}{subsection.12.6.1}%
+\contentsline {subsection}{\numberline {12.6.2}2. Install a Cellpose python environment without conda:}{94}{subsection.12.6.2}%
+\contentsline {subsection}{\numberline {12.6.3}3. Test to make sure it works from python:}{94}{subsection.12.6.3}%
+\contentsline {subsection}{\numberline {12.6.4}4. Install the Fiji Update Site PTBIOP}{95}{subsection.12.6.4}%
+\contentsline {subsection}{\numberline {12.6.5}5. Run cellpose in Fiji}{95}{subsection.12.6.5}%
+\contentsline {chapter}{\numberline {13}Other Resources}{97}{chapter.13}%

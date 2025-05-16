@@ -90,7 +90,7 @@
         
 
 \title{Fiji Lab Walkthrough}
-\date{May 15, 2025}
+\date{May 17, 2025}
 \release{}
 \author{The Fiji Community}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -154,6 +154,10 @@ educational materials, walkthroughs, and demonstrations.
 \item {} 
 \sphinxAtStartPar
 {\hyperref[\detokenize{labkit::doc}]{\sphinxcrossref{Labkit Segmentation}}}
+
+\item {} 
+\sphinxAtStartPar
+{\hyperref[\detokenize{cellpose::doc}]{\sphinxcrossref{Deep Learning Classification with Cellpose}}}
 
 \item {} 
 \sphinxAtStartPar
@@ -2043,6 +2047,362 @@ The classifier can be saved and applied to multiple images. Click on the setting
 
 \sphinxAtStartPar
 \sphinxincludegraphics{{labkit-6}.png}
+
+\sphinxstepscope
+
+
+\chapter{Deep Learning Classification with Cellpose}
+\label{\detokenize{cellpose:deep-learning-classification-with-cellpose}}\label{\detokenize{cellpose::doc}}
+\sphinxAtStartPar
+Cellpose is an open\sphinxhyphen{}source deep\sphinxhyphen{}learning toolkit which can performs cell segmentation on almost any time of microscopy image. Under the hood, it uses a \sphinxhref{https://en.wikipedia.org/wiki/U-Net}{U\sphinxhyphen{}Net} that is trained to predict spatial “flow” fields which point outward from an inferred cell center. It ships with several pre\sphinxhyphen{}trained models which are tailored for different cell types:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+cytosol
+
+\item {} 
+\sphinxAtStartPar
+nuclei
+
+\item {} 
+\sphinxAtStartPar
+bacteria
+
+\item {} 
+\sphinxAtStartPar
+fluorescence imaging
+
+\item {} 
+\sphinxAtStartPar
+phase contrast imaging
+
+\end{itemize}
+
+\sphinxAtStartPar
+For more information on cellpose, see: Stringer, C., Wang, T., Michaelos, M. \sphinxstyleemphasis{et al.} \sphinxhref{https://doi.org/10.1038/s41592-020-01018-x}{Cellpose: a generalist algorithm for cellular segmentation}, \sphinxstyleemphasis{Nat Methods} \sphinxstylestrong{18}, 100\sphinxhyphen{}106 (2021). DOI: 10.1038/s41592\sphinxhyphen{}020\sphinxhyphen{}01018\sphinxhyphen{}x
+
+
+\section{Installation}
+\label{\detokenize{cellpose:installation}}
+\sphinxAtStartPar
+The Cellpose plugin for Fiji runs as a combination of a python environment and Fiji. This means installation is a bit complicated. In general, you will need \sphinxcode{\sphinxupquote{python}}, and a python package manager like \sphinxcode{\sphinxupquote{pip}} or \sphinxcode{\sphinxupquote{uv}}. You can install cellpose easily with the package manager, then we will need to run a plugin or script in Fiji and tell the plugin or script where \sphinxcode{\sphinxupquote{cellpose}} is. So there are a lot of options. I will share the simplest ones first:
+
+
+\subsection{1. Install conda}
+\label{\detokenize{cellpose:install-conda}}
+\sphinxAtStartPar
+If you don’t have \sphinxcode{\sphinxupquote{python}} yet, download and install \sphinxcode{\sphinxupquote{conda}}, which bundles \sphinxcode{\sphinxupquote{python}} and \sphinxcode{\sphinxupquote{pip}}:
+
+\sphinxAtStartPar
+\sphinxurl{https://conda-forge.org/miniforge/}
+
+\sphinxAtStartPar
+Download the file “environment.yml” from \sphinxurl{https://raw.githubusercontent.com/brp-optics/fiji\_lab\_walkthrough/refs/heads/main/\_static/environment.yml}, or \sphinxurl{https://tinyurl.com/cellposeconda}. Save it to the folder where you want to install cellpose.
+
+\sphinxAtStartPar
+I recommend you put it somewhere in your personal files, not in “Program Files” or “/bin/”. The \sphinxcode{\sphinxupquote{environment.yml}} file tells \sphinxcode{\sphinxupquote{conda}} which versions of \sphinxcode{\sphinxupquote{python}} and \sphinxcode{\sphinxupquote{pip}} to install and run, and how to install \sphinxcode{\sphinxupquote{cellpose}}:
+
+
+\subsection{2. Install via conda and environment.yml.}
+\label{\detokenize{cellpose:install-via-conda-and-environment-yml}}
+\sphinxAtStartPar
+On Windows, open up “Miniforge Prompt” from Program Files. On Linux or Mac, open “Terminal”.
+
+\sphinxAtStartPar
+Navigate to where you want to install using the terminal. You can use \sphinxcode{\sphinxupquote{cd <directory>}} to change where you are to \sphinxcode{\sphinxupquote{<directory>}} and \sphinxcode{\sphinxupquote{pwd}} (Mac) or \sphinxcode{\sphinxupquote{cd}} alone (Windows) to see which directory you are in. You can use \sphinxcode{\sphinxupquote{ls}} (Mac) or \sphinxcode{\sphinxupquote{dir}} (Windows) to see the things in your current directory.
+
+\sphinxAtStartPar
+Once you get to where you want to install, run
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+conda\PYG{+w}{ }env\PYG{+w}{ }create\PYG{+w}{ }\PYGZhy{}f\PYG{+w}{ }environment.yml
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+This will take a few minutes.
+
+
+\subsection{3. Install Fiji Plugin}
+\label{\detokenize{cellpose:install-fiji-plugin}}
+\sphinxAtStartPar
+While we wait for \sphinxcode{\sphinxupquote{conda}} to run, we will install the PTBIOP Fiji plugin, which allows us to run cellpose from Fiji:
+
+\sphinxAtStartPar
+\sphinxstylestrong{Help > Update > Manage Update Sites > check PTBIOP > Apply and Close > Apply Changes}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-update-site}.png}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-update-site2}.png}
+
+\sphinxAtStartPar
+Then close and reopen Fiji.
+
+
+\subsection{4. Test standalone cellpose}
+\label{\detokenize{cellpose:test-standalone-cellpose}}
+\sphinxAtStartPar
+Once cellpose is installed, run cellpose by itself. Back in the terminal:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+conda\PYG{+w}{ }activate\PYG{+w}{ }condacellpose
+cellpose
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+You will see some text, then up to 30 seconds later the following user interface will appear:
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-python-ui}.png}
+
+
+\subsection{5. Save the conda location}
+\label{\detokenize{cellpose:save-the-conda-location}}
+\sphinxAtStartPar
+Copy the output of the following command to a text editor window: \sphinxcode{\sphinxupquote{pwd}} (Linux, Mac), \sphinxcode{\sphinxupquote{cd}} (Windows).
+
+
+\subsection{6. Just in case, save the python location.}
+\label{\detokenize{cellpose:just-in-case-save-the-python-location}}
+\sphinxAtStartPar
+Copy the output of the following command to a text editor window:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+python \PYGZhy{}c \PYGZdq{}import sys; print(sys.executable)\PYGZdq{}
+\end{sphinxVerbatim}
+
+
+\section{Run cellpose from Fiji}
+\label{\detokenize{cellpose:run-cellpose-from-fiji}}
+\sphinxAtStartPar
+Cellpose can take a long time to run, so we test it on blobs first. Press \sphinxstylestrong{Ctrl\sphinxhyphen{}Shift\sphinxhyphen{}B} to open blobs, then run cellpose from \sphinxstylestrong{Plugins > BIOP > Cellpose/Omnipose > Cellpose}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-conda-nogpu-settings}.png}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Set the pretrained model to \sphinxcode{\sphinxupquote{cyto3}} and also remove the parameter \sphinxcode{\sphinxupquote{\sphinxhyphen{}\sphinxhyphen{}use\sphinxhyphen{}gpu}} (unless you have a nice gpu!)
+
+\end{itemize}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-results-blobs}.png}
+
+
+\section{Choosing your model}
+\label{\detokenize{cellpose:choosing-your-model}}
+\sphinxAtStartPar
+Cellpose is a framework for running (and training) many different models for segmenting different regions of microscopy images. These models are named things like \sphinxcode{\sphinxupquote{nuclei}} for segmenting the cell nuclei, \sphinxcode{\sphinxupquote{cyto}} for cytoplasm, etc. The \sphinxcode{\sphinxupquote{cyto}} model is a general cytoplasmic segmentation model, whereas the \sphinxcode{\sphinxupquote{cyto3}} model is a more generic model, trained on a larger variety of images, and is more resistant to noise.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+cyto: cytoplasm segmentation, optimized for whole\sphinxhyphen{}cell fluorescent or bright\sphinxhyphen{}field images; trained from a limited dataset
+
+\item {} 
+\sphinxAtStartPar
+cyto2: trained from a user\sphinxhyphen{}submitted dataset with more cell types and stains
+
+\item {} 
+\sphinxAtStartPar
+cyto2\_cp3: cellpose3 cytoplasm, but trained on the limited dataset from \sphinxcode{\sphinxupquote{cyto}}
+
+\item {} 
+\sphinxAtStartPar
+cyto3: generalist cytoplasm model trained on nine public datasets (fluorescence, BF, mammalian, microbe, …). Auto\sphinxhyphen{}estimates diameters.
+
+\item {} 
+\sphinxAtStartPar
+nuclei: nuclear masks only, same training datasets as \sphinxcode{\sphinxupquote{cyto3}}
+
+\item {} 
+\sphinxAtStartPar
+livecell\_cp3: cytoplasm segmentation on transmitted\sphinxhyphen{}light live\sphinxhyphen{}cell data. Trained on the Sartorius LIVECell bright\sphinxhyphen{}field dataset.
+
+\item {} 
+\sphinxAtStartPar
+deepbacs\_cp3: bacterial cell bodies in phase\sphinxhyphen{}contrast images.
+
+\item {} 
+\sphinxAtStartPar
+tissuenet\_cp3: nuclear and small\sphinxhyphen{}cell masks in multi\sphinxhyphen{}fluorescence tissue sections.
+
+\item {} 
+\sphinxAtStartPar
+bact\_fluor\_cp3: fluorescent micrographs of bacteria.
+
+\item {} 
+\sphinxAtStartPar
+bact\_phase\_cp3: phase\sphinxhyphen{}contrast bacteria.
+
+\item {} 
+\sphinxAtStartPar
+neurips\_cellpose\_default: 3\sphinxhyphen{}channel RGB fluorescence composites. This model won the NeurIPS Cell Segmentation Challenge.
+
+\item {} 
+\sphinxAtStartPar
+neurips\_cellpose\_transformer: same NeurIPS dataset but with a SegFormer/ViT backbone
+
+\item {} 
+\sphinxAtStartPar
+neurips\_grayscale\_cyto2: grayscale\sphinxhyphen{}only cyto2, accepts single\sphinxhyphen{}channel input.
+
+\item {} 
+\sphinxAtStartPar
+transformer\_cp3: cellpose\sphinxhyphen{}3 weights transplanted onto a transformer backbone (SegFormer) for 3\sphinxhyphen{}channel input.
+
+\item {} 
+\sphinxAtStartPar
+yeast\_BF\_cp3: \sphinxstyleemphasis{s. cerevisiae} in bright\sphinxhyphen{}field
+
+\item {} 
+\sphinxAtStartPar
+yeast\_PhC\_cp3: \sphinxstyleemphasis{s. cerevisiae} in phase\sphinxhyphen{}contrast
+
+\end{itemize}
+
+\sphinxAtStartPar
+You can also train your own models, although it is computationally expensive: it is recommended to have a GPU and significant RAM.
+
+
+\section{Alternative run script}
+\label{\detokenize{cellpose:alternative-run-script}}
+\sphinxAtStartPar
+Ed Evans wrote another script to run cellpose which shows all the available models. You may find it at \sphinxurl{https://github.com/elevans/fiji-scripts/blob/main/wrappers/cellpose\_wrapper.py}.
+
+\sphinxAtStartPar
+Press \sphinxstylestrong{Ctrl\sphinxhyphen{}Shift\sphinxhyphen{}N} to open the text editor, and don’t forget to set the \sphinxstylestrong{Language > Python (Jython)}.
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-edevans-script}.png}
+
+\sphinxAtStartPar
+Select the input image and paste in the location of python which you saved in the text editor earlier.
+
+
+\section{Other samples}
+\label{\detokenize{cellpose:other-samples}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Fluorescent nuclei: \sphinxstylestrong{File > Open Samples > Fluorescent Cells}
+
+\item {} 
+\sphinxAtStartPar
+Limit to the blue color channel: \sphinxstylestrong{Ctrl\sphinxhyphen{}Shift\sphinxhyphen{}D},
+
+\item {} 
+\sphinxAtStartPar
+Fluorescent cells (cytosol):
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Download \sphinxurl{https://github.com/brp-optics/fiji\_lab\_walkthrough/raw/refs/heads/main/\_static/001\_img-1.tif} and drag\sphinxhyphen{}and\sphinxhyphen{}drop it to Fiji
+
+\end{itemize}
+
+\end{itemize}
+
+
+\section{Alternative install instructions}
+\label{\detokenize{cellpose:alternative-install-instructions}}
+
+\subsection{1. Downloading and installing \sphinxstyleliteralintitle{\sphinxupquote{python}}:}
+\label{\detokenize{cellpose:downloading-and-installing-python}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+on Linux/Mac, try running \sphinxcode{\sphinxupquote{python}} and \sphinxcode{\sphinxupquote{python3}}, or \sphinxcode{\sphinxupquote{which python}} in the terminal.
+
+\item {} 
+\sphinxAtStartPar
+on Windows, download the Windows Installer for python from \sphinxurl{https://www.python.org/ftp/python/3.13.3/python-3.13.3-amd64.exe}.
+
+\end{itemize}
+
+\sphinxAtStartPar
+(If you are running a different cpu type than 64 bit Intel, then go to \sphinxurl{https://www.python.org/downloads/release/python-3133/}.
+
+
+\subsection{2. Install a Cellpose python environment without conda:}
+\label{\detokenize{cellpose:install-a-cellpose-python-environment-without-conda}}
+\sphinxAtStartPar
+a. Start a virtual environment. This keeps programs installed for cellpose from interfering with the rest of your system’s installed programs:
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+on Linux: Open up the shell to where you want to install and run the following code, one line at a time:
+
+\end{itemize}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+python3\PYG{+w}{ }\PYGZhy{}\PYGZhy{}version
+python3\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }venv\PYG{+w}{ }cellpose
+pip\PYG{+w}{ }install\PYG{+w}{ }cellpose\PYG{o}{[}gui\PYG{o}{]}
+\end{sphinxVerbatim}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+on Windows: Open \sphinxcode{\sphinxupquote{cmd}}, navigate to the directory you want to work in with \sphinxcode{\sphinxupquote{cd}}, then run
+
+\end{itemize}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+py \PYGZhy{}m venv cellpose
+cellpose\PYGZbs{}Scripts\PYGZbs{}activate
+pip install cellpose[gui]
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+If you prefer \sphinxcode{\sphinxupquote{uv}} to \sphinxcode{\sphinxupquote{pip}}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+uv\PYG{+w}{ }install\PYG{+w}{ }cellpose
+uv\PYG{+w}{ }install\PYG{+w}{ }cellpose\PYG{o}{[}gui\PYG{o}{]}
+uv\PYG{+w}{ }activate
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+If you like \sphinxcode{\sphinxupquote{conda}}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+conda\PYG{+w}{ }create\PYG{+w}{ }\PYGZhy{}\PYGZhy{}name\PYG{+w}{ }cellpose\PYG{+w}{ }\PYG{n+nv}{python}\PYG{o}{=}\PYG{l+m}{3}.11
+conda\PYG{+w}{ }activate\PYG{+w}{ }cellpose
+python\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }pip\PYG{+w}{ }install\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}cellpose[gui]\PYGZsq{}}
+python\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }pip\PYG{+w}{ }install\PYG{+w}{ }cellpose
+python\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }pip\PYG{+w}{ }install\PYG{+w}{ }cellpose\PYG{+w}{ }\PYGZhy{}\PYGZhy{}upgrade
+\end{sphinxVerbatim}
+
+
+\subsection{3. Test to make sure it works from python:}
+\label{\detokenize{cellpose:test-to-make-sure-it-works-from-python}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+python\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }cellpose
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+Or if using \sphinxcode{\sphinxupquote{uv}}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+uv\PYG{+w}{ }run\PYG{+w}{ }cellpose
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-python-ui}.png}
+
+
+\subsection{4. Install the Fiji Update Site PTBIOP}
+\label{\detokenize{cellpose:install-the-fiji-update-site-ptbiop}}
+\sphinxAtStartPar
+See detailed instructions above.
+
+
+\subsection{5. Run cellpose in Fiji}
+\label{\detokenize{cellpose:run-cellpose-in-fiji}}
+\sphinxAtStartPar
+Restart Fiji and open up \sphinxcode{\sphinxupquote{blobs}} with \sphinxstylestrong{Ctrl\sphinxhyphen{}Shift\sphinxhyphen{}B}. Run “cellpose”.  Point the cellpose plugin at the location of your conda environment or venv, and disable gpu:
+
+\sphinxAtStartPar
+\sphinxincludegraphics{{cellpose-venv-nogpu-setup}.png}
 
 \sphinxstepscope
 
