@@ -1,0 +1,741 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Deep Learning Classification with Cellpose &#8212; Fiji Lab Walkthrough</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cellpose';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Other Resources" href="extra-resources.html" />
+    <link rel="prev" title="Labkit Segmentation" href="labkit.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/icon.png" class="logo__image only-light" alt="Fiji Lab Walkthrough - Home"/>
+    <script>document.write(`<img src="_static/icon.png" class="logo__image only-dark" alt="Fiji Lab Walkthrough - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fiji Lab Walkthrough
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing ImageJ/FIJI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keyboard-shortcuts.html">Common Keyboard Shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Getting Started, Opening an Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-segmentation.html">Basic Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-registration.html">Basic Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-scripting.html">Scripting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deconvolution.html">Deconvolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background-subtraction.html">Background Subtraction – Gaussian Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trackmate.html">TrackMate – Example from documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stardist.html">StarDist – Basic Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labkit.html">Labkit Segmentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Deep Learning Classification with Cellpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra-resources.html">Other Resources</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcellpose.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/cellpose.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Deep Learning Classification with Cellpose</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-conda">1. Install conda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-via-conda-and-environment-yml">2. Install via conda and environment.yml.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-fiji-plugin">3. Install Fiji Plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-standalone-cellpose">4. Test standalone cellpose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-conda-location">5. Save the conda location</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#just-in-case-save-the-python-location">6. Just in case, save the python location.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-cellpose-from-fiji">Run cellpose from Fiji</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-your-model">Choosing your model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-run-script">Alternative run script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-samples">Other samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-install-instructions">Alternative install instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-and-installing-python">1. Downloading and installing <code class="docutils literal notranslate"><span class="pre">python</span></code>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-a-cellpose-python-environment-without-conda">2. Install a Cellpose python environment without conda:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-to-make-sure-it-works-from-python">3. Test to make sure it works from python:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-fiji-update-site-ptbiop">4. Install the Fiji Update Site PTBIOP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-cellpose-in-fiji">5. Run cellpose in Fiji</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="deep-learning-classification-with-cellpose">
+<h1>Deep Learning Classification with Cellpose<a class="headerlink" href="#deep-learning-classification-with-cellpose" title="Link to this heading">#</a></h1>
+<p>Cellpose is an open-source deep-learning toolkit which can performs cell segmentation on almost any time of microscopy image. Under the hood, it uses a <a class="reference external" href="https://en.wikipedia.org/wiki/U-Net">U-Net</a> that is trained to predict spatial “flow” fields which point outward from an inferred cell center. It ships with several pre-trained models which are tailored for different cell types:</p>
+<ul class="simple">
+<li><p>cytosol</p></li>
+<li><p>nuclei</p></li>
+<li><p>bacteria</p></li>
+<li><p>fluorescence imaging</p></li>
+<li><p>phase contrast imaging</p></li>
+</ul>
+<p>For more information on cellpose, see: Stringer, C., Wang, T., Michaelos, M. <em>et al.</em> <a class="reference external" href="https://doi.org/10.1038/s41592-020-01018-x">Cellpose: a generalist algorithm for cellular segmentation</a>, <em>Nat Methods</em> <strong>18</strong>, 100-106 (2021). DOI: 10.1038/s41592-020-01018-x</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>The Cellpose plugin for Fiji runs as a combination of a python environment and Fiji. This means installation is a bit complicated. In general, you will need <code class="docutils literal notranslate"><span class="pre">python</span></code>, and a python package manager like <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">uv</span></code>. You can install cellpose easily with the package manager, then we will need to run a plugin or script in Fiji and tell the plugin or script where <code class="docutils literal notranslate"><span class="pre">cellpose</span></code> is. So there are a lot of options. I will share the simplest ones first:</p>
+<section id="install-conda">
+<h3>1. Install conda<a class="headerlink" href="#install-conda" title="Link to this heading">#</a></h3>
+<p>If you don’t have <code class="docutils literal notranslate"><span class="pre">python</span></code> yet, download and install <code class="docutils literal notranslate"><span class="pre">conda</span></code>, which bundles <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<p><a class="reference external" href="https://conda-forge.org/miniforge/">https://conda-forge.org/miniforge/</a></p>
+<p>Download the file “environment.yml” from <a class="reference external" href="https://raw.githubusercontent.com/brp-optics/fiji_lab_walkthrough/refs/heads/main/_static/environment.yml">https://raw.githubusercontent.com/brp-optics/fiji_lab_walkthrough/refs/heads/main/_static/environment.yml</a>, or <a class="reference external" href="https://tinyurl.com/cellposeconda">https://tinyurl.com/cellposeconda</a>. Save it to the folder where you want to install cellpose.</p>
+<p>I recommend you put it somewhere in your personal files, not in “Program Files” or “/bin/”. The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file tells <code class="docutils literal notranslate"><span class="pre">conda</span></code> which versions of <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install and run, and how to install <code class="docutils literal notranslate"><span class="pre">cellpose</span></code>:</p>
+</section>
+<section id="install-via-conda-and-environment-yml">
+<h3>2. Install via conda and environment.yml.<a class="headerlink" href="#install-via-conda-and-environment-yml" title="Link to this heading">#</a></h3>
+<p>On Windows, open up “Miniforge Prompt” from Program Files. On Linux or Mac, open “Terminal”.</p>
+<p>Navigate to where you want to install using the terminal. You can use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;directory&gt;</span></code> to change where you are to <code class="docutils literal notranslate"><span class="pre">&lt;directory&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">pwd</span></code> (Mac) or <code class="docutils literal notranslate"><span class="pre">cd</span></code> alone (Windows) to see which directory you are in. You can use <code class="docutils literal notranslate"><span class="pre">ls</span></code> (Mac) or <code class="docutils literal notranslate"><span class="pre">dir</span></code> (Windows) to see the things in your current directory.</p>
+<p>Once you get to where you want to install, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+<p>This will take a few minutes.</p>
+</section>
+<section id="install-fiji-plugin">
+<h3>3. Install Fiji Plugin<a class="headerlink" href="#install-fiji-plugin" title="Link to this heading">#</a></h3>
+<p>While we wait for <code class="docutils literal notranslate"><span class="pre">conda</span></code> to run, we will install the PTBIOP Fiji plugin, which allows us to run cellpose from Fiji:</p>
+<p><strong>Help &gt; Update &gt; Manage Update Sites &gt; check PTBIOP &gt; Apply and Close &gt; Apply Changes</strong></p>
+<p><img alt="Image of the PTBIOP update site being added" src="_images/cellpose-update-site.png" /></p>
+<p><img alt="Image of the PTBIOP update site being added" src="_images/cellpose-update-site2.png" /></p>
+<p>Then close and reopen Fiji.</p>
+</section>
+<section id="test-standalone-cellpose">
+<h3>4. Test standalone cellpose<a class="headerlink" href="#test-standalone-cellpose" title="Link to this heading">#</a></h3>
+<p>Once cellpose is installed, run cellpose by itself. Back in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>condacellpose
+cellpose
+</pre></div>
+</div>
+<p>You will see some text, then up to 30 seconds later the following user interface will appear:</p>
+<p><img alt="The standalone cellpose user interface" src="_images/cellpose-python-ui.png" /></p>
+</section>
+<section id="save-the-conda-location">
+<h3>5. Save the conda location<a class="headerlink" href="#save-the-conda-location" title="Link to this heading">#</a></h3>
+<p>Copy the output of the following command to a text editor window: <code class="docutils literal notranslate"><span class="pre">pwd</span></code> (Linux, Mac), <code class="docutils literal notranslate"><span class="pre">cd</span></code> (Windows).</p>
+</section>
+<section id="just-in-case-save-the-python-location">
+<h3>6. Just in case, save the python location.<a class="headerlink" href="#just-in-case-save-the-python-location" title="Link to this heading">#</a></h3>
+<p>Copy the output of the following command to a text editor window:</p>
+<div class="highlight-conda notranslate"><div class="highlight"><pre><span></span>python -c &quot;import sys; print(sys.executable)&quot;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="run-cellpose-from-fiji">
+<h2>Run cellpose from Fiji<a class="headerlink" href="#run-cellpose-from-fiji" title="Link to this heading">#</a></h2>
+<p>Cellpose can take a long time to run, so we test it on blobs first. Press <strong>Ctrl-Shift-B</strong> to open blobs, then run cellpose from <strong>Plugins &gt; BIOP &gt; Cellpose/Omnipose &gt; Cellpose</strong></p>
+<p><img alt="Sample settings used for cellpose plugin in the conda environment." src="_images/cellpose-conda-nogpu-settings.png" /></p>
+<ul class="simple">
+<li><p>Set the pretrained model to <code class="docutils literal notranslate"><span class="pre">cyto3</span></code> and also remove the parameter <code class="docutils literal notranslate"><span class="pre">--use-gpu</span></code> (unless you have a nice gpu!)</p></li>
+</ul>
+<p><img alt="Results of running cellpose on blobs" src="_images/cellpose-results-blobs.png" /></p>
+</section>
+<section id="choosing-your-model">
+<h2>Choosing your model<a class="headerlink" href="#choosing-your-model" title="Link to this heading">#</a></h2>
+<p>Cellpose is a framework for running (and training) many different models for segmenting different regions of microscopy images. These models are named things like <code class="docutils literal notranslate"><span class="pre">nuclei</span></code> for segmenting the cell nuclei, <code class="docutils literal notranslate"><span class="pre">cyto</span></code> for cytoplasm, etc. The <code class="docutils literal notranslate"><span class="pre">cyto</span></code> model is a general cytoplasmic segmentation model, whereas the <code class="docutils literal notranslate"><span class="pre">cyto3</span></code> model is a more generic model, trained on a larger variety of images, and is more resistant to noise.</p>
+<ul class="simple">
+<li><p>cyto: cytoplasm segmentation, optimized for whole-cell fluorescent or bright-field images; trained from a limited dataset</p></li>
+<li><p>cyto2: trained from a user-submitted dataset with more cell types and stains</p></li>
+<li><p>cyto2_cp3: cellpose3 cytoplasm, but trained on the limited dataset from <code class="docutils literal notranslate"><span class="pre">cyto</span></code></p></li>
+<li><p>cyto3: generalist cytoplasm model trained on nine public datasets (fluorescence, BF, mammalian, microbe, …). Auto-estimates diameters.</p></li>
+<li><p>nuclei: nuclear masks only, same training datasets as <code class="docutils literal notranslate"><span class="pre">cyto3</span></code></p></li>
+<li><p>livecell_cp3: cytoplasm segmentation on transmitted-light live-cell data. Trained on the Sartorius LIVECell bright-field dataset.</p></li>
+<li><p>deepbacs_cp3: bacterial cell bodies in phase-contrast images.</p></li>
+<li><p>tissuenet_cp3: nuclear and small-cell masks in multi-fluorescence tissue sections.</p></li>
+<li><p>bact_fluor_cp3: fluorescent micrographs of bacteria.</p></li>
+<li><p>bact_phase_cp3: phase-contrast bacteria.</p></li>
+<li><p>neurips_cellpose_default: 3-channel RGB fluorescence composites. This model won the NeurIPS Cell Segmentation Challenge.</p></li>
+<li><p>neurips_cellpose_transformer: same NeurIPS dataset but with a SegFormer/ViT backbone</p></li>
+<li><p>neurips_grayscale_cyto2: grayscale-only cyto2, accepts single-channel input.</p></li>
+<li><p>transformer_cp3: cellpose-3 weights transplanted onto a transformer backbone (SegFormer) for 3-channel input.</p></li>
+<li><p>yeast_BF_cp3: <em>s. cerevisiae</em> in bright-field</p></li>
+<li><p>yeast_PhC_cp3: <em>s. cerevisiae</em> in phase-contrast</p></li>
+</ul>
+<p>You can also train your own models, although it is computationally expensive: it is recommended to have a GPU and significant RAM.</p>
+</section>
+<section id="alternative-run-script">
+<h2>Alternative run script<a class="headerlink" href="#alternative-run-script" title="Link to this heading">#</a></h2>
+<p>Ed Evans wrote another script to run cellpose which shows all the available models. You may find it at <a class="github reference external" href="https://github.com/elevans/fiji-scripts/blob/main/wrappers/cellpose_wrapper.py">elevans/fiji-scripts</a>.</p>
+<p>Press <strong>Ctrl-Shift-N</strong> to open the text editor, and don’t forget to set the <strong>Language &gt; Python (Jython)</strong>.</p>
+<p><img alt="Ed's script open in the Fiji text editor" src="_images/cellpose-edevans-script.png" /></p>
+<p>Select the input image and paste in the location of python which you saved in the text editor earlier.</p>
+</section>
+<section id="other-samples">
+<h2>Other samples<a class="headerlink" href="#other-samples" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fluorescent nuclei: <strong>File &gt; Open Samples &gt; Fluorescent Cells</strong></p></li>
+<li><p>Limit to the blue color channel: <strong>Ctrl-Shift-D</strong>,</p></li>
+<li><p>Fluorescent cells (cytosol):</p>
+<ul>
+<li><p>Download <a class="github reference external" href="https://github.com/brp-optics/fiji_lab_walkthrough/raw/refs/heads/main/_static/001_img-1.tif">brp-optics/fiji_lab_walkthrough</a> and drag-and-drop it to Fiji</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="alternative-install-instructions">
+<h2>Alternative install instructions<a class="headerlink" href="#alternative-install-instructions" title="Link to this heading">#</a></h2>
+<section id="downloading-and-installing-python">
+<h3>1. Downloading and installing <code class="docutils literal notranslate"><span class="pre">python</span></code>:<a class="headerlink" href="#downloading-and-installing-python" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>on Linux/Mac, try running <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">python3</span></code>, or <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> in the terminal.</p></li>
+<li><p>on Windows, download the Windows Installer for python from <a class="reference external" href="https://www.python.org/ftp/python/3.13.3/python-3.13.3-amd64.exe">https://www.python.org/ftp/python/3.13.3/python-3.13.3-amd64.exe</a>.</p></li>
+</ul>
+<p>(If you are running a different cpu type than 64 bit Intel, then go to <a class="reference external" href="https://www.python.org/downloads/release/python-3133/">https://www.python.org/downloads/release/python-3133/</a>.</p>
+</section>
+<section id="install-a-cellpose-python-environment-without-conda">
+<h3>2. Install a Cellpose python environment without conda:<a class="headerlink" href="#install-a-cellpose-python-environment-without-conda" title="Link to this heading">#</a></h3>
+<p>a. Start a virtual environment. This keeps programs installed for cellpose from interfering with the rest of your system’s installed programs:</p>
+<ul class="simple">
+<li><p>on Linux: Open up the shell to where you want to install and run the following code, one line at a time:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>--version
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>cellpose
+pip<span class="w"> </span>install<span class="w"> </span>cellpose<span class="o">[</span>gui<span class="o">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>on Windows: Open <code class="docutils literal notranslate"><span class="pre">cmd</span></code>, navigate to the directory you want to work in with <code class="docutils literal notranslate"><span class="pre">cd</span></code>, then run</p></li>
+</ul>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py -m venv cellpose
+cellpose\Scripts\activate
+pip install cellpose[gui]
+</pre></div>
+</div>
+<p>If you prefer <code class="docutils literal notranslate"><span class="pre">uv</span></code> to <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>install<span class="w"> </span>cellpose
+uv<span class="w"> </span>install<span class="w"> </span>cellpose<span class="o">[</span>gui<span class="o">]</span>
+uv<span class="w"> </span>activate
+</pre></div>
+</div>
+<p>If you like <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>cellpose<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
+conda<span class="w"> </span>activate<span class="w"> </span>cellpose
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;cellpose[gui]&#39;</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cellpose
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cellpose<span class="w"> </span>--upgrade
+</pre></div>
+</div>
+</section>
+<section id="test-to-make-sure-it-works-from-python">
+<h3>3. Test to make sure it works from python:<a class="headerlink" href="#test-to-make-sure-it-works-from-python" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>cellpose
+</pre></div>
+</div>
+<p>Or if using <code class="docutils literal notranslate"><span class="pre">uv</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>cellpose
+</pre></div>
+</div>
+<p><img alt="The standalone cellpose UI" src="_images/cellpose-python-ui.png" /></p>
+</section>
+<section id="install-the-fiji-update-site-ptbiop">
+<h3>4. Install the Fiji Update Site PTBIOP<a class="headerlink" href="#install-the-fiji-update-site-ptbiop" title="Link to this heading">#</a></h3>
+<p>See detailed instructions above.</p>
+</section>
+<section id="run-cellpose-in-fiji">
+<h3>5. Run cellpose in Fiji<a class="headerlink" href="#run-cellpose-in-fiji" title="Link to this heading">#</a></h3>
+<p>Restart Fiji and open up <code class="docutils literal notranslate"><span class="pre">blobs</span></code> with <strong>Ctrl-Shift-B</strong>. Run “cellpose”.  Point the cellpose plugin at the location of your conda environment or venv, and disable gpu:</p>
+<p><img alt="Settings for cellpose with venv instead of conda" src="_images/cellpose-venv-nogpu-setup.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="labkit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Labkit Segmentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="extra-resources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Other Resources</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-conda">1. Install conda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-via-conda-and-environment-yml">2. Install via conda and environment.yml.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-fiji-plugin">3. Install Fiji Plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-standalone-cellpose">4. Test standalone cellpose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-conda-location">5. Save the conda location</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#just-in-case-save-the-python-location">6. Just in case, save the python location.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-cellpose-from-fiji">Run cellpose from Fiji</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-your-model">Choosing your model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-run-script">Alternative run script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-samples">Other samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-install-instructions">Alternative install instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-and-installing-python">1. Downloading and installing <code class="docutils literal notranslate"><span class="pre">python</span></code>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-a-cellpose-python-environment-without-conda">2. Install a Cellpose python environment without conda:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-to-make-sure-it-works-from-python">3. Test to make sure it works from python:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-fiji-update-site-ptbiop">4. Install the Fiji Update Site PTBIOP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-cellpose-in-fiji">5. Run cellpose in Fiji</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Fiji Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
